@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUNDAÇÃO ESCOLA SOLIDÁRIA</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #a6cff500;
+        }
+
+        header {
+            background-color: #f6fdfd00;
+            color: #000000;
+            padding: 1em 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            margin: 0;
+            padding-right: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        header .logo {
+            width: 100px;
+            max-width: 100px;
+            height: auto;
+            margin-left: 20px;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .close-menu {
+            display: none;
+            /* Esconde o botão em telas maiores por padrão */
+        }
+
+        @media (max-width: 768px) {
+            .close-menu {
+                display: block;
+                /* Mostra o botão apenas em dispositivos móveis */
+            }
+        }
+
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0.5em;
+            background-color: #268ef000;
+            z-index: 10;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .bar {
+            height: 3px;
+            width: 25px;
+           
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            justify-content: flex-end;
+            background-color: #52f28a;
+            color: #ffffff;          
+            border-radius: 30px;
+            padding: 1em;
+            font-size: 1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+            
+        }
+
+        .nav-list li {
+            margin: 0 1em;
+        }
+
+        .nav-list a {
+            color: #181919;
+            text-decoration: none;
+            
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                margin-left: auto;
+                margin-top: 10px;
+            }
+
+
+            .nav-list {
+                display: none;
+                /* Esconder a lista de navegação por padrão */
+                flex-direction: column;
+                position: absolute;
+                background-color: #268ef000;
+                width: 100%;
+                top: 60px;
+                /* Ajuste conforme necessário */
+                left: 0;
+                z-index: 5;
+
+            }
+
+            .nav-list.active {
+                display: flex;
+                /* Mostrar quando ativa */
+            }
+
+            .nav-list li {
+                margin: 1em 0;
+                /* Margem vertical nos itens */
+            }
+        }
+
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+
+        }
+
+        .social-buttons a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #268ef0;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            color: #ffffff;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-buttons a:hover {
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .social-buttons {
+                flex-direction: column;
+            }
+        }
+
+        nav a {
+            color: #ffffff00;
+            margin: 0 1em;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            
+        }
+
+        .section {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-top: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .gallery-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            animation: slide 15s infinite linear;
+        }
+
+        .gallery img {
+            width: calc(20% - 20px);
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 25%;
+            height: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 50%;
+            max-width: 300px;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        footer {
+            background-color: #ffffff00;
+            color: #0f0f0f;
+            padding: 1em 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 0 1em;
+        }
+
+        footer .partners-logos {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            text-align: left;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        footer .partners-logos img {
+            width: 100px;
+            height: 20%;
+            border-radius: 10px;
+        }
+
+        footer .center-text {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        footer p {
+            margin: 0.5em 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-gradient {
+            background: linear-gradient(135deg, #0762d9, #0540a8);
+            padding: 4em 0;
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-gradient .overlay {
+            background-image: url(fundo.png);
+            opacity: 0.12;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .section-gradient .container {
+            position: relative;
+            z-index: 2;
+            max-width: auto;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+
+        .heading {
+            color: #52f28a;
+            font-size: 3rem;
+            /* Reduzido o tamanho da fonte */
+            font-weight: 700;
+            /* Alterado para um peso mais moderado */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Ajustado para um espaçamento mais sutil */
+            margin-bottom: 0.5em;
+            animation: fadeIn 1s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .divider {
+            height: 4px;
+            width: 9%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .subheading {
+            color: #ffffff00;
+            font-size: 1.5em;
+            /* Reduzido o tamanho da fonte */
+            font-weight: 400;
+            /* Mantido o peso da fonte leve */
+            margin: 0.5em 0;
+            /* Margens ajustadas para melhor espaçamento */
+        }
+
+        .text {
+            color: #ffffff;
+            text-align: justify;
+            margin: 1em auto;
+            /* Ajustado para centralizar e dar espaço */
+            padding: 1em;
+            /* Aumentado o padding para suavizar a leitura */
+            max-width: 800px;
+            /* Limitado a largura para melhor legibilidade */
+            font-size: 0.95em;
+            /* Pequena redução para um layout mais clean */
+        }
+
+        .icon-container {
+            text-align: left;
+            animation: fadeInLeft 1s;
+        }
+
+        .icon-container i {
+            font-size: 42px;
+            color: #30d979;
+        }
+
+        .section-icons {
+            background-color: #30d979;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .social-icons i {
+            font-size: 2em;
+            margin: 0 1em;
+            color: #27db96;
+        }
+
+        .section-cards {
+            background-color: #ffffff00;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .card {
+            display: inline-block;
+            background-color: #ffffff;
+            border-bottom: 5px solid #0762d9;
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.11);
+            margin: 2em;
+            padding: 1em;
+            width: 20%;
+            border-radius: 6px;
+            transition: border-bottom-color 0.3s;
+        }
+
+        .card:hover {
+            border-bottom-color: #30d979;
+        }
+
+        .card img {
+            max-width: 20%;
+        }
+
+        .card h3 {
+            color: #0762d9;
+            font-family: 'Moulpali', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s;
+        }
+
+        .section-faq {
+            background-color: #ffffff;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .section-faq .faq-content img {
+            width: 3%;
+        }
+
+        .section-faq .faq-content h2 {
+            color: #0762d9;
+            font-family: 'roboto', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: fadeIn 1s;
+        }
+
+        .section-faq .faq-content .divider {
+            height: 6px;
+            width: 9%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .section-faq .faq-content p {
+           
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .section-video {
+            background-color: #0762d9;
+            padding: 2em 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-video .overlay {
+            background-image: url(fundo.png);
+            opacity: 0.13;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .section-video .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 1em;
+            top:-1em;
+        }
+
+        .section-video .heading {
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.5em;
+            animation: fadeIn 1s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section-video .divider {
+            height: 6px;
+            width: 9%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .section-video .subheading {
+            color: #1919ff;
+            font-size: 1.7em;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+
+        .section-video .text {
+            color: #ffffff;
+            margin: 1em 3em 0 0;
+            padding-right: 3em;
+            border-right: 3px solid #30d979;
+            text-align: justify;
+        }
+
+        .section-video .btn {
+            background-color: #52f28a;
+            color: #ffffff;
+            border: 1px solid #52f28a;
+            border-radius: 100px;
+            padding: 1em;
+            font-size: 1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section-video .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .close-menu {
+                display: none;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #268ef0;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .nav-list.active+.close-menu {
+                display: block;
+            }
+        }
+
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-top: 2em;
+        }
+
+        .btn {
+            background-color: #52f28a;
+            color: #000000;
+            border: none;
+            border-radius: 15px;
+            padding: 1em 2em;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #30d979;
+            text-decoration: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+            border-radius: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .modal h2 {
+            color: #0762d9;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Estilos para a galeria */
+        .gallery-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            margin-top: -5em;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            animation: slide 15s infinite linear;
+        }
+
+        .gallery img {
+            width:200px;
+            height: 200px;
+            flex-shrink: 0;
+            transition: transform 1.0s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para a seção de vídeos */
+        .section-video {
+            background-color: #0762d9;
+            padding: 4em 0 3em;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Animação para a galeria 2 (desliza da esquerda para a direita) */
+        @keyframes slide2 {
+            0% {
+                transform: translateX(-100%);
+                /* Começa fora da tela, à esquerda */
+            }
+
+            100% {
+                transform: translateX(0);
+                /* Move para a posição original */
+            }
+        }
+
+        .gallery2-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            margin-top: -5em;
+        }
+
+        .gallery2 {
+            display: flex;
+            gap: 20px;
+            animation: slide2 15s infinite linear;
+            /* Aplica a animação slide2 */
+        }
+
+        .gallery2 img {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            transition: transform 1.0s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery2 img:hover {
+            transform: scale(1.1);
+        }
+
+        .section-video .heading {
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 700px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.5em;
+            animation: fadeIn 1s;
+            font-family: 'Roboto', sans-serif;
+           
+        }
+
+        .section-video .divider {
+            height: 1px;
+            width: 1%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .section-video .subheading {
+            color: #ffffff;
+            font-size: 1.7em;
+            font-weight: 300px;
+            text-transform: capitalize;
+        }
+
+        .video-container {
+            position: relative;
+            width: 900px;
+            height: 350px ;            
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+        }
+
+        /* Estilos para a seção de contato */
+        .section.contato {
+            background-color: #0762d9;
+            color: #fff;
+            position: relative;
+            padding: 4em 0;
+        }
+
+        .section.contato::before {
+            content: "";
+            background-image: url('crianças.png');
+            background-size: cover;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .section.contato .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+
+        .blackboard {
+            background-color: #2c3e50;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            color: #fff;
+            font-family: 'Shadows Into Light', cursive;
+            padding: 2em;
+            margin: 2em 0;
+            min-height: 150px;
+            max-width: 600px;
+            margin: 2em auto;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .blackboard .vagas {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1em;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        .blackboard h3 {
+            font-size: 1.8em;
+            /* Reduzido o tamanho da fonte */
+            color: #e74c3c;
+            text-align: justify;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+
+        .blackboard .chalk {
+            font-size: 1.2em;
+            line-height: 1.4;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: writing 3s steps(40) 1;
+            white-space: pre-wrap;
+            text-align: left;
+            margin-left: 10px;
+            /* Adicionado o alinhamento centralizado */
+        }
+
+        .donate-whatsapp-button {
+            background-color: #1a1c24;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 1em 2em;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            position: static;
+            /* Retirado o posicionamento absoluto */
+            margin-top: 1.5em;
+            /* Adicionado um espaçamento acima do botão */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes writing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .donate-whatsapp-button:hover {
+            background-color: #e6771d;
+        }
+
+        .section.contato {
+            background-color: #0762d9;
+            color: #ffffff;
+            position: relative;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 2em;
+            font-size: 1.1em;
+        }
+
+        .contact-info p {
+            margin: 0.5em 0;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            /* Cor do WhatsApp */
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 1em 2em;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1DAE3D;
+            /* Cor mais escura no hover */
+        }
+
+        .blackboard {
+            background-color: #2c3e50;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            color: #ffffff;
+            font-family: 'Shadows Into Light', cursive;
+            padding: 2em;
+            margin: 2em 0;
+            min-height: 150px;
+            max-width: 800px;
+            margin: 2em auto;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .blackboard .vagas {
+            position: relative;
+            background-color: #e74c3c;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 1em;
+        }
+
+        .blackboard h3 {
+            font-size: 1.8em;
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+
+        .blackboard .chalk {
+            font-size: 1.2em;
+            line-height: 1.4;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>FUNDAÇÃO ESCOLA SOLIDÁRIA</h1>
+        <img src="fundo.png" alt="Logo da Instituição" class="logo">
+
+    </header>
+
+    <nav>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#videos">Vídeos</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="ficha.html">Preenchimento de Ficha</a></li>
+            <li><a href="termo.html">Termos de Consentimento Geral</a></li>
+        </ul>
+        <!-- Botão para fechar o menu -->
+        <button class="close-menu">Fechar</button>
+    </nav>
+
+
+
+    <section id="sobre" class="section-gradient">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1 class="heading">Sobre a Escola</h1>
+            <div class="social-buttons">
+                <a href="https://facebook.com" class="btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" class="btn-instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="divider"></div>
+            <div class="btn-container">
+                <button class="btn" data-modal="modal1">Nossa Equipe</button>
+                <button class="btn" data-modal="modal2">Missão, Visão e Valores</button>
+                <button class="btn" data-modal="modal3">Nossa História</button>
+            </div>
+
+            <!-- Modal Educação para Todos -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>QUERIDA EQUIPE</h2>
+                    <p>Queremos expressar nossa profunda gratidão a cada um de vocês que, com dedicação, amor e
+                        compromisso, fazem a diferença na vida das crianças que acolhemos. Vocês não são apenas
+                        colaboradores, são verdadeiros agentes de transformação, levando esperança, cuidado e afeto a
+                        quem mais precisa.</p>
+                        <p> Como bem disse <b> Mandela: "Sempre parece impossível, até que seja feito."</b> Vocês tornam o
+                        impossível realidade, todos os dias. Através de pequenos gestos e grandes ações, estão plantando
+                        sementes que florescerão em um futuro de oportunidades e sonhos realizados para essas crianças.
+                        Obrigado por cada sorriso, cada desafio superado e por acreditarem, como nós, que juntos podemos
+                        transformar vidas e construir um mundo mais justo e inclusivo.</p>
+                        <p></p>Com admiração e gratidão, <B>Fundação Escola Solidária.</B></p>
+                </div>
+            </div>
+
+            <!-- Modal Missão, Visão e Valores -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Missão, Visão e Valores</h2>
+                    <p>Missão: Nossa missão é oferecer um ambiente de aprendizagem acolhedor e inclusivo, onde cada
+                        criança, independentemente de sua situação social, possa crescer e se desenvolver plenamente.
+                        Trabalhamos para garantir que todas as crianças tenham acesso a uma educação de qualidade, com
+                        alimentação saudável e o suporte necessário para que se sintam valorizadas e seguras. Nosso
+                        compromisso é construir um futuro melhor, ajudando a transformar a vida das crianças e suas
+                        comunidades através da educação e do apoio contínuo.</p>
+
+                    <p>Visão: Ser uma referência em educação inclusiva e solidária, promovendo a transformação social
+                        por meio de uma educação de excelência. Aspiramos a ser reconhecidos por nosso compromisso com a
+                        inclusão, onde todas as crianças, especialmente as em situação de vulnerabilidade social,
+                        encontram as ferramentas e o apoio necessário para se tornarem cidadãos plenos e agentes de
+                        mudança em suas comunidades.</p>
+
+                    Valores:
+                    <p>Paixão pelo que fazemos: Acreditamos que a dedicação e o amor pelo ensino são essenciais para
+                        criar um ambiente educacional inspirador.</p>
+                    <p>Inclusão: Valorizamos cada criança, respeitando suas diferenças e proporcionando oportunidades
+                        iguais para todos.</p>
+                    <p>Solidariedade: Estamos comprometidos em apoiar aqueles que mais precisam, oferecendo um ambiente
+                        seguro e acolhedor para todos.</p>
+                    <p>Transformação social: Acreditamos na educação como ferramenta de mudança, buscando constantemente
+                        melhorar a vida das crianças e suas comunidades.</p>
+                    <p>Comunidade: Trabalhamos em conjunto com a comunidade para fortalecer laços e construir um futuro
+                        mais justo e solidário.</p>
+                </div>
+            </div>
+
+            <!-- Modal A Equipe Administrativa -->
+            <div id="modal3" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>HISTÓRIA DA FUNDAÇÃO
+                    </h2>
+                    <p>A Fundação Escola Solidária foi fundada no dia 13 de julho de 2003. O projeto foi realizado pelas
+                        professoras Maria Betânia Correia Braz de Carvalho, Carla Fabiana Corrêa Crespo e Jussaná de
+                        Barros Souza. A iniciativa partiu da necessidade da professora Maria Betânia, que tem um filho
+                        diagnosticado com Transtorno do Espectro Autista (TEA) e enfrentava dificuldades para encontrar
+                        uma escola onde pudesse matriculá-lo. Ela idealizou o projeto junto com suas colegas e o
+                        apresentou à Sra. Vilma de Araújo, que também tinha dois filhos com deficiência e se encontrava
+                        na mesma situação. A Sra. Vilma cedeu o terreno para a construção da escola por meio de um
+                        contrato.
+                    </p>
+
+                    <p>A escola está localizada na Rua José Gonçalves Leal. 159. Vilar Novo- Belford Roxo.</p>
+
+                    <p>A instituição se faz necessária diante das carências presentes em nossa comunidade, oferecendo
+                        informações e esclarecimentos básicos, atendendo a todos para promover um convívio social
+                        diversificado e harmonioso, com o objetivo de alcançarmos dias melhores e uma vida digna e útil
+                        perante a sociedade.</p>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="section">
+        <div class="gallery-container">
+            <div class="gallery">
+                <img src="32.jpg" alt="Foto 1">
+                <img src="02.jpg" alt="Foto 2">
+                <img src="03.jpg" alt="Foto 3">
+                <img src="04.jpg" alt="Foto 4">
+                <img src="05.jpg" alt="Foto 5">
+                <img src="06.jpg" alt="Foto 6">
+                <img src="07.jpg" alt="Foto 1">
+                <img src="08.jpg" alt="Foto 2">
+                <img src="09.jpg" alt="Foto 3">
+                <img src="10.jpg" alt="Foto 4">
+                <img src="11.jpg" alt="Foto 5">
+                <img src="12.jpg" alt="Foto 6">
+                <img src="13.jpg" alt="Foto 3">
+                <img src="14.jpg" alt="Foto 4">
+                <img src="15.jpg" alt="Foto 5">
+                <img src="16.jpg" alt="Foto 6">
+                <!-- Repetindo as imagens para efeito de carrossel contínuo -->
+                <img src="17.jpg" alt="Foto 7">
+                <img src="18.jpg" alt="Foto 8">
+                <img src="19.jpg" alt="Foto 9">
+                <img src="20.jpg" alt="Foto 10">
+                <img src="21.jpg" alt="Foto 11">
+                <img src="22.jpg" alt="Foto 12">
+                <img src="23.jpg" alt="Foto 7">
+                <img src="24.jpg" alt="Foto 8">
+                <img src="25.jpg" alt="Foto 9">
+                <img src="26.jpg" alt="Foto 10">
+                <img src="27.jpg" alt="Foto 11">
+                <img src="28.jpg" alt="Foto 12">
+                <img src="29.jpg" alt="Foto 11">
+                <img src="30.jpg" alt="Foto 12">
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="section-video">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1 class="heading">Vídeos do Projeto</h1>
+            <div class="divider"></div>
+            <h3 class="subheading">Nossos Momentos</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/5JHDyIAnMPY" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+    <section id="galeria2" class="section">
+        <div class="gallery2-container">
+            <div class="gallery2">
+                <img src="32.jpg" alt="Foto 1">
+                <img src="02.jpg" alt="Foto 2">
+                <img src="03.jpg" alt="Foto 3">
+                <img src="04.jpg" alt="Foto 4">
+                <img src="05.jpg" alt="Foto 5">
+                <img src="06.jpg" alt="Foto 6">
+                <img src="07.jpg" alt="Foto 1">
+                <img src="08.jpg" alt="Foto 2">
+                <img src="09.jpg" alt="Foto 3">
+                <img src="10.jpg" alt="Foto 4">
+                <img src="11.jpg" alt="Foto 5">
+                <img src="12.jpg" alt="Foto 6">
+                <img src="13.jpg" alt="Foto 3">
+                <img src="14.jpg" alt="Foto 4">
+                <img src="15.jpg" alt="Foto 5">
+                <img src="16.jpg" alt="Foto 6">
+                <!-- Repetindo as imagens para efeito de carrossel contínuo -->
+                <img src="17.jpg" alt="Foto 7">
+                <img src="18.jpg" alt="Foto 8">
+                <img src="19.jpg" alt="Foto 9">
+                <img src="20.jpg" alt="Foto 10">
+                <img src="21.jpg" alt="Foto 11">
+                <img src="22.jpg" alt="Foto 12">
+                <img src="23.jpg" alt="Foto 7">
+                <img src="24.jpg" alt="Foto 8">
+                <img src="25.jpg" alt="Foto 9">
+                <img src="26.jpg" alt="Foto 10">
+                <img src="27.jpg" alt="Foto 11">
+                <img src="28.jpg" alt="Foto 12">
+                <img src="29.jpg" alt="Foto 11">
+                <img src="30.jpg" alt="Foto 12">
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section contato">
+        <h2>Atendimento ao Aluno/Responsável</h2>
+        <div class="container">
+            <div class="contact-info">
+                <p><strong>Endereço:</strong> Rua José Gonçalves Leal, 159 - Santa Amélia - Loteamento Vilar Novo,
+                    Belford Roxo - RJ, 26116-570</p>
+                <p><strong>Telefone:</strong> (21) 2661-2767</p>
+                <p><strong>Email:</strong> <a href="mailto:contato@escolafundacao.org"
+                        style="color: #52f28a;">contato@escolafundacao.org</a></p>
+            </div>
+
+            <form class="contact-form">
+                <a href="https://api.whatsapp.com/send?phone=5521992471091&text=Sou%20o%20respons%C3%A1vel%20pelo%20aluno(a)%20e%20gostaria%20de%20solicitar%20atendimento."
+                    target="_blank" class="btn whatsapp-button">WhatsApp</a>
+            </form>
+
+            <div class="blackboard">
+                <div class="vagas">Número de vagas de alunos: <span>135</span> | Reservas: <span>15</span></div>
+                <h3>Aviso</h3>
+                <p class="chalk">Prezado(a) Parceiro(a), desde 2003, a Fundação Escola Solidária oferece educação e
+                    suporte a crianças em situação de vulnerabilidade. Com seu apoio financeiro, podemos garantir uma
+                    oportunidade para um futuro melhor. Sua contribuição é essencial para fornecer educação, alimentação
+                    e cuidados essenciais. Junte-se a nós para construir uma sociedade mais justa e inclusiva. Contamos
+                    com você para fazer a diferença.</p>
+                <a href="https://api.whatsapp.com/send?phone=5521973080269&text=Ol%C3%A1,%20como%20posso%20me%20tornar%20parceiro%20no%20projeto?"
+                    class="donate-whatsapp-button">Clique aqui e saiba mais.</a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="partners-logos">
+                <img src="logo bel.png" alt="Logo Parceiro 1">
+                <img src="seu logo aqui.png" alt="Logo Parceiro 2">
+                <img src="seu logo aqui.png" alt="Logo Parceiro 3">
+            </div>
+            <div class="center-text">
+                <p>&copy; 2024 Fundação Escola Solidária CNPJ Nº 06.018.029/0001-87. Todos os direitos reservados.</p>
+                <p><a href="#" class="privacy-link">Política de Privacidade e Termo de Privacidade</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Política de Privacidade e Termos de Uso -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Política de Privacidade e Termos de Uso</h2>
+            <p>A Fundação Escola Solidária, inscrita no CNPJ sob o número 06.018.029/0001-87, apresenta os Termos de Uso
+                e a Política de Privacidade aplicáveis ao seu site. O acesso e utilização deste site implicam na
+                aceitação dos termos aqui dispostos, cujo objetivo é proteger os direitos e a privacidade dos usuários,
+                em conformidade com as leis brasileiras vigentes, incluindo a Lei nº 13.709/2018, conhecida como Lei
+                Geral de Proteção de Dados Pessoais (LGPD).
+                Os dados pessoais dos usuários podem ser coletados por meio de formulários de contato, inscrições em
+                eventos ou outras interações realizadas no site. Esses dados podem incluir informações como nome,
+                endereço de e-mail, telefone e outras necessárias para a prestação dos serviços oferecidos. A Fundação
+                Escola Solidária compromete-se a utilizar tais dados exclusivamente para fins institucionais, tais como
+                resposta a solicitações de informações, envio de comunicados e newsletters, aprimoramento da experiência
+                do usuário no site e realização de pesquisas de satisfação. Ademais, a Fundação compromete-se a tratar
+                os dados pessoais de acordo com os princípios estabelecidos pela LGPD, que incluem, entre outros, a
+                finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança,
+                prevenção e não discriminação.
+                Os dados pessoais dos usuários não serão compartilhados com terceiros, exceto quando necessário para o
+                cumprimento de obrigações legais ou para a execução de serviços essenciais, sempre garantindo que esses
+                terceiros cumpram com a legislação de proteção de dados. Os dados coletados serão armazenados em
+                servidores seguros, protegidos por medidas técnicas e administrativas que visam evitar acessos não
+                autorizados, vazamentos ou qualquer outro incidente. Em conformidade com o artigo 46 da LGPD, a Fundação
+                Escola Solidária implementa todas as medidas de segurança apropriadas para garantir a integridade dos
+                dados pessoais.
+                Os usuários têm o direito de solicitar a confirmação da existência de tratamento de seus dados pessoais,
+                o acesso a esses dados, a correção de informações incompletas, inexatas ou desatualizadas, a
+                anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em
+                desconformidade com a LGPD. Têm também o direito à portabilidade dos dados, à eliminação dos dados
+                tratados com consentimento do titular e à revogação do consentimento, conforme previsto no artigo 8º,
+                §5º da LGPD.
+                Este site utiliza cookies para melhorar a experiência do usuário. Cookies são pequenos arquivos de texto
+                armazenados no navegador do usuário, com a finalidade de autenticação, registro de preferências e
+                análise de uso do site. O usuário tem a opção de desabilitar os cookies nas configurações de seu
+                navegador, embora isso possa impactar a funcionalidade do site.
+                A Fundação Escola Solidária reserva-se o direito de alterar os Termos de Uso e a Política de Privacidade
+                a qualquer momento, sendo que as alterações serão publicadas no próprio site. Recomenda-se que os
+                usuários revisitem esta página periodicamente para se manterem informados sobre possíveis mudanças. Este
+                documento é regido pelas leis da República Federativa do Brasil, e qualquer disputa decorrente do uso
+                deste site será submetida ao foro da comarca onde se encontra a sede da Fundação Escola Solidária, com
+                renúncia expressa a qualquer outro foro, por mais privilegiado que seja.
+                Em caso de dúvidas sobre estes Termos de Uso e Política de Privacidade, ou para exercer seus direitos
+                como titular de dados, os usuários podem entrar em contato pelo e-mail: contato@escolasolidaria.org.br.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+            const closeMenuButton = document.querySelector('.close-menu');
+            const contactForm = document.querySelector('.contact-form');
+            const modals = document.querySelectorAll('.modal');
+            const btns = document.querySelectorAll('.btn');
+            const spans = document.querySelectorAll('.modal .close');
+            const privacyLink = document.querySelector('.privacy-link');
+            const privacyModal = document.getElementById('privacy-modal');
+
+            if (mobileMenu && navList) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    if (closeMenuButton) {
+                        closeMenuButton.style.display = navList.classList.contains('active') ? 'block' : 'none';
+                    }
+                });
+
+                if (closeMenuButton) {
+                    closeMenuButton.addEventListener('click', () => {
+                        navList.classList.remove('active');
+                        closeMenuButton.style.display = 'none';  // Esconde o botão ao fechar
+                    });
+                }
+
+                window.addEventListener('click', (event) => {
+                    if (!mobileMenu.contains(event.target) && !navList.contains(event.target) && navList.classList.contains('active')) {
+                        navList.classList.remove('active');
+                        if (closeMenuButton) {
+                            closeMenuButton.style.display = 'none'; // Esconde o botão ao clicar fora do menu
+                        }
+                    }
+                });
+            } else {
+                console.error('O elemento mobile-menu ou nav-list não foi encontrado.');
+            }
+
+            // Formulário de contato
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    alert('Formulário enviado com sucesso!');
+                });
+            }
+
+            // Modal functionality
+            btns.forEach((btn) => {
+                btn.addEventListener('click', function () {
+                    const modalId = btn.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'block';
+                    }
+                });
+            });
+
+            spans.forEach((span) => {
+                span.addEventListener('click', function () {
+                    span.closest('.modal').style.display = 'none';
+                });
+            });
+
+            window.addEventListener('click', function (event) {
+                modals.forEach((modal) => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+
+            // Modal for Privacy Policy and Terms of Use
+            if (privacyLink && privacyModal) {
+                privacyLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    privacyModal.style.display = 'block';
+                });
+
+                const closePrivacyModal = privacyModal.querySelector('.close');
+                if (closePrivacyModal) {
+                    closePrivacyModal.addEventListener('click', function () {
+                        privacyModal.style.display = 'none';
+                    });
+                }
+            }
+        });
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

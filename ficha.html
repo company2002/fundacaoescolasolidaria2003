@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Pré-Matrícula do Aluno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-container h2, .form-container h3 {
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 90%;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .form-container input:invalid {
+            border-color: red;
+        }
+        .form-container button {
+            background-color: #268ef0;
+            color: #fff;
+            border: none;
+            padding: 0.7em 1.5em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-container button:hover {
+            background-color: #176dc1;
+        }
+        .document-upload input {
+            padding: 0.2em;
+        }
+        .consentimento label {
+            display: block;
+            margin: 0.5em 0;
+        }
+        .page-break {
+            page-break-before: always;
+            page-break-inside: avoid;
+        }
+        @media print {
+            body, .form-container {
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+                background-color: white;
+            }
+            .form-container input[type="file"] {
+                display: block;
+            }
+            .form-container label {
+                display: inline-block;
+                margin-bottom: 0.5em;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            .form-container {
+                padding: 1em;
+            }
+            button {
+                display: none;
+            }
+            .foto-aluno, .foto-outros {
+                float: right;
+                margin-left: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .necessidades-especiais {
+            display: none;
+        }
+
+        .outros-dados {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container" id="form-content">
+        <h2>Ficha de Pré-Matrícula do Aluno</h2>
+        <form id="fichaForm" novalidate>
+            <h3>Informações Pessoais do Aluno</h3>
+            <div style="position: relative;">
+                <input type="text" name="nomeAluno" placeholder="Nome Completo" required style="display: inline-block; width: 75%;" aria-label="Nome Completo">
+                <img id="previewFotoAluno" class="foto-aluno" style="display:none; width: 100px; height: 100px;" alt="Pré-visualização da foto do aluno">
+            </div>
+            <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*" style="display: inline-block; width: 90%;" onchange="previewImage('fotoAluno', 'previewFotoAluno')" aria-label="Foto do aluno">
+            <input type="date" name="dataNascimento" placeholder="Data de Nascimento" required aria-label="Data de Nascimento">
+            <select name="nacionalidade" required aria-label="Nacionalidade">
+                <option value="">Nacionalidade</option>
+                <option value="brasileiro">Brasileiro</option>
+                <option value="estrangeiro">Estrangeiro</option>
+            </select>
+            <input type="text" name="naturalidade" placeholder="Naturalidade (cidade e estado)" required aria-label="Naturalidade">
+            <select name="genero" required aria-label="Gênero">
+                <option value="">Gênero</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outro">Outro</option>
+            </select>
+            <input type="text" id="cep" name="cep" placeholder="CEP" required onblur="buscarCep()" aria-label="CEP">
+            <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro" required aria-label="Logradouro">
+            <input type="text" id="numero" name="numero" placeholder="Número" required aria-label="Número">
+            <input type="text" id="complemento" name="complemento" placeholder="Complemento" aria-label="Complemento">
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" required aria-label="Bairro">
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required aria-label="Cidade">
+            <input type="text" id="uf" name="uf" placeholder="Estado" required aria-label="Estado">
+            <input type="tel" name="telefone" placeholder="Telefones de Contato" required aria-label="Telefone de Contato">
+            <input type="email" name="email" placeholder="E-mail" required aria-label="E-mail">
+            <input type="text" name="rg" placeholder="Número de Registro Geral (RG)" required aria-label="RG">
+            <input type="text" name="cpf" placeholder="CPF (se aplicável)" aria-label="CPF">
+            <input type="text" name="certidao" placeholder="Número da Certidão de Nascimento ou Casamento" required aria-label="Certidão">
+            <input type="text" name="raca" placeholder="Raça/Cor (opcional)" aria-label="Raça/Cor">
+
+            <h3>Necessidades Especiais</h3>
+            <label>Possui necessidades especiais?</label>
+            <select id="necessidadeSelect" onchange="toggleNecessidadeInput()" aria-label="Possui necessidades especiais?">
+                <option value="">Selecione</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+            </select>
+            <div id="necessidadeInput" class="necessidades-especiais">
+                <input type="text" name="especificacaoNecessidade" placeholder="Especifique quais necessidades especiais" aria-label="Especifique necessidades especiais">
+            </div>
+
+            <h3>Filiação</h3>
+            <input type="text" name="nomePai" placeholder="Nome do Pai" aria-label="Nome do Pai">
+            <input type="text" name="nomeMae" placeholder="Nome da Mãe" aria-label="Nome da Mãe">
+
+            <h3>Responsável pela ficha do aluno</h3>
+            <input type="text" name="nomeResponsavel" placeholder="Nome Completo do Responsável" required aria-label="Nome do Responsável">
+            <input type="text" name="rgResponsavel" placeholder="RG do Responsável" required aria-label="RG do Responsável">
+            <input type="text" name="cpfResponsavel" placeholder="CPF do Responsável" required aria-label="CPF do Responsável">
+            <input type="text" id="cepResponsavel" name="cepResponsavel" placeholder="CEP" required onblur="buscarCepResponsavel()" aria-label="CEP do Responsável">
+            <input type="text" id="logradouroResponsavel" name="logradouroResponsavel" placeholder="Logradouro" required aria-label="Logradouro do Responsável">
+            <input type="text" id="numeroResponsavel" name="numeroResponsavel" placeholder="Número" aria-label="Número do Responsável">
+            <input type="text" id="complementoResponsavel" name="complementoResponsavel" placeholder="Complemento" aria-label="Complemento do Responsável">
+            <input type="text" id="bairroResponsavel" name="bairroResponsavel" placeholder="Bairro" required aria-label="Bairro do Responsável">
+            <input type="text" id="cidadeResponsavel" name="cidadeResponsavel" placeholder="Cidade" required aria-label="Cidade do Responsável">
+            <input type="text" id="ufResponsavel" name="ufResponsavel" placeholder="Estado" required aria-label="Estado do Responsável">
+            <input type="tel" name="telefoneResponsavel" placeholder="Telefones de Contato do Responsável" required aria-label="Telefone do Responsável">
+            <input type="text" name="profissaoResponsavel" placeholder="Profissão do Responsável" required aria-label="Profissão do Responsável">
+            <input type="email" name="emailResponsavel" placeholder="E-mail do Responsável" required aria-label="E-mail do Responsável">
+
+            <h3>Quem irá buscar e levar o aluno</h3>
+            <select id="quemBuscarLevar" onchange="toggleOutrosDados()" aria-label="Quem irá buscar e levar o aluno?">
+                <option value="">Selecione</option>
+                <option value="pai">Pai</option>
+                <option value="mae">Mãe</option>
+                <option value="outros">Outros</option>
+            </select>
+            <div id="outrosDados" class="outros-dados">
+                <div style="position: relative;">
+                    <input type="text" name="nomeOutros" placeholder="Nome Completo" aria-label="Nome Completo de outra pessoa">
+                    <img id="previewFotoOutros" class="foto-outros" style="display:none; width: 100px; height: 100px;" alt="Pré-visualização da foto de outra pessoa">
+                </div>
+                <input type="file" id="fotoOutros" name="fotoOutros" accept="image/*" style="display: inline-block; width: 90%;" onchange="previewImage('fotoOutros', 'previewFotoOutros')" aria-label="Foto de outra pessoa">
+                <input type="text" name="rgOutros" placeholder="RG" aria-label="RG de outra pessoa">
+                <input type="text" name="cpfOutros" placeholder="CPF" aria-label="CPF de outra pessoa">
+                <input type="tel" name="telefoneOutros" placeholder="Telefone de Contato" aria-label="Telefone de contato de outra pessoa">
+                <input type="email" name="emailOutros" placeholder="E-mail" aria-label="E-mail de outra pessoa">
+            </div>
+
+            <h3>Informações sobre Saúde</h3>
+            <textarea name="infoMedicas" placeholder="Informações Médicas Relevantes (alergias, medicamentos em uso, condições médicas específicas)" required aria-label="Informações Médicas"></textarea>
+            <input type="text" name="planoSaude" placeholder="Nome do Plano de Saúde (se aplicável)" aria-label="Plano de Saúde">
+            <input type="text" name="contatoEmergencia" placeholder="Nome e Contato de Emergência" required aria-label="Contato de Emergência">
+
+            <h3>Informações Socioeconômicas (opcional)</h3>
+            <input type="text" name="rendaFamiliar" placeholder="Renda Familiar" aria-label="Renda Familiar">
+            <textarea name="composicaoFamiliar" placeholder="Composição Familiar" aria-label="Composição Familiar"></textarea>
+            <input type="text" name="beneficiosSociais" placeholder="Benefícios Sociais (Bolsa Família, etc.)" aria-label="Benefícios Sociais">
+
+            <div class="consentimento">
+                <input type="checkbox" name="termos" required aria-label="Aceito os termos e condições">
+                <label>
+                    Li e concordo com os <a href="#" onclick="abrirModal()">termos e condições</a>.
+                </label>
+            </div>
+            <button type="button" onclick="prepararImpressao()">Imprimir</button>
+        </form>
+    </div>
+
+    <div id="modalTermos" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()" aria-label="Fechar">&times;</span>
+            <h2>TERMO DE CONDIÇÕES E TRATAMENTO DE DADOS PESSOAIS</h2>
+            <p>
+                Ao preencher a presente ficha, declaro que as informações pessoais fornecidas, incluindo, mas não se limitando a, nome, endereço, telefone, e-mail, dados acadêmicos e qualquer outra informação solicitada, são verdadeiras, completas e precisas. Compreendo que esses dados serão coletados e tratados pela [Nome da Escola] em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 - LGPD), e que serão utilizados exclusivamente para fins educacionais e administrativos, como registro acadêmico, comunicação com os responsáveis, e acompanhamento do desempenho escolar dos alunos, entre outras finalidades relacionadas ao processo educacional.
+            </p>
+            <p>
+                Estou ciente de que os dados pessoais fornecidos serão armazenados pela [Nome da Escola] por tempo indeterminado, ou seja, enquanto for necessário para o cumprimento das finalidades educacionais e administrativas, bem como para o cumprimento de obrigações legais e regulatórias, mesmo após o término do vínculo do aluno com a instituição. Entendo que esses dados poderão ser compartilhados com terceiros, incluindo autoridades educacionais e outros parceiros institucionais, sempre de acordo com a legislação vigente e para fins estritamente relacionados às atividades da escola.
+            </p>
+            <p>
+                Reconheço que a [Nome da Escola] adotou medidas de segurança apropriadas para proteger os dados pessoais contra acessos não autorizados, alterações, divulgações ou destruições indevidas. No entanto, compreendo que, apesar dos esforços empreendidos, a segurança absoluta dos dados na internet não pode ser totalmente garantida.
+            </p>
+            <p>
+                Além disso, declaro que todas as informações fornecidas são verdadeiras e precisas, ciente de que qualquer falsa declaração ou omissão pode acarretar em sanções legais, conforme previsto na legislação aplicável. Tenho ciência de que, conforme a LGPD, possuo o direito de acessar, corrigir, atualizar e solicitar a exclusão dos meus dados pessoais a qualquer momento, entrando em contato com a escola através do e-mail [inserir e-mail de contato]. Contudo, entendo que a exclusão dos dados poderá ser limitada em casos onde o armazenamento seja necessário para o cumprimento de obrigações legais ou regulatórias.
+            </p>
+            <p>
+                A fundação escola solidária se reserva o direito de alterar este Termo de Condições e Tratamento de Dados Pessoais a qualquer momento, sendo que as modificações entrarão em vigor após a publicação da versão atualizada em seu site ou mediante comunicação direta aos responsáveis pelos alunos.
+            </p>
+            <p>
+                Por fim, ao submeter esta ficha, confirmo que li, compreendi e aceitei integralmente os termos e condições aqui estabelecidos, declarando a veracidade de todas as informações fornecidas e ciente da finalidade e duração do armazenamento dos meus dados pessoais.
+            </p>
+            <p>
+                Fundação escola solidária
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function buscarCep() {
+            var cep = document.getElementById('cep').value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.erro) {
+                            alert('CEP não encontrado');
+                        } else {
+                            document.getElementById('logradouro').value = data.logradouro;
+                            document.getElementById('bairro').value = data.bairro;
+                            document.getElementById('cidade').value = data.localidade;
+                            document.getElementById('uf').value = data.uf;
+                        }
+                    })
+                    .catch(error => alert('Erro ao buscar o CEP'));
+            } else {
+                alert('Por favor, insira um CEP válido com 8 dígitos.');
+            }
+        }
+
+        function buscarCepResponsavel() {
+            var cep = document.getElementById('cepResponsavel').value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.erro) {
+                            alert('CEP não encontrado');
+                        } else {
+                            document.getElementById('logradouroResponsavel').value = data.logradouro;
+                            document.getElementById('bairroResponsavel').value = data.bairro;
+                            document.getElementById('cidadeResponsavel').value = data.localidade;
+                            document.getElementById('ufResponsavel').value = data.uf;
+                        }
+                    })
+                    .catch(error => alert('Erro ao buscar o CEP'));
+            } else {
+                alert('Por favor, insira um CEP válido com 8 dígitos.');
+            }
+        }
+
+        function prepararImpressao() {
+            window.print();
+        }
+
+        function abrirModal() {
+            document.getElementById('modalTermos').style.display = "block";
+            document.getElementById('modalTermos').setAttribute('aria-hidden', "false");
+        }
+
+        function fecharModal() {
+            document.getElementById('modalTermos').style.display = "none";
+            document.getElementById('modalTermos').setAttribute('aria-hidden', "true");
+        }
+
+        function toggleNecessidadeInput() {
+            var select = document.getElementById('necessidadeSelect');
+            var input = document.getElementById('necessidadeInput');
+            if (select.value === 'sim') {
+                input.style.display = 'block';
+            } else {
+                input.style.display = 'none';
+            }
+        }
+
+        function toggleOutrosDados() {
+            var select = document.getElementById('quemBuscarLevar');
+            var outrosDados = document.getElementById('outrosDados');
+            if (select.value === 'outros') {
+                outrosDados.style.display = 'block';
+            } else {
+                outrosDados.style.display = 'none';
+            }
+        }
+
+        function previewImage(inputId, imgId) {
+            var input = document.getElementById(inputId);
+            var img = document.getElementById(imgId);
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+
+            if (input.files && input.files[0]) {
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('modalTermos');
+            if (event.target == modal) {
+                modal.style.display = "none";
+                modal.setAttribute('aria-hidden', "true");
+            }
+        }
+    </script>
+</body>
+</html>
