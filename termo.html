@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Declaração de Termos de Consentimento Geral</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -31,17 +31,21 @@
             line-height: 1.6;
             margin-bottom: 1em;
         }
-        .consent-container input[type="text"] {
-            width: 100%;
-            padding: 0.5em;
-            margin-bottom: 1em;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .print-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="consent-container">
+    <div class="consent-container" id="content">
         <h2>Declaração de Termos de Consentimento Geral</h2>
         
         <p><strong>Nome do Aluno(a):</strong> _________________________________________</p>
@@ -69,11 +73,25 @@
         <p><strong> Declaração de Responsabilidade</strong><br>
         Declaro que as informações fornecidas na Declaração de Termos de Consentimento Geral são verdadeiras e comprometo-me a comunicar à escola qualquer mudança relevante nas informações pessoais, médicas ou acadêmicas do(a) aluno(a). Estou ciente e de acordo com as normas e regulamentos estabelecidos pela escola, conforme descritos no manual do aluno, incluindo as políticas de disciplina, uniformes, horários e outras diretrizes institucionais.</p>
 
-        
-
         <p><strong>Local e Data:</strong> ________________________________, ____ de ______________ de 20___.</p>
         <p>_________________________________________________________<br>
         <strong>Assinatura do Responsável Legal</strong></p>
     </div>
+    
+    <button class="print-button" onclick="printDocument()">Imprimir Documento</button>
+
+    <script>
+        function printDocument() {
+            const content = document.getElementById('content');
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Imprimir Documento</title>');
+            printWindow.document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write(content.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close(); // Necessário para IE
+            printWindow.print();
+        }
+    </script>
 </body>
 </html>
