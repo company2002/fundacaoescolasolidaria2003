@@ -65,17 +65,17 @@
         }
 
         .menu-toggle {
-            display: flex;
+            display: none;
             flex-direction: column;
             cursor: pointer;
             margin-left: auto;
-            
+            background-color: #fff3f3;
         }
 
         .bar {
             height: 3px;
             width: 25px;
-            background-color: #000000;
+            background-color: #0d0d0d;
             margin: 3px 0;
             transition: all 0.3s ease;
         }
@@ -85,7 +85,7 @@
             list-style: none;
             justify-content: flex-end;
             background-color: #52f28a;
-            color: #000000;          
+            color: #000000;
             border-radius: 30px;
             padding: 1em;
             font-size: 1em;
@@ -95,8 +95,8 @@
             transition: transform 0.3s;
             font-family: 'Roboto', sans-serif;
             z-index: 10;
-            
-            
+
+
         }
 
         .nav-list li {
@@ -106,7 +106,7 @@
         .nav-list a {
             color: #000000;
             text-decoration: none;
-            
+
         }
 
         @media (max-width: 768px) {
@@ -184,7 +184,7 @@
             margin: 0 1em;
             text-decoration: none;
             font-family: 'Roboto', sans-serif;
-            
+
         }
 
         .section {
@@ -232,7 +232,9 @@
         }
 
         .video-container {
-            position: relative;
+
+            display: flex;
+            justify-content: flex-end;
             padding-bottom: 25%;
             height: 0;
             max-width: 600px;
@@ -240,7 +242,8 @@
         }
 
         .video-container iframe {
-            position: absolute;
+            display: flex;
+            justify-content: flex-end;
             top: 0;
             left: 0;
             width: 100%;
@@ -467,7 +470,7 @@
         }
 
         .section-faq .faq-content p {
-           
+
             font-size: 1.1em;
             line-height: 1.5;
         }
@@ -498,7 +501,7 @@
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 1em;
-            top:-1em;
+            top: -1em;
         }
 
         .section-video .heading {
@@ -672,7 +675,7 @@
         }
 
         .gallery img {
-            width:200px;
+            width: 200px;
             height: 200px;
             flex-shrink: 0;
             transition: transform 1.0s ease;
@@ -736,13 +739,13 @@
         .section-video .heading {
             color: #ffffff;
             font-size: 2rem;
-            font-weight: 700px;
+            font-weight: 400px;
             text-transform: uppercase;
             letter-spacing: 4px;
             margin-bottom: 0.5em;
             animation: fadeIn 1s;
             font-family: 'Roboto', sans-serif;
-           
+
         }
 
         .section-video .divider {
@@ -761,18 +764,31 @@
 
         .video-container {
             position: relative;
-            width: 900px;
-            height: 350px ;            
+            padding-bottom: 46.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            /* Altura zero para manter a proporção */
             overflow: hidden;
+            /* Esconde qualquer parte do vídeo que saia do contêiner */
+            max-width: 80%;
+            /* Garante que o contêiner não exceda a largura máxima */
+            margin: 0 auto;
+            /* Centraliza o contêiner */
+
         }
 
         .video-container iframe {
             position: absolute;
+            /* Permite que o iframe ocupe o contêiner corretamente */
             top: 0;
             left: 0;
             width: 100%;
-            height: 70%;
+            /* Largura total do contêiner */
+            height: 100%;
+            /* Altura total do contêiner */
         }
+
+
 
         /* Estilos para a seção de contato */
         .section.contato {
@@ -1014,12 +1030,12 @@
                         compromisso, fazem a diferença na vida das crianças que acolhemos. Vocês não são apenas
                         colaboradores, são verdadeiros agentes de transformação, levando esperança, cuidado e afeto a
                         quem mais precisa.</p>
-                        <p> Como bem disse <b> Mandela: "Sempre parece impossível, até que seja feito."</b> Vocês tornam o
+                    <p> Como bem disse <b> Mandela: "Sempre parece impossível, até que seja feito."</b> Vocês tornam o
                         impossível realidade, todos os dias. Através de pequenos gestos e grandes ações, estão plantando
                         sementes que florescerão em um futuro de oportunidades e sonhos realizados para essas crianças.
                         Obrigado por cada sorriso, cada desafio superado e por acreditarem, como nós, que juntos podemos
                         transformar vidas e construir um mundo mais justo e inclusivo.</p>
-                        <p></p>Com admiração e gratidão, <B>Fundação Escola Solidária.</B></p>
+                    <p></p>Com admiração e gratidão, <B>Fundação Escola Solidária.</B></p>
                 </div>
             </div>
 
