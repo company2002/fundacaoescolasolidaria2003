@@ -1292,6 +1292,24 @@
             const privacyLink = document.querySelector('.privacy-link');
             const privacyModal = document.getElementById('privacy-modal');
 
+            // Função para aplicar classes responsivas
+            function applyResponsiveClasses() {
+                const body = document.body;
+                body.classList.remove('desktop-mode', 'mobile-mode');
+                if (window.innerWidth <= 768) {
+                    body.classList.add('mobile-mode');
+                } else {
+                    body.classList.add('desktop-mode');
+                }
+            }
+
+            // Aplica classes responsivas ao carregar a página
+            applyResponsiveClasses();
+
+            // Chama a função ao redimensionar a janela
+            window.addEventListener('resize', applyResponsiveClasses);
+
+            // Lógica do menu mobile
             if (mobileMenu && navList) {
                 mobileMenu.addEventListener('click', () => {
                     navList.classList.toggle('active');
@@ -1307,6 +1325,7 @@
                     });
                 }
 
+                // Fecha o menu ao clicar fora
                 window.addEventListener('click', (event) => {
                     if (!mobileMenu.contains(event.target) && !navList.contains(event.target) && navList.classList.contains('active')) {
                         navList.classList.remove('active');
@@ -1327,7 +1346,7 @@
                 });
             }
 
-            // Modal functionality
+            // Funcionalidade do modal
             btns.forEach((btn) => {
                 btn.addEventListener('click', function () {
                     const modalId = btn.getAttribute('data-modal');
@@ -1352,7 +1371,7 @@
                 });
             });
 
-            // Modal for Privacy Policy and Terms of Use
+            // Modal para Política de Privacidade e Termos de Uso
             if (privacyLink && privacyModal) {
                 privacyLink.addEventListener('click', function (event) {
                     event.preventDefault();
@@ -1368,12 +1387,4 @@
             }
         });
 
-
-
     </script>
-
-
-
-</body>
-
-</html>
