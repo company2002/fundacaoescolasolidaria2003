@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Envio de Documentos Escolares</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #03dac6;
+            --accent-color: #ff0266;
+            --background-color: #e3f2fd;
+            --text-color: #000000;
+            --font-family: 'Roboto', sans-serif;
+        }
+
+        button {
+            width: 30%;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ec520a, #ffb347);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff5e1f, #ffa726);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, #1b06df, #aebbd4);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #444;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+            border-color: #ff7b3e;
+        }
+
+        .document-label {
+            display: block;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #135de7;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+            
+        }
+
+        #preview {
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #preview img,
+        #preview div {
+            max-width: 100px;
+            max-height: 100px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        #generate-pdf {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #generate-pdf:hover {
+            background-color: #218838;
+        }
+
+        .checkbox-group {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .upload-section {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group label {
+            margin-right: 10px;
+            flex: 0 0 150px;
+            font-weight: bold;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="number"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .input-group label {
+                flex: 0 0 100px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Envio de Documentos Escolares</h1>
+
+    <div class="section">
+        <div class="input-group">
+            <label for="student-name">Nome do Aluno:</label>
+            <input type="text" id="student-name">
+        </div>
+        <div class="input-group">
+            <label for="student-age">Idade:</label>
+            <input type="number" id="student-age" min="0">
+        </div>
+        <div class="input-group">
+            <label for="submitted-by">Quem enviou:</label>
+            <input type="text" id="submitted-by">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Selecione os documentos obrigatórios:</h3>
+        <div class="checkbox-group">
+            <input type="checkbox" id="photo" class="required-doc" data-label="Foto do aluno (3x4)">
+            <label for="photo" class="document-label">Foto do aluno (3x4)</label>
+            <div class="upload-section" id="photo-upload-section">
+                <input type="file" id="photo-upload" accept="image/*">
+                <label for="photo-upload">Carregar Foto</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="birth-certificate" class="required-doc" data-label="Certidão de nascimento">
+            <label for="birth-certificate" class="document-label">Certidão de nascimento ou RG</label>
+            <div class="upload-section" id="birth-certificate-upload-section">
+                <input type="file" id="birth-certificate-upload" accept="application/pdf,image/*">
+                <label for="birth-certificate-upload">Carregar Documento</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="cpf" class="required-doc" data-label="CPF do aluno">
+            <label for="cpf" class="document-label">CPF do aluno</label>
+            <div class="upload-section" id="cpf-upload-section">
+                <input type="file" id="cpf-upload" accept="application/pdf,image/*">
+                <label for="cpf-upload">Carregar CPF</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="address-proof" class="required-doc" data-label="Comprovante de residência">
+            <label for="address-proof" class="document-label">Comprovante de residência</label>
+            <div class="upload-section" id="address-proof-upload-section">
+                <input type="file" id="address-proof-upload" accept="application/pdf,image/*">
+                <label for="address-proof-upload">Carregar Comprovante</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="vaccination-card" class="required-doc" data-label="Carteira de vacinação">
+            <label for="vaccination-card" class="document-label">Carteira de vacinação</label>
+            <div class="upload-section" id="vaccination-card-upload-section">
+                <input type="file" id="vaccination-card-upload" accept="application/pdf,image/*">
+                <label for="vaccination-card-upload">Carregar Carteira</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="school-declaration" class="required-doc" data-label="Declaração de escolaridade">
+            <label for="school-declaration" class="document-label">Declaração de escolaridade (se for
+                transferência)</label>
+            <div class="upload-section" id="school-declaration-upload-section">
+                <input type="file" id="school-declaration-upload" accept="application/pdf,image/*">
+                <label for="school-declaration-upload">Carregar Declaração</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="school-history" class="required-doc" data-label="Histórico escolar">
+            <label for="school-history" class="document-label">Histórico escolar</label>
+            <div class="upload-section" id="school-history-upload-section">
+                <input type="file" id="school-history-upload" accept="application/pdf,image/*">
+                <label for="school-history-upload">Carregar Histórico</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="sus-card" class="required-doc" data-label="Cartão do SUS">
+            <label for="sus-card" class="document-label">Cartão do SUS</label>
+            <div class="upload-section" id="sus-card-upload-section">
+                <input type="file" id="sus-card-upload" accept="application/pdf,image/*">
+                <label for="sus-card-upload">Carregar Cartão do SUS</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="guardian-id" class="required-doc" data-label="RG e CPF dos responsáveis">
+            <label for="guardian-id" class="document-label">RG e CPF dos responsáveis</label>
+            <div class="upload-section" id="guardian-id-upload-section">
+                <input type="file" id="guardian-id-upload" accept="application/pdf,image/*">
+                <label for="guardian-id-upload">Carregar Documentos</label>
+            </div>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="income-proof" class="required-doc" data-label="Comprovante de renda">
+            <label for="income-proof" class="document-label">Comprovante de renda (se aplicável)</label>
+            <div class="upload-section" id="income-proof-upload-section">
+                <input type="file" id="income-proof-upload" accept="application/pdf,image/*">
+                <label for="income-proof-upload">Carregar Comprovante</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Documentos Enviados:</h3>
+        <div id="preview"></div>
+    </div>
+
+    <button id="generate-pdf">Gerar PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        const previewElement = document.getElementById('preview');
+        const generatePdfButton = document.getElementById('generate-pdf');
+        const requiredDocs = document.querySelectorAll('.required-doc');
+        const studentNameInput = document.getElementById('student-name');
+        const studentAgeInput = document.getElementById('student-age');
+        const submittedByInput = document.getElementById('submitted-by');
+        let uploadedFiles = {};  // Armazena arquivos carregados com base em seus rótulos
+
+        requiredDocs.forEach(doc => {
+            doc.addEventListener('change', (event) => {
+                const uploadSection = document.getElementById(`${event.target.id}-upload-section`);
+                if (event.target.checked) {
+                    uploadSection.style.display = 'block';
+                } else {
+                    uploadSection.style.display = 'none';
+                    document.getElementById(`${event.target.id}-upload`).value = ''; // Limpa o campo de entrada
+                    delete uploadedFiles[event.target.dataset.label];
+                }
+            });
+        });
+
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const label = input.closest('.checkbox-group').querySelector('.required-doc').dataset.label;
+                uploadedFiles[label] = file;  // Armazena o arquivo com base no rótulo correspondente
+
+                const fileReader = new FileReader();
+                fileReader.onload = function (e) {
+                    let element;
+                    if (file.type.startsWith('image/')) {
+                        element = document.createElement('img');
+                        element.src = e.target.result;
+                    } else {
+                        element = document.createElement('div');
+                        element.textContent = file.name;
+                    }
+                    previewElement.appendChild(element);
+                };
+                fileReader.readAsDataURL(file);
+            });
+        });
+
+        generatePdfButton.addEventListener('click', async () => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            const studentName = studentNameInput.value || "Nome não informado";
+            const studentAge = studentAgeInput.value || "Idade não informada";
+            const submittedBy = submittedByInput.value || "Enviado por: não informado";
+            const date = new Date();
+            const formattedDate = date.toLocaleDateString();
+            const formattedTime = date.toLocaleTimeString();
+
+            pdf.text(10, 10, `Nome do Aluno: ${studentName}`);
+            pdf.text(10, 20, `Idade: ${studentAge}`);
+            pdf.text(10, 30, `Data: ${formattedDate}`);
+            pdf.text(10, 40, `Hora: ${formattedTime}`);
+            pdf.text(10, 50, `Enviado por: ${submittedBy}`);
+            pdf.addPage();
+
+            for (let doc of requiredDocs) {
+                if (doc.checked) {
+                    const label = doc.dataset.label;
+                    const file = uploadedFiles[label];
+                    if (!file) {
+                        alert(`O documento "${label}" não foi carregado.`);
+                        return;
+                    }
+
+                    const [width, height] = getDocumentDimensions(label);
+                    const [x, y] = centerPosition(pdf, width, height);
+
+                    if (file.type.startsWith('image/')) {
+                        const img = await getImage(file);
+                        pdf.addImage(img, 'JPEG', x, y, width, height);
+                    } else {
+                        pdf.text(x, y + 10, `Documento: ${file.name}`);
+                    }
+                    pdf.addPage();
+                }
+            }
+
+            pdf.save('documentos_escolares.pdf');
+        });
+
+        function getDocumentDimensions(label) {
+            switch (label) {
+                case "Foto do aluno (3x4)":
+                    return [30, 40]; // 3x4 cm
+                case "Certidão de nascimento":
+                case "Declaração de escolaridade (se for transferência)":
+                case "Histórico escolar":
+                case "Comprovante de residência":
+                case "Carteira de vacinação":
+                case "Comprovante de renda (se aplicável)":
+                    return [150, 210]; // Reduzido para parte da página A4
+                case "CPF do aluno":
+                case "RG e CPF dos responsáveis":
+                case "Cartão do SUS":
+                    return [85, 54]; // Tamanho de cartão
+                default:
+                    return [150, 210]; // Default para outros documentos
+            }
+        }
+
+        function centerPosition(pdf, elementWidth, elementHeight) {
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+            const x = (pageWidth - elementWidth) / 2;
+            const y = (pageHeight - elementHeight) / 2;
+            return [x, y];
+        }
+
+        function getImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const img = new Image();
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const width = img.width;
+                        const height = img.height;
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg'));
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
