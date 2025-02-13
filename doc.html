@@ -4,7 +4,7 @@
 <head>
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Envio de Documentos Escolares</title>
+    <title>Envio de Documentos Escolar</title>
     <style>
         :root {
             --primary-color: #000000;
@@ -14,6 +14,7 @@
             --text-color: #000000;
             --font-family: 'Roboto', sans-serif;
         }
+        
 
         button {
             width: 30%;
@@ -43,6 +44,7 @@
             box-sizing: border-box;
         }
 
+
         body {
             font-family: var(--font-family);
             background: linear-gradient(135deg, #1b06df, #aebbd4);
@@ -63,28 +65,63 @@
             font-size: 2rem;
             text-align: center;
             margin-bottom: 20px;
-            color: #444;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            color: #fff4f4;
+            
         }
 
         .section {
+            background: rgba(255, 254, 254, 0.568);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            max-width: 400px;
             width: 100%;
-            max-width: 500px;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 30px;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.8);
-            margin: 10px 0;
-            border-color: #ff7b3e;
+            text-align: left;
+            position: relative;
+            margin: 20px;
+            font-size: 12px;
         }
+        @media (max-width: 500px) {
+            .selection {
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                padding: 20px;
+                box-sizing: border-box;
+                border-radius: 0;
+            }
+
+            input,
+            select,
+            button,
+            textarea {
+                font-size: 16px;
+            }
+
+            button {
+                padding: 12px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
 
         .document-label {
             display: block;
             margin: 10px 0;
-            color: #555;
+            color: #ffffff;
         }
 
         input[type="file"] {
@@ -100,6 +137,8 @@
             border-radius: 5px;
             transition: background-color 0.3s;
             font-size: 1rem;
+            
+
             
         }
 
@@ -151,12 +190,14 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            
         }
 
         .input-group label {
             margin-right: 10px;
             flex: 0 0 150px;
             font-weight: bold;
+            font-size: 15px;
         }
 
         .input-group input[type="text"],
@@ -180,7 +221,7 @@
 
 <body>
 
-    <h1>Envio de Documentos Escolares</h1>
+    <h1>Envio de Documentos Escolar</h1>
 
     <div class="section">
         <div class="input-group">
