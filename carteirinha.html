@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
 </head>
 
 <body>
@@ -500,80 +503,7 @@
             const showEmergency = true;
             emergencyWatermark.style.display = showEmergency ? 'block' : 'none';
         }
-        function generateCard() {
-            const fullName = document.getElementById('fullName').value;
-            const birthDate = formatDate(document.getElementById('birthDate').value);
-            const cpf = formatCPF(document.getElementById('cpf').value);
-            const planNumber = document.getElementById('planNumber').value;
-            const bloodTypeSelect = document.getElementById('bloodType');
-            const bloodType = bloodTypeSelect.value === 'outros' ? document.getElementById('otherBloodType').value : bloodTypeSelect.value;
-            const allergiesSelect = document.getElementById('allergies');
-            const selectedAllergies = Array.from(allergiesSelect.selectedOptions)
-                .map(option => option.value !== 'outros' ? option.text : '')
-                .filter(Boolean)
-                .join(', ');
-            const otherAllergy = document.getElementById('otherAllergy').value;
-            const allergiesFinal = otherAllergy ? selectedAllergies + ', ' + otherAllergy : selectedAllergies;
-            const chronicConditionsSelect = document.getElementById('chronicConditions');
-            const selectedChronicCondition = chronicConditionsSelect.value;
-            const otherChronicCondition = document.getElementById('otherChronicCondition').value;
-            const chronicConditionDisplay = selectedChronicCondition === 'outros' ? otherChronicCondition : selectedChronicCondition;
-            const chronicAcronymSelect = document.getElementById('chronicConditionAcronym');
-            const selectedChronicAcronym = chronicAcronymSelect.value;
-            const otherChronicAcronym = document.getElementById('otherChronicConditionAcronym').value;
-            const chronicConditionDisplayAcronym = selectedChronicAcronym === 'outros' ? otherChronicAcronym : selectedChronicAcronym;
-            const implantsSelect = document.getElementById('implants');
-            const implant = implantsSelect.value === 'outros' ? document.getElementById('otherImplant').value : implantsSelect.value;
-            const side = document.getElementById('side').value;
-            const implantDisplay = implant === 'nega' ? 'Nega' : implant.charAt(0).toUpperCase() + implant.slice(1) + (side ? ` (${side})` : '');
-            const healthPlanSelect = document.getElementById('healthPlan');
-            const healthPlan = healthPlanSelect.value === 'outros' ? document.getElementById('otherHealthPlan').value : healthPlanSelect.value;
-            const medications = document.getElementById('medications').value;
-            const emergencyContact = document.getElementById('emergencyContact').value;
-            const specialInstructions = document.getElementById('specialInstructions').value;
-            const organDonor = document.getElementById('organDonor').value;
-            const state = document.getElementById('estadoInput').value; // Capture o valor do campo "Estado"
-
-            document.getElementById('cardName').textContent = fullName;
-            document.getElementById('cardBirthDate').textContent = birthDate;
-            document.getElementById('cardCpf').textContent = cpf;
-            document.getElementById('cardState').textContent = state; // Atribua o valor ao elemento de estado
-            document.getElementById('cardPlanNumber').textContent = planNumber;
-            document.getElementById('cardBloodType').textContent = bloodType;
-            document.getElementById('cardAllergies').textContent = allergiesFinal || 'Nega';
-            document.getElementById('cardOrganDonor').textContent = organDonor === "sim" ? "Sim" : "Não";
-            document.getElementById('cardChronicConditions').textContent = chronicConditionDisplay || 'Nega';
-            const chronicConditionElement = document.getElementById('cardChronicCondition');
-            if (chronicConditionDisplayAcronym && chronicConditionDisplayAcronym !== 'nega') {
-                chronicConditionElement.textContent = chronicConditionDisplayAcronym;
-                chronicConditionElement.style.display = 'block';
-            } else {
-                chronicConditionElement.textContent = '';
-                chronicConditionElement.style.display = 'none';
-            }
-            document.getElementById('cardImplants').textContent = implantDisplay;
-            document.getElementById('cardHealthPlan').textContent = healthPlan || 'Nega';
-            document.getElementById('cardMedications').textContent = medications || 'Nega';
-            document.getElementById('cardEmergencyContact').textContent = emergencyContact;
-            document.getElementById('cardSpecialInstructions').textContent = specialInstructions || 'Nega';
-            updateSpecialConditionWatermark();
-
-            const backgroundImage = document.getElementById('healthCard').style.backgroundImage;
-            if (backgroundImage) {
-                const img = new Image();
-                img.src = backgroundImage.slice(5, -2);
-                img.onload = function () {
-                    document.getElementById('healthCard').style.display = 'block';
-                    document.getElementById('saveImageButton').style.display = 'inline-block';
-                };
-                img.onerror = function () {
-                    console.error('Erro ao carregar a imagem de fundo');
-                };
-            } else {
-                document.getElementById('healthCard').style.display = 'block';
-                document.getElementById('saveImageButton').style.display = 'inline-block';
-            }
-        }
+       
 
         function saveImage() {
             const healthCardElement = document.querySelector("#healthCard");
@@ -594,6 +524,99 @@
                 console.error('Erro ao salvar a imagem:', error);
             });
         }
+
+        async function generatePDF() {
+        // Importa a biblioteca jsPDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4'); // Cria um novo documento PDF em modo retrato, com unidades em mm e tamanho A4
+        const healthCardElement = document.getElementById('healthCard');
+
+        // Usa html2canvas para capturar a imagem da carteirinha
+        const canvas = await html2canvas(healthCardElement, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: null
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+
+        // Centraliza a imagem na folha A4
+        const imgWidth = 85.6; // Largura padrão de uma identidade em mm
+        const imgHeight = 54; // Altura padrão de uma identidade em mm
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const x = (pageWidth - imgWidth) / 2;
+        const y = (pageHeight - imgHeight) / 2;
+
+        pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+        pdf.save('carteirinha.pdf');
+    }
+
+    function generateCard() {
+        // Preenche os dados da carteirinha
+        const fullName = document.getElementById('fullName').value;
+        const birthDate = formatDate(document.getElementById('birthDate').value);
+        const cpf = formatCPF(document.getElementById('cpf').value);
+        const planNumber = document.getElementById('planNumber').value;
+        const bloodTypeSelect = document.getElementById('bloodType');
+        const bloodType = bloodTypeSelect.value === 'outros' ? document.getElementById('otherBloodType').value : bloodTypeSelect.value;
+        const allergiesSelect = document.getElementById('allergies');
+        const selectedAllergies = Array.from(allergiesSelect.selectedOptions)
+            .map(option => option.value !== 'outros' ? option.text : '')
+            .filter(Boolean)
+            .join(', ');
+        const otherAllergy = document.getElementById('otherAllergy').value;
+        const allergiesFinal = otherAllergy ? selectedAllergies + ', ' + otherAllergy : selectedAllergies;
+        const chronicConditionsSelect = document.getElementById('chronicConditions');
+        const selectedChronicCondition = chronicConditionsSelect.value;
+        const otherChronicCondition = document.getElementById('otherChronicCondition').value;
+        const chronicConditionDisplay = selectedChronicCondition === 'outros' ? otherChronicCondition : selectedChronicCondition;
+        const chronicAcronymSelect = document.getElementById('chronicConditionAcronym');
+        const selectedChronicAcronym = chronicAcronymSelect.value;
+        const otherChronicAcronym = document.getElementById('otherChronicConditionAcronym').value;
+        const chronicConditionDisplayAcronym = selectedChronicAcronym === 'outros' ? otherChronicAcronym : selectedChronicAcronym;
+        const implantsSelect = document.getElementById('implants');
+        const implant = implantsSelect.value === 'outros' ? document.getElementById('otherImplant').value : implantsSelect.value;
+        const side = document.getElementById('side').value;
+        const implantDisplay = implant === 'nega' ? 'Nega' : implant.charAt(0).toUpperCase() + implant.slice(1) + (side ? ` (${side})` : '');
+        const healthPlanSelect = document.getElementById('healthPlan');
+        const healthPlan = healthPlanSelect.value === 'outros' ? document.getElementById('otherHealthPlan').value : healthPlanSelect.value;
+        const medications = document.getElementById('medications').value;
+        const emergencyContact = document.getElementById('emergencyContact').value;
+        const specialInstructions = document.getElementById('specialInstructions').value;
+        const organDonor = document.getElementById('organDonor').value;
+        const state = document.getElementById('estadoInput').value;
+
+        document.getElementById('cardName').textContent = fullName;
+        document.getElementById('cardBirthDate').textContent = birthDate;
+        document.getElementById('cardCpf').textContent = cpf;
+        document.getElementById('cardState').textContent = state;
+        document.getElementById('cardPlanNumber').textContent = planNumber;
+        document.getElementById('cardBloodType').textContent = bloodType;
+        document.getElementById('cardAllergies').textContent = allergiesFinal || 'Nega';
+        document.getElementById('cardOrganDonor').textContent = organDonor === "sim" ? "Sim" : "Não";
+        document.getElementById('cardChronicConditions').textContent = chronicConditionDisplay || 'Nega';
+        const chronicConditionElement = document.getElementById('cardChronicCondition');
+        if (chronicConditionDisplayAcronym && chronicConditionDisplayAcronym !== 'nega') {
+            chronicConditionElement.textContent = chronicConditionDisplayAcronym;
+            chronicConditionElement.style.display = 'block';
+        } else {
+            chronicConditionElement.textContent = '';
+            chronicConditionElement.style.display = 'none';
+        }
+        document.getElementById('cardImplants').textContent = implantDisplay;
+        document.getElementById('cardHealthPlan').textContent = healthPlan || 'Nega';
+        document.getElementById('cardMedications').textContent = medications || 'Nega';
+        document.getElementById('cardEmergencyContact').textContent = emergencyContact;
+        document.getElementById('cardSpecialInstructions').textContent = specialInstructions || 'Nega';
+        updateSpecialConditionWatermark();
+
+        document.getElementById('healthCard').style.display = 'block';
+
+        // Gera o PDF após exibir a carteirinha
+        generatePDF();
+    }
+
     </script>
 </body>
 
