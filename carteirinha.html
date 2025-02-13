@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteirinha </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form id="healthCardForm" onsubmit="return false;">
+            <h1>Carteirinha Fundação Escola Solidária </h1>
+            <div class="form-group">
+                <label for="photo">Foto:</label>
+                <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" required>
+            </div>
+            <div class="form-group">
+                <label for="fullName">Nome Completo:</label>
+                <input type="text" id="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">Data de Nascimento:</label>
+                <input type="date" id="birthDate" required>
+            </div>
+            <div class="form-group">
+                <label for="cpf">Número do CPF:</label>
+                <input type="text" id="cpf" required>
+            </div>
+
+            <div class="form-group">
+                <label for="estadoInput">Cidade e Estado :</label>
+                <input type="text" id="estadoInput" required>
+            </div>
+
+            <div class="form-group">
+                <label for="allergies">Alergias:</label>
+                <select id="allergies" onchange="toggleOtherAllergy()">
+                    <option value="" disabled selected>Nega</option>
+                    <option value="poeira">a poeira</option>
+                    <option value="pollen">a pólen</option>
+                    <option value="acaros">a ácaros</option>
+                    <option value="mofo">a mofo</option>
+                    <option value="peloAnimais">a pelo de animais</option>
+                    <option value="leite">ao leite</option>
+                    <option value="gluten">ao glúten</option>
+                    <option value="frutosDoMar">a frutos do mar</option>
+                    <option value="peixes">a peixes</option>
+                    <option value="amendoim">a amendoim</option>
+                    <option value="nozes">a nozes</option>
+                    <option value="ovo">ao ovo</option>
+                    <option value="soja">à soja</option>
+                    <option value="trigo">ao trigo</option>
+                    <option value="picadasInsetos">a picadas de insetos</option>
+                    <option value="medicamentos">a medicamentos</option>
+                    <option value="latex">ao látex</option>
+                    <option value="corantes">a corantes alimentares</option>
+                    <option value="conservantes">a conservantes</option>
+                    <option value="niquel">ao níquel</option>
+                    <option value="perfumes">a perfumes</option>
+                    <option value="sol">ao sol</option>
+                    <option value="calor">ao calor</option>
+                    <option value="fungos">a fungos</option>
+                    <option value="detergentes">a detergentes</option>
+                    <option value="maquiagem">a maquiagem</option>
+                    <option value="tintasCabelo">a tintas de cabelo</option>
+                    <option value="conservantesVacinas">a conservantes de vacinas</option>
+                    <option value="sulfitos">a sulfitos</option>
+                    <option value="produtosQuimicos">a produtos químicos industriais</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input type="text" id="otherAllergy" placeholder="Informe sua alergia" style="display:none;"
+                    maxlength="36">
+                <label for="organDonor">Doador de Órgãos:</label>
+                <select id="organDonor">
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bloodType">Grupo Sanguíneo:</label>
+                <select id="bloodType" onchange="toggleOtherBloodType()">
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input type="text" id="otherBloodType" placeholder="Informe seu tipo sanguíneo" style="display:none;"
+                    maxlength="36">
+            </div>
+            <div class="form-group">
+                <label for="emergencyContact">Contato de Emergência:</label>
+                <input type="text" id="emergencyContact" maxlength="15" oninput="formatPhone(this)"
+                    placeholder="(xx) xxxxx-xxxx" required>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="chronicConditions">Condições de Saúde Crônicas (Nome Completo):</label>
+                <select id="chronicConditions" onchange="updateChronicCondition()">
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="nega">Nega</option>
+                    <option value="Artrite Reumatoide">AR – Artrite Reumatoide</option>
+                    <option value="Asma">Asma</option>
+                    <option value="Câncer">CA – Câncer</option>
+                    <option value="Cardiopatia Congênita">CC – Cardiopatia Congênita</option>
+                    <option value="Demência - Doença de Alzheimer">DA – Demência - Doença de Alzheimer</option>
+                    <option value="Distimia">Distimia</option>
+                    <option value="Diabetes Mellitus">DM – Diabetes Mellitus</option>
+                    <option value="Doença Celíaca">DC – Doença Celíaca</option>
+                    <option value="Doença de Crohn">DC – Doença de Crohn</option>
+                    <option value="Doença Pulmonar Obstrutiva Crônica">DPOC – Doença Pulmonar Obstrutiva Crônica
+                    </option>
+                    <option value="Depressão">DEP – Depressão</option>
+                    <option value="Delírio">DEL – Delírio</option>
+                    <option value="Doença de Parkinson">DP – Doença de Parkinson</option>
+                    <option value="Doença Renal Crônica">DRC – Doença Renal Crônica</option>
+                    <option value="Epilepsia">Epilepsia</option>
+                    <option value="Esclerose Múltipla">EM – Esclerose Múltipla</option>
+                    <option value="Esquizofrenia">ESQ – Esquizofrenia</option>
+                    <option value="Fobia Social">FS – Fobia Social</option>
+                    <option value="Fibromialgia">FM – Fibromialgia</option>
+                    <option value="Hipertensão Arterial Sistêmica">HAS – Hipertensão Arterial Sistêmica</option>
+                    <option value="HIV/AIDS">HIV/AIDS</option>
+                    <option value="Insuficiência Cardíaca">IC – Insuficiência Cardíaca</option>
+                    <option value="Lúpus Eritematoso Sistêmico">LES – Lúpus Eritematoso Sistêmico</option>
+                    <option value="Transtorno de Ansiedade">ANX – Transtorno de Ansiedade</option>
+                    <option value="Transtorno Bipolar">TB – Transtorno Bipolar</option>
+                    <option value="Transtorno de Déficit de Atenção e Hiperatividade">TDAH – Transtorno de Déficit de
+                        Atenção e Hiperatividade</option>
+                    <option value="Transtorno do Espectro Autista">TEA – Transtorno do Espectro Autista</option>
+                    <option value="Transtorno de Estresse Pós-Traumático">TEPT – Transtorno de Estresse Pós-Traumático
+                    </option>
+                    <option value="Transtorno de Humor Ciclotímico">THC – Transtorno de Humor Ciclotímico</option>
+                    <option value="Transtorno Dissociativo de Identidade">TDI – Transtorno Dissociativo de Identidade
+                    </option>
+                    <option value="Transtorno de Pânico">TP – Transtorno de Pânico</option>
+                    <option value="Transtorno de Personalidade Antissocial">TPA – Transtorno de Personalidade
+                        Antissocial</option>
+                    <option value="Transtorno de Personalidade Borderline">TPB – Transtorno de Personalidade Borderline
+                    </option>
+                    <option value="Transtorno de Personalidade Esquizoide">TPE – Transtorno de Personalidade Esquizoide
+                    </option>
+                    <option value="Transtorno de Personalidade Esquizotípica">TPEs – Transtorno de Personalidade
+                        Esquizotípica</option>
+                    <option value="Transtorno de Personalidade Histriônica">TPH – Transtorno de Personalidade
+                        Histriônica</option>
+                    <option value="Transtorno de Personalidade Narcisista">TPN – Transtorno de Personalidade Narcisista
+                    </option>
+                    <option value="Transtorno de Personalidade Paranoide">TPP – Transtorno de Personalidade Paranoide
+                    </option>
+                    <option value="Transtorno Obsessivo-Compulsivo">TOC – Transtorno Obsessivo-Compulsivo</option>
+                    <option value="Transtornos Alimentares">TAs – Transtornos Alimentares (Anorexia, Bulimia)</option>
+                    <option value="Transtornos do Sono">TS – Transtornos do Sono</option>
+                    <option value="Transtorno Depressivo Maior">TDM – Transtorno Depressivo Maior</option>
+                    <option value="Transtorno Psicótico Breve">TPB – Transtorno Psicótico Breve</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input type="text" id="otherChronicCondition" placeholder="Informe a condição" style="display:none;"
+                    maxlength="36">
+            </div>
+            <div class="form-group">
+                <label for="chronicConditionAcronym">Sigla da Condição Crônica:</label>
+                <select id="chronicConditionAcronym" onchange="updateChronicConditionAcronym()">
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="nega">Nega</option>
+                    <option value="ANX">ANX</option>
+                    <option value="AR">AR</option>
+                    <option value="CA">CA</option>
+                    <option value="CC">CC</option>
+                    <option value="DA">DA</option>
+                    <option value="DEL">DEL</option>
+                    <option value="DEP">DEP</option>
+                    <option value="DC">DC</option>
+                    <option value="DPOC">DPOC</option>
+                    <option value="DM">DM</option>
+                    <option value="DP">DP</option>
+                    <option value="DRC">DRC</option>
+                    <option value="EM">EM</option>
+                    <option value="ESQ">ESQ</option>
+                    <option value="FS">FS</option>
+                    <option value="FM">FM</option>
+                    <option value="HAS">HAS</option>
+                    <option value="HIV/AIDS">HIV/AIDS</option>
+                    <option value="IC">IC</option>
+                    <option value="LES">LES</option>
+                    <option value="TB">TB</option>
+                    <option value="TDAH">TDAH</option>
+                    <option value="TEA">TEA</option>
+                    <option value="TEPT">TEPT</option>
+                    <option value="THC">THC</option>
+                    <option value="TDI">TDI</option>
+                    <option value="TP">TP</option>
+                    <option value="TPA">TPA</option>
+                    <option value="TPB">TPB</option>
+                    <option value="TPE">TPE</option>
+                    <option value="TPEs">TPEs</option>
+                    <option value="TPH">TPH</option>
+                    <option value="TPN">TPN</option>
+                    <option value="TPP">TPP</option>
+                    <option value="TOC">TOC</option>
+                    <option value="TAs">TAs</option>
+                    <option value="TS">TS</option>
+                    <option value="TDM">TDM</option>
+                    <option value="TPB">TPB</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input type="text" id="otherChronicConditionAcronym" placeholder="Informe a sigla"
+                    style="display:none; " maxlength="36">
+            </div>
+            <div class="form-group">
+                <label for="implants">Implantes ou Próteses:</label>
+                <select id="implants" onchange="toggleOtherImplant()">
+                    <option value="nega">Nega</option>
+                    <option value="quadril">Prótese de quadril</option>
+                    <option value="joelho">Prótese de joelho</option>
+                    <option value="ombro">Prótese de ombro</option>
+                    <option value="cotovelo">Prótese de cotovelo</option>
+                    <option value="tornozelo">Prótese de tornozelo</option>
+                    <option value="mao">Prótese de mão</option>
+                    <option value="perna">Prótese de perna</option>
+                    <option value="braco">Prótese de braço</option>
+                    <option value="dedo">Prótese de dedo</option>
+                    <option value="implanteDentarioFixo">Prótese dentária fixa (implante dentário)</option>
+                    <option value="dentadura">Prótese dentária removível (dentadura)</option>
+                    <option value="coclear">Implante coclear</option>
+                    <option value="ocular">Prótese ocular</option>
+                    <option value="marcapasso">Marcapasso cardíaco</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input type="text" id="otherImplant" placeholder="Informe seu implante ou prótese" style="display:none;"
+                    maxlength="36">
+                <div id="sideOptions" style="display:none;">
+                    <label for="side">Lado:</label>
+                    <select id="side">
+                        <option value="superior">Superior</option>
+                        <option value="inferior">Inferior</option>
+                        <option value="esquerdo">Esquerdo</option>
+                        <option value="direito">Direito</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="healthPlan">Plano de Saúde:</label>
+                <select id="healthPlan" onchange="toggleOtherHealthPlan()">
+                    <option value="nega">Nega</option>
+                    <option value="SUS">SUS</option>
+                    <option value="amil">Amil</option>
+                    <option value="bradesco">Bradesco Saúde</option>
+                    <option value="unimedRio">Unimed Rio</option>
+                    <option value="sulAmerica">SulAmérica Saúde</option>
+                    <option value="notreDame">NotreDame Intermédica</option>
+                    <option value="goldenCross">Golden Cross</option>
+                    <option value="assimSaude">Assim Saúde</option>
+                    <option value="hapvida">Hapvida</option>
+                    <option value="portoSeguro">Porto Seguro Saúde</option>
+                    <option value="medial">Medial Saúde</option>
+                    <option value="vivaSaude">Viva Saúde</option>
+                    <option value="cassi">Cassi (Banco do Brasil)</option>
+                    <option value="caixaSaude">Caixa Saúde</option>
+                    <option value="saudePetrobras">Saúde Petrobras</option>
+                    <option value="geap">GEAP Saúde</option>
+                    <option value="samp">Samp</option>
+                    <option value="preventSenior">Prevent Senior</option>
+                    <option value="greenLine">GreenLine Saúde</option>
+                    <option value="unimedNacional">Unimed Nacional</option>
+                    <option value="unimedFederacaoRJ">Unimed Federação RJ</option>
+                    <option value="unimedSeguros">Unimed Seguros</option>
+                    <option value="carePlus">Care Plus</option>
+                    <option value="benSaude">BenSaúde</option>
+                    <option value="allianz">Allianz Saúde</option>
+                    <option value="promed">Promed Assistência Médica</option>
+                    <option value="biovida">Biovida Saúde</option>
+                    <option value="qsaude">Qsaúde</option>
+                    <option value="trasmontano">Trasmontano Saúde</option>
+                    <option value="sampSaude">Samp Saúde</option>
+                    <option value="vivest">Vivest Saúde</option>
+                    <option value="outros">Outros</option>
+                </select>
+                <input type="text" id="otherHealthPlan" placeholder="Informe seu plano de saúde" style="display:none;"
+                    maxlength="36">
+            </div>
+            <div class="form-group">
+                <label for="planNumber">Número do Plano de Saúde:</label>
+                <input type="text" id="planNumber">
+            </div>
+            <div class="form-group">
+                <label for="medicationsUsed">Está usando Medicações?</label>
+                <select id="medicationsUsed" onchange="toggleMedicationsInput()">
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+                <input type="text" id="medications" placeholder="Informe suas medicações" style="display:none;"
+                    maxlength="36">
+            </div>
+            <div class="form-group">
+                <label for="specialInstructionsUsed">Precisa de Orientações Especiais de Tratamento?</label>
+                <select id="specialInstructionsUsed" onchange="toggleSpecialInstructionsInput()">
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+                <input type="text" id="specialInstructions" placeholder="Informe as orientações especiais"
+                    style="display:none;" maxlength="36">
+            </div>
+            <div class="form-group">
+                <label for="specialConditions">Condições Especiais:</label>
+                <select id="specialConditions" onchange="updateSpecialConditionWatermark()">
+                    <option value="" disabled selected>Selecione...</option>
+                    <option value="cadeirante">CADEIRANTE</option>
+                    <option value="D.AUDITIVA">D.AUDITIVA</option>
+                    <option value="D.VISUAL">D.VISUAL</option>
+                </select>
+            </div>
+            <button type="button" onclick="generateCard()">Gerar Carteira</button>
+        </form>
+    </div>
+    <div class="card" id="healthCard" style="display:none;">
+        <div class="watermark" id="watermarkText" style="display:none;"></div> <!-- Marcas d'água -->
+        <div class="watermark-diagonal" id="emergencyWatermark" style="display:none;">Fundação.E.Solidária</div>
+        <!-- Marca d'água diagonal -->
+        <div class="photo">
+            <img id="profileImage" class="profile-image" alt="Foto do Usuário">
+            <div id="specialConditionContainer" style="margin-top: 10px;">
+                <img id="specialConditionImage" class="special-condition-image" alt="Símbolo Condição Especial"
+                    style="display:none;">
+            </div>
+            <div class="positioned-elements">
+                <p><strong>Data de Nascimento:</strong> <span id="cardBirthDate"></span></p>
+                <p><strong>Grupo Sanguíneo:</strong> <span id="cardBloodType"></span></p>
+                <p><strong>Contato de Emergência:</strong> <span id="cardEmergencyContact"></span></p>
+                <p><strong>CPF:</strong> <span id="cardCpf"></span></p>
+                <p><strong>Alergias:</strong> <span id="cardAllergies"></span></p>
+                <p><strong>Cidade e Estado:</strong> <span id="cardState"></span></p>
+                <!-- Adicione esta linha para mostrar o estado -->
+            </div>
+        </div>
+        <div class="info">
+            <h3 id="cardName"></h3>
+            <hr>
+            <p><strong>Doador de Órgãos:</strong> <span id="cardOrganDonor"></span></p>
+            <p><strong>Condições Crônicas:</strong> <span id="cardChronicConditions"></span></p>
+            <p><strong>Implantes ou Próteses:</strong> <span id="cardImplants"></span></p>
+            <p><strong>Plano de Saúde:</strong> <span id="cardHealthPlan"></span></p>
+            <p><strong>Número do Plano:</strong> <span id="cardPlanNumber"></span></p>
+            <p><strong>Medicações:</strong> <span id="cardMedications"></span></p>
+            <p><strong>Informações:</strong> <span id="cardSpecialInstructions"></span></p>
+            <div class="chronic-condition" id="cardChronicCondition"></div>
+        </div>
+        <div class="qr-section">
+            <canvas id="qrCode" class="qr-code"></canvas>
+        </div>
+        <div class="card-footer" id="cardFooter"></div>
+    </div>
+    <div class="watermark" id="watermarkText"></div>
+    </div>
+    <button2 type="button" id="saveImageButton" style="display:none;" onclick="saveImage()">Salvar como Imagem</button2>
+    <script>
+        function loadFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const image = document.getElementById('profileImage');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.onload = function () {
+                const targetWidth = 70;
+                const targetHeight = 90;
+                const scaleFactor = 2;
+                canvas.width = targetWidth * scaleFactor;
+                canvas.height = targetHeight * scaleFactor;
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                const dataURL = canvas.toDataURL('image/png');
+                image.src = dataURL;
+            };
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getUTCDate()).padStart(2, '0');
+            const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+            const year = date.getUTCFullYear();
+            return `${day}/${month}/${year}`; // Adicionando as crases corretas
+        }
+
+
+        function formatPhone(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 10) {
+                input.value = value.replace(/^(\d{2})(\d{5})(\d{0,4})$/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                input.value = value.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+            } else {
+                input.value = value;
+            }
+        }
+        function toggleMedicationsInput() {
+            const medicationsUsedSelect = document.getElementById('medicationsUsed');
+            const medicationsInput = document.getElementById('medications');
+            medicationsInput.style.display = medicationsUsedSelect.value === 'sim' ? 'block' : 'none';
+            if (medicationsUsedSelect.value !== 'sim') {
+                medicationsInput.value = '';
+            }
+        }
+        function toggleSpecialInstructionsInput() {
+            const specialInstructionsUsedSelect = document.getElementById('specialInstructionsUsed');
+            const specialInstructionsInput = document.getElementById('specialInstructions');
+            specialInstructionsInput.style.display = specialInstructionsUsedSelect.value === 'sim' ? 'block' : 'none';
+            if (specialInstructionsUsedSelect.value !== 'sim') {
+                specialInstructionsInput.value = '';
+            }
+        }
+        function formatCPF(cpf) {
+            cpf = cpf.replace(/\D/g, "");
+            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            return cpf;
+        }
+        function toggleOtherBloodType() {
+            const bloodTypeSelect = document.getElementById('bloodType');
+            const otherBloodTypeInput = document.getElementById('otherBloodType');
+            otherBloodTypeInput.style.display = bloodTypeSelect.value === 'outros' ? 'block' : 'none';
+            if (bloodTypeSelect.value !== 'outros') {
+                otherBloodTypeInput.value = '';
+            }
+        }
+        function toggleOtherImplant() {
+            const implantSelect = document.getElementById('implants');
+            const otherImplantInput = document.getElementById('otherImplant');
+            const sideOptions = document.getElementById('sideOptions');
+            otherImplantInput.style.display = implantSelect.value === 'outros' ? 'block' : 'none';
+            sideOptions.style.display = implantSelect.value === 'nega' ? 'none' : 'block';
+            if (implantSelect.value !== 'outros') {
+                otherImplantInput.value = '';
+            }
+        }
+        function toggleOtherHealthPlan() {
+            const healthPlanSelect = document.getElementById('healthPlan');
+            const otherHealthPlanInput = document.getElementById('otherHealthPlan');
+            otherHealthPlanInput.style.display = healthPlanSelect.value === 'outros' ? 'block' : 'none';
+            if (healthPlanSelect.value !== 'outros') {
+                otherHealthPlanInput.value = '';
+            }
+        }
+        function toggleOtherAllergy() {
+            const allergiesSelect = document.getElementById('allergies');
+            const otherAllergyInput = document.getElementById('otherAllergy');
+            otherAllergyInput.style.display = Array.from(allergiesSelect.selectedOptions).some(option => option.value === 'outros') ? 'block' : 'none';
+            if (!otherAllergyInput.style.display) {
+                otherAllergyInput.value = '';
+            }
+        }
+        function updateChronicCondition() {
+            const chronicConditionsSelect = document.getElementById('chronicConditions');
+            const selectedCondition = chronicConditionsSelect.value;
+            const otherConditionInput = document.getElementById('otherChronicCondition');
+            otherConditionInput.style.display = selectedCondition === 'outros' ? 'block' : 'none';
+            if (selectedCondition !== 'outros') {
+                otherConditionInput.value = '';
+            }
+            document.getElementById('cardChronicConditions').textContent = selectedCondition ? selectedCondition : 'Nega';
+        }
+        function updateChronicConditionAcronym() {
+            const acronymSelect = document.getElementById('chronicConditionAcronym');
+            const selectedAcronym = acronymSelect.value;
+            const otherAcronymInput = document.getElementById('otherChronicConditionAcronym');
+            const chronicConditionDisplay = document.getElementById('cardChronicCondition');
+            otherAcronymInput.style.display = selectedAcronym === 'outros' ? 'block' : 'none';
+            if (selectedAcronym !== 'outros') {
+                otherAcronymInput.value = '';
+            }
+            chronicConditionDisplay.textContent = selectedAcronym && selectedAcronym !== 'nega' ? selectedAcronym : '';
+            chronicConditionDisplay.style.display = selectedAcronym && selectedAcronym !== 'nega' ? 'block' : 'none';
+        }
+        function updateSpecialConditionWatermark() {
+            const specialConditionsSelect = document.getElementById('specialConditions');
+            const selectedCondition = specialConditionsSelect.value;
+            const watermarkText = document.getElementById('watermarkText');
+            watermarkText.textContent = selectedCondition ? selectedCondition.charAt(0).toUpperCase() + selectedCondition.slice(1) : '';
+            watermarkText.style.display = selectedCondition ? 'block' : 'none';
+            updateEmergencyWatermark();
+        }
+        function updateEmergencyWatermark() {
+            const emergencyWatermark = document.getElementById('emergencyWatermark');
+            const showEmergency = true;
+            emergencyWatermark.style.display = showEmergency ? 'block' : 'none';
+        }
+        function generateCard() {
+            const fullName = document.getElementById('fullName').value;
+            const birthDate = formatDate(document.getElementById('birthDate').value);
+            const cpf = formatCPF(document.getElementById('cpf').value);
+            const planNumber = document.getElementById('planNumber').value;
+            const bloodTypeSelect = document.getElementById('bloodType');
+            const bloodType = bloodTypeSelect.value === 'outros' ? document.getElementById('otherBloodType').value : bloodTypeSelect.value;
+            const allergiesSelect = document.getElementById('allergies');
+            const selectedAllergies = Array.from(allergiesSelect.selectedOptions)
+                .map(option => option.value !== 'outros' ? option.text : '')
+                .filter(Boolean)
+                .join(', ');
+            const otherAllergy = document.getElementById('otherAllergy').value;
+            const allergiesFinal = otherAllergy ? selectedAllergies + ', ' + otherAllergy : selectedAllergies;
+            const chronicConditionsSelect = document.getElementById('chronicConditions');
+            const selectedChronicCondition = chronicConditionsSelect.value;
+            const otherChronicCondition = document.getElementById('otherChronicCondition').value;
+            const chronicConditionDisplay = selectedChronicCondition === 'outros' ? otherChronicCondition : selectedChronicCondition;
+            const chronicAcronymSelect = document.getElementById('chronicConditionAcronym');
+            const selectedChronicAcronym = chronicAcronymSelect.value;
+            const otherChronicAcronym = document.getElementById('otherChronicConditionAcronym').value;
+            const chronicConditionDisplayAcronym = selectedChronicAcronym === 'outros' ? otherChronicAcronym : selectedChronicAcronym;
+            const implantsSelect = document.getElementById('implants');
+            const implant = implantsSelect.value === 'outros' ? document.getElementById('otherImplant').value : implantsSelect.value;
+            const side = document.getElementById('side').value;
+            const implantDisplay = implant === 'nega' ? 'Nega' : implant.charAt(0).toUpperCase() + implant.slice(1) + (side ? ` (${side})` : '');
+            const healthPlanSelect = document.getElementById('healthPlan');
+            const healthPlan = healthPlanSelect.value === 'outros' ? document.getElementById('otherHealthPlan').value : healthPlanSelect.value;
+            const medications = document.getElementById('medications').value;
+            const emergencyContact = document.getElementById('emergencyContact').value;
+            const specialInstructions = document.getElementById('specialInstructions').value;
+            const organDonor = document.getElementById('organDonor').value;
+            const state = document.getElementById('estadoInput').value; // Capture o valor do campo "Estado"
+
+            document.getElementById('cardName').textContent = fullName;
+            document.getElementById('cardBirthDate').textContent = birthDate;
+            document.getElementById('cardCpf').textContent = cpf;
+            document.getElementById('cardState').textContent = state; // Atribua o valor ao elemento de estado
+            document.getElementById('cardPlanNumber').textContent = planNumber;
+            document.getElementById('cardBloodType').textContent = bloodType;
+            document.getElementById('cardAllergies').textContent = allergiesFinal || 'Nega';
+            document.getElementById('cardOrganDonor').textContent = organDonor === "sim" ? "Sim" : "Não";
+            document.getElementById('cardChronicConditions').textContent = chronicConditionDisplay || 'Nega';
+            const chronicConditionElement = document.getElementById('cardChronicCondition');
+            if (chronicConditionDisplayAcronym && chronicConditionDisplayAcronym !== 'nega') {
+                chronicConditionElement.textContent = chronicConditionDisplayAcronym;
+                chronicConditionElement.style.display = 'block';
+            } else {
+                chronicConditionElement.textContent = '';
+                chronicConditionElement.style.display = 'none';
+            }
+            document.getElementById('cardImplants').textContent = implantDisplay;
+            document.getElementById('cardHealthPlan').textContent = healthPlan || 'Nega';
+            document.getElementById('cardMedications').textContent = medications || 'Nega';
+            document.getElementById('cardEmergencyContact').textContent = emergencyContact;
+            document.getElementById('cardSpecialInstructions').textContent = specialInstructions || 'Nega';
+            updateSpecialConditionWatermark();
+
+            const backgroundImage = document.getElementById('healthCard').style.backgroundImage;
+            if (backgroundImage) {
+                const img = new Image();
+                img.src = backgroundImage.slice(5, -2);
+                img.onload = function () {
+                    document.getElementById('healthCard').style.display = 'block';
+                    document.getElementById('saveImageButton').style.display = 'inline-block';
+                };
+                img.onerror = function () {
+                    console.error('Erro ao carregar a imagem de fundo');
+                };
+            } else {
+                document.getElementById('healthCard').style.display = 'block';
+                document.getElementById('saveImageButton').style.display = 'inline-block';
+            }
+        }
+
+        function saveImage() {
+            const healthCardElement = document.querySelector("#healthCard");
+            html2canvas(healthCardElement, {
+                scale: 1.8,
+                useCORS: true,
+                backgroundColor: null,
+                width: healthCardElement.offsetWidth,
+                height: healthCardElement.offsetHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.download = 'carteirinha-de-saude.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }).catch(error => {
+                console.error('Erro ao salvar a imagem:', error);
+            });
+        }
+    </script>
+</body>
+
+</html>
