@@ -1,194 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Envio de Documentos Escolar</title>
     <style>
-       :root {
-    --primary-color: #000000;
-    --secondary-color: #03dac6;
-    --accent-color: #ff0266;
-    --background-color: #e3f2fd;
-    --text-color: #000000;
-    --font-family: 'Roboto', sans-serif;
-}
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #03dac6;
+            --accent-color: #ff0266;
+            --background-color: #e3f2fd;
+            --text-color: #000000;
+            --font-family: 'Roboto', sans-serif;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: var(--font-family);
-    background: linear-gradient(135deg, #1b06df, #aebbd4);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    color: #333; 
-    padding: 0;
-    box-sizing: border-box;
-}
+        body {
+            font-family: var(--font-family);
+            background-image: url(002.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333; 
+        }
 
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff4f4;
+        }
 
-h1 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #fff4f4;
-}
+        h3 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff4f4;
+        }
 
-h3 {
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #fff4f4;
-}
+        .section {
+            background: rgba(255, 254, 254, 0.568);   
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); 
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            margin: 20px;
+            font-size: 12px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #135de7;   
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
 
-.section {
-    background: rgba(255, 254, 254, 0.568);   
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); 
-    max-width: 400px;
-    width: 100%;
-    text-align: left;
-    position: relative;
-    margin: 20px;
-    font-size: 12px;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #135de7;   
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-size: 1rem;
-}
+        button {
+            width: 30%;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ec520a, #ffb347);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
 
-button {
-    width: 30%;
-    padding: 12px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ec520a, #ffb347);
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 10px 0;
-}
+        button:hover {
+            background: linear-gradient(135deg, #ff5e1f, #ffa726);
+        }
 
-button:hover {
-    background: linear-gradient(135deg, #ff5e1f, #ffa726);
-}
+        button:active {
+            transform: scale(0.98);
+        }
 
-button:active {
-    transform: scale(0.98);
-}
+        .document-label {
+            display: block;
+            margin: 10px 0;
+            color: #ffffff;
+        }
 
-.document-label {
-    display: block;
-    margin: 10px 0;
-    color: #ffffff;
-}
+        input[type="file"] {
+            display: none;
+        }
 
-input[type="file"] {
-    display: none;
-}
+        label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #135de7;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
 
-label {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #135de7;
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    font-size: 1rem;
-}
+        #preview {
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-#preview {
-    margin-top: 20px;
-    padding: 10px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+        #preview img,
+        #preview div {
+            max-width: 100px;
+            max-height: 100px;
+            margin: 5px;
+            display: inline-block;
+        }
 
-#preview img,
-#preview div {
-    max-width: 100px;
-    max-height: 100px;
-    margin: 5px;
-    display: inline-block;
-}
+        #generate-pdf {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-#generate-pdf {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        #generate-pdf:hover {
+            background-color: #218838;
+        }
 
-#generate-pdf:hover {
-    background-color: #218838;
-}
+        .checkbox-group {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
 
-.checkbox-group {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-}
+        .upload-section {
+            display: none;
+            margin-top: 10px;
+        }
 
-.upload-section {
-    display: none;
-    margin-top: 10px;
-}
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
 
-.input-group {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
+        .input-group label {
+            margin-right: 10px;
+            flex: 0 0 150px;
+            font-weight: bold;
+            font-size: 15px;
+        }
 
-.input-group label {
-    margin-right: 10px;
-    flex: 0 0 150px;
-    font-weight: bold;
-    font-size: 15px;
-}
+        .input-group input[type="text"],
+        .input-group input[type="number"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-.input-group input[type="text"],
-.input-group input[type="number"] {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-
-@media (max-width: 500px) {
+        @media (max-width: 500px) {
             .input-group input[type="number"] {
                 max-width: 70px;
             }
         }
-        
+
         @media (max-width: 768px) {
             .section {
                 padding: 15px;
@@ -197,55 +192,52 @@ label {
             }
         }
 
-/* Responsividade para dispositivos móveis */
-@media (max-width: 500px) {
-    .section {
-        width: 100vw; /* Ocupar toda a largura da tela */
-        max-width: none; /* Remover a limitação de 400px */
-        height: auto; /* Ajustar conforme o conteúdo */
-        margin: 0;
-        padding: 20px;
-        border-radius: 0;
-    }
+        @media (max-width: 500px) {
+            .section {
+                width: 100vw;
+                max-width: none;
+                height: auto;
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
 
-    button {
-        width: 100%; /* Ocupar toda a largura */
-        font-size: 1.2rem; /* Aumentar a legibilidade */
-    }
+            button {
+                width: 100%;
+                font-size: 1.2rem;
+            }
 
-    .input-group {
-        flex-direction: column; /* Empilhar os itens */
-        align-items: flex-start;
-    }
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-    .input-group label {
-        flex: none;
-        width: 100%;
-        margin-bottom: 5px;
-    }
+            .input-group label {
+                flex: none;
+                width: 100%;
+                margin-bottom: 5px;
+            }
 
-    .input-group input {
-        width: 100%;
-    }
+            .input-group input {
+                width: 100%;
+            }
 
-    h1 {
-        font-size: 1.5rem;
-    }
-}
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
 
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -278,14 +270,27 @@ label {
                 <label for="photo-upload">Carregar Foto</label>
             </div>
         </div>
+        
         <div class="checkbox-group">
             <input type="checkbox" id="birth-certificate" class="required-doc" data-label="Certidão de nascimento">
-            <label for="birth-certificate" class="document-label">Certidão de nascimento ou RG</label>
+            <label for="birth-certificate" class="document-label">Certidão de nascimento</label>
             <div class="upload-section" id="birth-certificate-upload-section">
-                <input type="file" id="birth-certificate-upload" accept="application/pdf,image/*">
-                <label for="birth-certificate-upload">Carregar Documento</label>
+                <input type="file" id="birth-certificate-upload-front" accept="application/pdf,image/*">
+                <label for="birth-certificate-upload-front">Carregar Frente</label>
             </div>
         </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="rg-student" class="required-doc" data-label="RG do aluno">
+            <label for="rg-student" class="document-label">RG do aluno</label>
+            <div class="upload-section" id="rg-student-upload-section">
+                <input type="file" id="rg-student-upload-front" accept="application/pdf,image/*">
+                <label for="rg-student-upload-front">Carregar Frente</label>
+                <input type="file" id="rg-student-upload-back" accept="application/pdf,image/*">
+                <label for="rg-student-upload-back">Carregar Verso</label>
+            </div>
+        </div>
+
         <div class="checkbox-group">
             <input type="checkbox" id="cpf" class="required-doc" data-label="CPF do aluno">
             <label for="cpf" class="document-label">CPF do aluno</label>
@@ -294,6 +299,7 @@ label {
                 <label for="cpf-upload">Carregar CPF</label>
             </div>
         </div>
+        
         <div class="checkbox-group">
             <input type="checkbox" id="address-proof" class="required-doc" data-label="Comprovante de residência">
             <label for="address-proof" class="document-label">Comprovante de residência</label>
@@ -302,6 +308,7 @@ label {
                 <label for="address-proof-upload">Carregar Comprovante</label>
             </div>
         </div>
+        
         <div class="checkbox-group">
             <input type="checkbox" id="vaccination-card" class="required-doc" data-label="Carteira de vacinação">
             <label for="vaccination-card" class="document-label">Carteira de vacinação</label>
@@ -310,23 +317,29 @@ label {
                 <label for="vaccination-card-upload">Carregar Carteira</label>
             </div>
         </div>
+        
         <div class="checkbox-group">
             <input type="checkbox" id="school-declaration" class="required-doc" data-label="Declaração de escolaridade">
-            <label for="school-declaration" class="document-label">Declaração de escolaridade (se for
-                transferência)</label>
+            <label for="school-declaration" class="document-label">Declaração de escolaridade (se for transferência)</label>
             <div class="upload-section" id="school-declaration-upload-section">
-                <input type="file" id="school-declaration-upload" accept="application/pdf,image/*">
-                <label for="school-declaration-upload">Carregar Declaração</label>
+                <input type="file" id="school-declaration-upload-front" accept="application/pdf,image/*">
+                <label for="school-declaration-upload-front">Carregar Frente</label>
+                <input type="file" id="school-declaration-upload-back" accept="application/pdf,image/*">
+                <label for="school-declaration-upload-back">Carregar Verso</label>
             </div>
         </div>
+        
         <div class="checkbox-group">
             <input type="checkbox" id="school-history" class="required-doc" data-label="Histórico escolar">
             <label for="school-history" class="document-label">Histórico escolar</label>
             <div class="upload-section" id="school-history-upload-section">
-                <input type="file" id="school-history-upload" accept="application/pdf,image/*">
-                <label for="school-history-upload">Carregar Histórico</label>
+                <input type="file" id="school-history-upload-front" accept="application/pdf,image/*">
+                <label for="school-history-upload-front">Carregar Frente</label>
+                <input type="file" id="school-history-upload-back" accept="application/pdf,image/*">
+                <label for="school-history-upload-back">Carregar Verso</label>
             </div>
         </div>
+
         <div class="checkbox-group">
             <input type="checkbox" id="sus-card" class="required-doc" data-label="Cartão do SUS">
             <label for="sus-card" class="document-label">Cartão do SUS</label>
@@ -335,14 +348,27 @@ label {
                 <label for="sus-card-upload">Carregar Cartão do SUS</label>
             </div>
         </div>
+        
         <div class="checkbox-group">
-            <input type="checkbox" id="guardian-id" class="required-doc" data-label="RG e CPF dos responsáveis">
-            <label for="guardian-id" class="document-label">RG e CPF dos responsáveis</label>
-            <div class="upload-section" id="guardian-id-upload-section">
-                <input type="file" id="guardian-id-upload" accept="application/pdf,image/*">
-                <label for="guardian-id-upload">Carregar Documentos</label>
+            <input type="checkbox" id="rg-guardian" class="required-doc" data-label="RG dos responsáveis">
+            <label for="rg-guardian" class="document-label">RG dos responsáveis</label>
+            <div class="upload-section" id="rg-guardian-upload-section">
+                <input type="file" id="rg-guardian-upload-front" accept="application/pdf,image/*">
+                <label for="rg-guardian-upload-front">Carregar Frente</label>
+                <input type="file" id="rg-guardian-upload-back" accept="application/pdf,image/*">
+                <label for="rg-guardian-upload-back">Carregar Verso</label>
             </div>
         </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="cpf-guardian" class="required-doc" data-label="CPF dos responsáveis">
+            <label for="cpf-guardian" class="document-label">CPF dos responsáveis</label>
+            <div class="upload-section" id="cpf-guardian-upload-section">
+                <input type="file" id="cpf-guardian-upload" accept="application/pdf,image/*">
+                <label for="cpf-guardian-upload">Carregar CPF</label>
+            </div>
+        </div>
+        
         <div class="checkbox-group">
             <input type="checkbox" id="income-proof" class="required-doc" data-label="Comprovante de renda">
             <label for="income-proof" class="document-label">Comprovante de renda (se aplicável)</label>
@@ -368,7 +394,7 @@ label {
         const studentNameInput = document.getElementById('student-name');
         const studentAgeInput = document.getElementById('student-age');
         const submittedByInput = document.getElementById('submitted-by');
-        let uploadedFiles = {};  // Armazena arquivos carregados com base em seus rótulos
+        let uploadedFiles = {};
 
         requiredDocs.forEach(doc => {
             doc.addEventListener('change', (event) => {
@@ -377,7 +403,7 @@ label {
                     uploadSection.style.display = 'block';
                 } else {
                     uploadSection.style.display = 'none';
-                    document.getElementById(`${event.target.id}-upload`).value = ''; // Limpa o campo de entrada
+                    document.querySelectorAll(`#${event.target.id}-upload-section input[type="file"]`).forEach(input => input.value = '');
                     delete uploadedFiles[event.target.dataset.label];
                 }
             });
@@ -389,7 +415,12 @@ label {
                 if (!file) return;
 
                 const label = input.closest('.checkbox-group').querySelector('.required-doc').dataset.label;
-                uploadedFiles[label] = file;  // Armazena o arquivo com base no rótulo correspondente
+                const fileType = input.id.includes('front') ? 'Frente' : input.id.includes('back') ? 'Verso' : 'Documento';
+
+                if (!uploadedFiles[label]) {
+                    uploadedFiles[label] = {};
+                }
+                uploadedFiles[label][fileType] = file;
 
                 const fileReader = new FileReader();
                 fileReader.onload = function (e) {
@@ -427,29 +458,36 @@ label {
             for (let doc of requiredDocs) {
                 if (doc.checked) {
                     const label = doc.dataset.label;
-                    const file = uploadedFiles[label];
-                    if (!file) {
+                    const files = uploadedFiles[label];
+                    if (!files) {
                         alert(`O documento "${label}" não foi carregado.`);
                         return;
                     }
 
-                    const [width, height] = getDocumentDimensions(label);
-                    const [x, y] = centerPosition(pdf, width, height);
+                    for (const [fileType, file] of Object.entries(files)) {
+                        if (label === "Certidão de nascimento" && fileType === "Verso") {
+                            continue;
+                        }
 
-                    if (file.type.startsWith('image/')) {
-                        const img = await getImage(file);
-                        pdf.addImage(img, 'JPEG', x, y, width, height);
-                    } else {
-                        pdf.text(x, y + 10, `Documento: ${file.name}`);
+                        pdf.addPage();
+
+                        const [width, height] = getDocumentDimensions(label, fileType);
+                        const [x, y] = centerPosition(pdf, width, height);
+
+                        if (file.type.startsWith('image/')) {
+                            const img = await getImage(file);
+                            pdf.addImage(img, 'JPEG', x, y, width, height);
+                        } else {
+                            pdf.text(x, y + 10, `Documento: ${file.name}`);
+                        }
                     }
-                    pdf.addPage();
                 }
             }
 
             pdf.save('documentos_escolares.pdf');
         });
 
-        function getDocumentDimensions(label) {
+        function getDocumentDimensions(label, fileType) {
             switch (label) {
                 case "Foto do aluno (3x4)":
                     return [30, 40]; // 3x4 cm
@@ -461,7 +499,8 @@ label {
                 case "Comprovante de renda (se aplicável)":
                     return [150, 210]; // Reduzido para parte da página A4
                 case "CPF do aluno":
-                case "RG e CPF dos responsáveis":
+                case "RG do aluno":
+                case "RG dos responsáveis":
                 case "Cartão do SUS":
                     return [85, 54]; // Tamanho de cartão
                 default:
@@ -500,5 +539,4 @@ label {
     </script>
 
 </body>
-
 </html>
