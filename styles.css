@@ -4,7 +4,7 @@
 
 /* Variáveis de Cores e Tipografia */
 :root {
-    --primary-color: #000000;        /* Cor principal */
+    --primary-color: #fffafa;        /* Cor principal */
     --secondary-color: #03dac6;      /* Cor secundária */
     --accent-color: #ff0266;         /* Cor de destaque */
     --background-color: #e3f2fd;     /* Cor de fundo */
@@ -74,9 +74,9 @@ body {
 
 
 .container {
-    background: rgba(211, 199, 235, 0.863);
+    background: rgb(83, 3, 241);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.781);
+    box-shadow: 0 4px 30px rgba(112, 114, 228, 0.781);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 20px;
@@ -91,7 +91,7 @@ h1 {
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
-    color: #444;
+    color: #fffdfd;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
