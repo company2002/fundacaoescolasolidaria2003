@@ -41,15 +41,20 @@ body {
     color: #333;
 }
 
-
-
 @media (max-width: 768px) {
-
-
-
-}
-
-.container {
+    .container, .card {
+        max-width: 100%;
+        width: 100%;
+        padding: 10px;
+    }
+    /* Reduz um pouco a fonte em telas menores */
+    .card {
+        font-size: 0.85rem;
+    }
+    .card p {
+        font-size: 0.75rem;
+    }
+}.container {
     background: rgba(211, 199, 235, 0.863);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.781);
