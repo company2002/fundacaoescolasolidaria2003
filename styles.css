@@ -1,17 +1,15 @@
+/* ===============================
+   CSS Base (o seu CSS atual)
+   =============================== */
+
 /* Variáveis de Cores e Tipografia */
 :root {
-    --primary-color: #000000;
-    /* Cor principal */
-    --secondary-color: #03dac6;
-    /* Cor secundária */
-    --accent-color: #ff0266;
-    /* Cor de destaque */
-    --background-color: #e3f2fd;
-    /* Cor de fundo */
-    --text-color: #212121;
-    /* Cor do texto */
-    --font-family: 'Roboto', sans-serif;
-    /* Fonte principal */
+    --primary-color: #000000;        /* Cor principal */
+    --secondary-color: #03dac6;      /* Cor secundária */
+    --accent-color: #ff0266;         /* Cor de destaque */
+    --background-color: #e3f2fd;     /* Cor de fundo */
+    --text-color: #212121;           /* Cor do texto */
+    --font-family: 'Roboto', sans-serif; /* Fonte principal */
 }
 
 /* Estilos Gerais */
@@ -24,13 +22,9 @@
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, #1b06df, #aebbd4);
-    /* Caminho da imagem */
     background-size: cover;
-    /* Ajusta a imagem para cobrir toda a tela */
     background-position: center;
-    /* Centraliza a imagem */
     background-repeat: no-repeat;
-    /* Evita repetição da imagem */
     margin: 0;
     padding: 50px;
     display: flex;
@@ -41,11 +35,14 @@ body {
     color: #333;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .container, .card {
-        max-width: 100%;
-        width: 100%;
-        padding: 10px;
+        width: 100vw;
+        padding: 20px;
+        height: auto;
+        margin: 0;
+        box-sizing: border-box;
+        border-radius: 0;
     }
     /* Reduz um pouco a fonte em telas menores */
     .card {
@@ -54,7 +51,9 @@ body {
     .card p {
         font-size: 0.75rem;
     }
-}.container {
+}
+
+.container {
     background: rgba(211, 199, 235, 0.863);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.781);
@@ -65,7 +64,7 @@ body {
     width: 100%;
     text-align: left;
     position: relative;
-    margin: 20px;
+    margin: 20px auto;
 }
 
 h1 {
@@ -113,7 +112,6 @@ select:focus {
     border-color: var(--primary-color);
     outline: none;
     background-color: #e8f0fe;
-    /* Leve mudança ao foco */
 }
 
 button {
@@ -129,7 +127,6 @@ button {
     transition: all 0.3s;
     margin: 10px auto;
     display: block;
-
 }
 
 button2 {
@@ -145,19 +142,17 @@ button2 {
     transition: all 0.3s;
     margin: 10px auto;
     display: block;
-
 }
 
 button:hover {
     background: linear-gradient(135deg, #ff5e1f, #ffa726);
-
 }
 
 button:active {
     transform: scale(0.98);
-
 }
 
+/* Cartão */
 .card {
     box-shadow: none;
     overflow: visible;
@@ -226,14 +221,18 @@ button:active {
     padding-left: 20px;
 }
 
+/* Força quebra de palavras longas */
 .positioned-elements p,
-.info p {
+.info p,
+.card p {
     margin: 3px 0;
     font-size: 10px;
     color: #ffffff;
     text-align: left;
     white-space: normal;
     word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .info h3 {
@@ -329,4 +328,60 @@ a:focus,
 button:focus {
     outline: 3px solid var(--accent-color);
     outline-offset: 3px;
+}
+
+/* ===============================
+   Regras de Impressão (desktop)
+   =============================== */
+@media print {
+    /* Forçar página A4 em modo retrato e definir margem */
+    @page {
+        size: A4 portrait; 
+        margin: 10mm;
+    }
+
+    /* Remove background e margens do body */
+    body {
+        background: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important; /* remove flex do body ao imprimir */
+    }
+
+    /* Ocultar a .container e demais elementos que não queremos imprimir */
+    .container {
+        display: none !important;
+    }
+
+    /* Exibir somente a .card, sem sombras/gradientes */
+    .card {
+        display: block !important;
+        position: static !important;
+        margin: 0 auto !important;
+        background: #fff !important;   /* fundo branco */
+        color: #000 !important;        /* texto preto */
+        page-break-inside: avoid !important;
+        width: 350px !important;       /* largura fixa para caber na folha */
+        max-width: 100% !important;
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        font-size: 12pt !important;    /* aumenta um pouco a fonte na impressão */
+        border-radius: 5px !important; /* se quiser manter cantos arredondados */
+    }
+
+    /* Ajusta textos internos da .card */
+    .card p, .info p {
+        color: #000 !important;
+        font-size: 10pt !important;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    /* Esconde QR code e watermarks na impressão */
+    .qr-section,
+    .watermark,
+    .watermark-diagonal {
+        display: none !important;
+    }
 }
