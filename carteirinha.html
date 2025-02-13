@@ -330,7 +330,7 @@
     </div>
     <div class="card" id="healthCard" style="display:none;">
         <div class="watermark" id="watermarkText" style="display:none;"></div> <!-- Marcas d'água -->
-        <div class="watermark-diagonal" id="emergencyWatermark" style="display:none;">Fundação.E.Solidária</div>
+        <div class="watermark-diagonal" id="emergencyWatermark" style="display:none;"></div>
         <!-- Marca d'água diagonal -->
         <div class="photo">
             <img id="profileImage" class="profile-image" alt="Foto do Usuário">
@@ -533,7 +533,7 @@
 
         // Usa html2canvas para capturar a imagem da carteirinha
         const canvas = await html2canvas(healthCardElement, {
-            scale: 2,
+            scale: 5,
             useCORS: true,
             backgroundColor: null
         });
