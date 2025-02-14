@@ -97,6 +97,7 @@ h1 {
 h6 {
     color: #ffffff;
     background-color: #3500f3;
+    font-size: 7px;
     
     padding-left: 20px;
     
@@ -344,13 +345,13 @@ button:active {
 .watermark {
     position: absolute;
     top: 52%;
-    left: 80%;
+    left: 88%;
     transform: translate(-50%, -50%);
     opacity: 0.9;
     pointer-events: none;
     z-index: 0;
     display: none;
-    font-size: 18px;
+    font-size: 10px;
     font-weight: bold;
     color: rgb(255, 0, 0);
     text-align: center;
@@ -437,6 +438,23 @@ button:focus {
         font-size: 10pt !important;
         page-break-inside: avoid !important;
     }
+
+    .symbol-container {
+        position: absolute; /* Permite posicionamento relativo à carteirinha */
+        top: 10px; /* Ajuste conforme necessário para o espaçamento desejado */
+        right: 10px; /* Coloca o contêiner no canto direito */
+        width: 50px; /* Ajuste o tamanho conforme necessário */
+        height: auto; /* Mantém a proporção da imagem */
+        z-index: 10; /* Garante que o símbolo fique acima de outros elementos */
+    }
+    
+    .special-condition-image {
+        width: 100%; /* Ocupa toda a largura do contêiner */
+        height: auto; /* Mantém a proporção da imagem */
+    }
+
+
+
 
     .qr-section, .watermark, .watermark-diagonal {
         display: none !important;
