@@ -36,11 +36,6 @@
             </div>
 
             <div class="form-group">
-                <label for="estadoInput">Cidade e Estado :</label>
-                <input type="text" id="estadoInput" required>
-            </div>
-
-            <div class="form-group">
                 <label for="allergies">Alergias:</label>
                 <select id="allergies" onchange="toggleOtherAllergy()">
                     <option value="" disabled selected>Nega</option>
@@ -78,11 +73,7 @@
                 </select>
                 <input type="text" id="otherAllergy" placeholder="Informe sua alergia" style="display:none;"
                     maxlength="36">
-                <label for="organDonor">Doador de Órgãos:</label>
-                <select id="organDonor">
-                    <option value="sim">Sim</option>
-                    <option value="nao">Não</option>
-                </select>
+                
             </div>
             <div class="form-group">
                 <label for="bloodType">Grupo Sanguíneo:</label>
@@ -344,20 +335,19 @@
                 <p><strong>Contato de Emergência:</strong> <span id="cardEmergencyContact"></span></p>
                 <p><strong>CPF:</strong> <span id="cardCpf"></span></p>
                 <p><strong>Alergias:</strong> <span id="cardAllergies"></span></p>
-                <p><strong>Cidade e Estado:</strong> <span id="cardState"></span></p>
                 <!-- Adicione esta linha para mostrar o estado -->
             </div>
         </div>
         <div class="info">
             <h3 id="cardName"></h3>
             <hr>
-            <p><strong>Doador de Órgãos:</strong> <span id="cardOrganDonor"></span></p>
             <p><strong>Condições Crônicas:</strong> <span id="cardChronicConditions"></span></p>
             <p><strong>Implantes ou Próteses:</strong> <span id="cardImplants"></span></p>
             <p><strong>Plano de Saúde:</strong> <span id="cardHealthPlan"></span></p>
             <p><strong>Número do Plano:</strong> <span id="cardPlanNumber"></span></p>
             <p><strong>Medicações:</strong> <span id="cardMedications"></span></p>
             <p><strong>Informações:</strong> <span id="cardSpecialInstructions"></span></p>
+            <h6>Fundação Escola solidária- Belford Roxo-RJ 21 0000-0000</h6>
             <div class="chronic-condition" id="cardChronicCondition"></div>
         </div>
         <div class="qr-section">
@@ -584,17 +574,13 @@
         const medications = document.getElementById('medications').value;
         const emergencyContact = document.getElementById('emergencyContact').value;
         const specialInstructions = document.getElementById('specialInstructions').value;
-        const organDonor = document.getElementById('organDonor').value;
-        const state = document.getElementById('estadoInput').value;
 
         document.getElementById('cardName').textContent = fullName;
         document.getElementById('cardBirthDate').textContent = birthDate;
         document.getElementById('cardCpf').textContent = cpf;
-        document.getElementById('cardState').textContent = state;
         document.getElementById('cardPlanNumber').textContent = planNumber;
         document.getElementById('cardBloodType').textContent = bloodType;
         document.getElementById('cardAllergies').textContent = allergiesFinal || 'Nega';
-        document.getElementById('cardOrganDonor').textContent = organDonor === "sim" ? "Sim" : "Não";
         document.getElementById('cardChronicConditions').textContent = chronicConditionDisplay || 'Nega';
         const chronicConditionElement = document.getElementById('cardChronicCondition');
         if (chronicConditionDisplayAcronym && chronicConditionDisplayAcronym !== 'nega') {
