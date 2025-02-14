@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carteirinha </title>
+    <title>Carteirinha</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
 </head>
 
 <body>
@@ -22,6 +20,7 @@
                 <label for="photo">Foto:</label>
                 <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" required>
             </div>
+            
             <div class="form-group">
                 <label for="fullName">Nome Completo:</label>
                 <input type="text" id="fullName" required>
@@ -73,7 +72,6 @@
                 </select>
                 <input type="text" id="otherAllergy" placeholder="Informe sua alergia" style="display:none;"
                     maxlength="36">
-                
             </div>
             <div class="form-group">
                 <label for="bloodType">Grupo Sanguíneo:</label>
@@ -102,114 +100,19 @@
                 <label for="chronicConditions">Condições de Saúde Crônicas (Nome Completo):</label>
                 <select id="chronicConditions" onchange="updateChronicCondition()">
                     <option value="" disabled selected>Selecione...</option>
-                    <option value="nega">Nega</option>
-                    <option value="Artrite Reumatoide">AR – Artrite Reumatoide</option>
+                    <option value="TDAH">Transtorno de Déficit de Atenção e Hiperatividade (TDAH)</option>
+                    <option value="Autismo">Transtorno do Espectro Autista (Autismo)</option>
+                    <option value="DoençasCardiacas">Doenças Cardíacas Infantis</option>
+                    <option value="DiabetesInfantil">Diabetes Infantil</option>
                     <option value="Asma">Asma</option>
-                    <option value="Câncer">CA – Câncer</option>
-                    <option value="Cardiopatia Congênita">CC – Cardiopatia Congênita</option>
-                    <option value="Demência - Doença de Alzheimer">DA – Demência - Doença de Alzheimer</option>
-                    <option value="Distimia">Distimia</option>
-                    <option value="Diabetes Mellitus">DM – Diabetes Mellitus</option>
-                    <option value="Doença Celíaca">DC – Doença Celíaca</option>
-                    <option value="Doença de Crohn">DC – Doença de Crohn</option>
-                    <option value="Doença Pulmonar Obstrutiva Crônica">DPOC – Doença Pulmonar Obstrutiva Crônica
-                    </option>
-                    <option value="Depressão">DEP – Depressão</option>
-                    <option value="Delírio">DEL – Delírio</option>
-                    <option value="Doença de Parkinson">DP – Doença de Parkinson</option>
-                    <option value="Doença Renal Crônica">DRC – Doença Renal Crônica</option>
                     <option value="Epilepsia">Epilepsia</option>
-                    <option value="Esclerose Múltipla">EM – Esclerose Múltipla</option>
-                    <option value="Esquizofrenia">ESQ – Esquizofrenia</option>
-                    <option value="Fobia Social">FS – Fobia Social</option>
-                    <option value="Fibromialgia">FM – Fibromialgia</option>
-                    <option value="Hipertensão Arterial Sistêmica">HAS – Hipertensão Arterial Sistêmica</option>
-                    <option value="HIV/AIDS">HIV/AIDS</option>
-                    <option value="Insuficiência Cardíaca">IC – Insuficiência Cardíaca</option>
-                    <option value="Lúpus Eritematoso Sistêmico">LES – Lúpus Eritematoso Sistêmico</option>
-                    <option value="Transtorno de Ansiedade">ANX – Transtorno de Ansiedade</option>
-                    <option value="Transtorno Bipolar">TB – Transtorno Bipolar</option>
-                    <option value="Transtorno de Déficit de Atenção e Hiperatividade">TDAH – Transtorno de Déficit de
-                        Atenção e Hiperatividade</option>
-                    <option value="Transtorno do Espectro Autista">TEA – Transtorno do Espectro Autista</option>
-                    <option value="Transtorno de Estresse Pós-Traumático">TEPT – Transtorno de Estresse Pós-Traumático
-                    </option>
-                    <option value="Transtorno de Humor Ciclotímico">THC – Transtorno de Humor Ciclotímico</option>
-                    <option value="Transtorno Dissociativo de Identidade">TDI – Transtorno Dissociativo de Identidade
-                    </option>
-                    <option value="Transtorno de Pânico">TP – Transtorno de Pânico</option>
-                    <option value="Transtorno de Personalidade Antissocial">TPA – Transtorno de Personalidade
-                        Antissocial</option>
-                    <option value="Transtorno de Personalidade Borderline">TPB – Transtorno de Personalidade Borderline
-                    </option>
-                    <option value="Transtorno de Personalidade Esquizoide">TPE – Transtorno de Personalidade Esquizoide
-                    </option>
-                    <option value="Transtorno de Personalidade Esquizotípica">TPEs – Transtorno de Personalidade
-                        Esquizotípica</option>
-                    <option value="Transtorno de Personalidade Histriônica">TPH – Transtorno de Personalidade
-                        Histriônica</option>
-                    <option value="Transtorno de Personalidade Narcisista">TPN – Transtorno de Personalidade Narcisista
-                    </option>
-                    <option value="Transtorno de Personalidade Paranoide">TPP – Transtorno de Personalidade Paranoide
-                    </option>
-                    <option value="Transtorno Obsessivo-Compulsivo">TOC – Transtorno Obsessivo-Compulsivo</option>
-                    <option value="Transtornos Alimentares">TAs – Transtornos Alimentares (Anorexia, Bulimia)</option>
-                    <option value="Transtornos do Sono">TS – Transtornos do Sono</option>
-                    <option value="Transtorno Depressivo Maior">TDM – Transtorno Depressivo Maior</option>
-                    <option value="Transtorno Psicótico Breve">TPB – Transtorno Psicótico Breve</option>
-                    <option value="outros">Outros</option>
+                    <option value="AlergiasSeveras">Alergias Severas</option>
+                    <option value="DoençasInvisíveis">Doenças Invisíveis</option>
+                    <option value="DistúrbiosDoSono">Distúrbios do Sono</option>
+                    <option value="Outros">Outros</option>
                 </select>
                 <input type="text" id="otherChronicCondition" placeholder="Informe a condição" style="display:none;"
                     maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="chronicConditionAcronym">Sigla da Condição Crônica:</label>
-                <select id="chronicConditionAcronym" onchange="updateChronicConditionAcronym()">
-                    <option value="" disabled selected>Selecione...</option>
-                    <option value="nega">Nega</option>
-                    <option value="ANX">ANX</option>
-                    <option value="AR">AR</option>
-                    <option value="CA">CA</option>
-                    <option value="CC">CC</option>
-                    <option value="DA">DA</option>
-                    <option value="DEL">DEL</option>
-                    <option value="DEP">DEP</option>
-                    <option value="DC">DC</option>
-                    <option value="DPOC">DPOC</option>
-                    <option value="DM">DM</option>
-                    <option value="DP">DP</option>
-                    <option value="DRC">DRC</option>
-                    <option value="EM">EM</option>
-                    <option value="ESQ">ESQ</option>
-                    <option value="FS">FS</option>
-                    <option value="FM">FM</option>
-                    <option value="HAS">HAS</option>
-                    <option value="HIV/AIDS">HIV/AIDS</option>
-                    <option value="IC">IC</option>
-                    <option value="LES">LES</option>
-                    <option value="TB">TB</option>
-                    <option value="TDAH">TDAH</option>
-                    <option value="TEA">TEA</option>
-                    <option value="TEPT">TEPT</option>
-                    <option value="THC">THC</option>
-                    <option value="TDI">TDI</option>
-                    <option value="TP">TP</option>
-                    <option value="TPA">TPA</option>
-                    <option value="TPB">TPB</option>
-                    <option value="TPE">TPE</option>
-                    <option value="TPEs">TPEs</option>
-                    <option value="TPH">TPH</option>
-                    <option value="TPN">TPN</option>
-                    <option value="TPP">TPP</option>
-                    <option value="TOC">TOC</option>
-                    <option value="TAs">TAs</option>
-                    <option value="TS">TS</option>
-                    <option value="TDM">TDM</option>
-                    <option value="TPB">TPB</option>
-                    <option value="outros">Outros</option>
-                </select>
-                <input type="text" id="otherChronicConditionAcronym" placeholder="Informe a sigla"
-                    style="display:none; " maxlength="36">
             </div>
             <div class="form-group">
                 <label for="implants">Implantes ou Próteses:</label>
@@ -325,17 +228,16 @@
         <!-- Marca d'água diagonal -->
         <div class="photo">
             <img id="profileImage" class="profile-image" alt="Foto do Usuário">
-            <div id="specialConditionContainer" style="margin-top: 10px;">
-                <img id="specialConditionImage" class="special-condition-image" alt="Símbolo Condição Especial"
-                    style="display:none;">
-            </div>
             <div class="positioned-elements">
                 <p><strong>Data de Nascimento:</strong> <span id="cardBirthDate"></span></p>
                 <p><strong>Grupo Sanguíneo:</strong> <span id="cardBloodType"></span></p>
                 <p><strong>Contato de Emergência:</strong> <span id="cardEmergencyContact"></span></p>
                 <p><strong>CPF:</strong> <span id="cardCpf"></span></p>
                 <p><strong>Alergias:</strong> <span id="cardAllergies"></span></p>
-                <!-- Adicione esta linha para mostrar o estado -->
+            </div>
+            <!-- Contêiner para os símbolos -->
+            <div id="symbolContainer" class="symbol-container" style="display:none;">
+                <img id="specialConditionImage" class="special-condition-image" alt="Símbolo Condição Especial">
             </div>
         </div>
         <div class="info">
@@ -347,19 +249,15 @@
             <p><strong>Número do Plano:</strong> <span id="cardPlanNumber"></span></p>
             <p><strong>Medicações:</strong> <span id="cardMedications"></span></p>
             <p><strong>Informações:</strong> <span id="cardSpecialInstructions"></span></p>
-            <h6>Fundação Escola solidária-Contato: (021) 97308-0269</h6>
-            <H6>End:Rua Goiânia,159-Santa Amélia, Belford Roxo-Rj</H6>
-            
-            <div class="chronic-condition" id="cardChronicCondition"></div>
+            <h6>Fundação Escola Solidária - Contato: (021) 97308-0269</h6>
+            <h6>End: Rua José Gonçalves Leal, 159. Vilar Novo - Belford Roxo - RJ</h6>
         </div>
         <div class="qr-section">
             <canvas id="qrCode" class="qr-code"></canvas>
         </div>
         <div class="card-footer" id="cardFooter"></div>
     </div>
-    <div class="watermark" id="watermarkText"></div>
-    </div>
-    <button2 type="button" id="saveImageButton" style="display:none;" onclick="saveImage()">Salvar como Imagem</button2>
+    <button type="button" id="saveImageButton" style="display:none;" onclick="saveImage()">Salvar como Imagem</button>
     <script>
         function loadFile(event) {
             const file = event.target.files[0];
@@ -384,14 +282,14 @@
             };
             reader.readAsDataURL(file);
         }
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             const day = String(date.getUTCDate()).padStart(2, '0');
             const month = String(date.getUTCMonth() + 1).padStart(2, '0');
             const year = date.getUTCFullYear();
-            return `${day}/${month}/${year}`; // Adicionando as crases corretas
+            return `${day}/${month}/${year}`;
         }
-
 
         function formatPhone(input) {
             let value = input.value.replace(/\D/g, '');
@@ -403,6 +301,7 @@
                 input.value = value;
             }
         }
+
         function toggleMedicationsInput() {
             const medicationsUsedSelect = document.getElementById('medicationsUsed');
             const medicationsInput = document.getElementById('medications');
@@ -411,6 +310,7 @@
                 medicationsInput.value = '';
             }
         }
+
         function toggleSpecialInstructionsInput() {
             const specialInstructionsUsedSelect = document.getElementById('specialInstructionsUsed');
             const specialInstructionsInput = document.getElementById('specialInstructions');
@@ -419,6 +319,7 @@
                 specialInstructionsInput.value = '';
             }
         }
+
         function formatCPF(cpf) {
             cpf = cpf.replace(/\D/g, "");
             cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
@@ -426,6 +327,7 @@
             cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
             return cpf;
         }
+
         function toggleOtherBloodType() {
             const bloodTypeSelect = document.getElementById('bloodType');
             const otherBloodTypeInput = document.getElementById('otherBloodType');
@@ -434,6 +336,7 @@
                 otherBloodTypeInput.value = '';
             }
         }
+
         function toggleOtherImplant() {
             const implantSelect = document.getElementById('implants');
             const otherImplantInput = document.getElementById('otherImplant');
@@ -444,6 +347,7 @@
                 otherImplantInput.value = '';
             }
         }
+
         function toggleOtherHealthPlan() {
             const healthPlanSelect = document.getElementById('healthPlan');
             const otherHealthPlanInput = document.getElementById('otherHealthPlan');
@@ -452,6 +356,7 @@
                 otherHealthPlanInput.value = '';
             }
         }
+
         function toggleOtherAllergy() {
             const allergiesSelect = document.getElementById('allergies');
             const otherAllergyInput = document.getElementById('otherAllergy');
@@ -460,28 +365,36 @@
                 otherAllergyInput.value = '';
             }
         }
+
         function updateChronicCondition() {
             const chronicConditionsSelect = document.getElementById('chronicConditions');
             const selectedCondition = chronicConditionsSelect.value;
             const otherConditionInput = document.getElementById('otherChronicCondition');
-            otherConditionInput.style.display = selectedCondition === 'outros' ? 'block' : 'none';
-            if (selectedCondition !== 'outros') {
+            otherConditionInput.style.display = selectedCondition === 'Outros' ? 'block' : 'none';
+            if (selectedCondition !== 'Outros') {
                 otherConditionInput.value = '';
             }
+
+            // URLs das imagens para condições crônicas
+            const symbolUrls = {
+                "TDAH": "https://i.imgur.com/TTS8z7l.jpeg",
+                "Autismo": "https://i.imgur.com/HlE67Ts.jpeg",
+                "DoençasInvisíveis": "https://i.imgur.com/TTS8z7l.jpeg"
+            };
+
+            const specialConditionImage = document.getElementById('specialConditionImage');
+            const symbolContainer = document.getElementById('symbolContainer');
+
+            if (symbolUrls[selectedCondition]) {
+                specialConditionImage.src = symbolUrls[selectedCondition];
+                symbolContainer.style.display = 'block'; // Exibe o contêiner dos símbolos
+            } else {
+                symbolContainer.style.display = 'none'; // Esconde o contêiner se não houver símbolo
+            }
+
             document.getElementById('cardChronicConditions').textContent = selectedCondition ? selectedCondition : 'Nega';
         }
-        function updateChronicConditionAcronym() {
-            const acronymSelect = document.getElementById('chronicConditionAcronym');
-            const selectedAcronym = acronymSelect.value;
-            const otherAcronymInput = document.getElementById('otherChronicConditionAcronym');
-            const chronicConditionDisplay = document.getElementById('cardChronicCondition');
-            otherAcronymInput.style.display = selectedAcronym === 'outros' ? 'block' : 'none';
-            if (selectedAcronym !== 'outros') {
-                otherAcronymInput.value = '';
-            }
-            chronicConditionDisplay.textContent = selectedAcronym && selectedAcronym !== 'nega' ? selectedAcronym : '';
-            chronicConditionDisplay.style.display = selectedAcronym && selectedAcronym !== 'nega' ? 'block' : 'none';
-        }
+
         function updateSpecialConditionWatermark() {
             const specialConditionsSelect = document.getElementById('specialConditions');
             const selectedCondition = specialConditionsSelect.value;
@@ -490,12 +403,12 @@
             watermarkText.style.display = selectedCondition ? 'block' : 'none';
             updateEmergencyWatermark();
         }
+
         function updateEmergencyWatermark() {
             const emergencyWatermark = document.getElementById('emergencyWatermark');
             const showEmergency = true;
             emergencyWatermark.style.display = showEmergency ? 'block' : 'none';
         }
-       
 
         function saveImage() {
             const healthCardElement = document.querySelector("#healthCard");
@@ -518,93 +431,75 @@
         }
 
         async function generatePDF() {
-        // Importa a biblioteca jsPDF
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4'); // Cria um novo documento PDF em modo retrato, com unidades em mm e tamanho A4
-        const healthCardElement = document.getElementById('healthCard');
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const healthCardElement = document.getElementById('healthCard');
 
-        // Usa html2canvas para capturar a imagem da carteirinha
-        const canvas = await html2canvas(healthCardElement, {
-            scale: 5,
-            useCORS: true,
-            backgroundColor: null
-        });
+            const canvas = await html2canvas(healthCardElement, {
+                scale: 5,
+                useCORS: true,
+                backgroundColor: null
+            });
 
-        const imgData = canvas.toDataURL('image/png');
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 85.6;
+            const imgHeight = 54;
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+            const x = (pageWidth - imgWidth) / 2;
+            const y = (pageHeight - imgHeight) / 2;
 
-        // Centraliza a imagem na folha A4
-        const imgWidth = 85.6; // Largura padrão de uma identidade em mm
-        const imgHeight = 54; // Altura padrão de uma identidade em mm
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const x = (pageWidth - imgWidth) / 2;
-        const y = (pageHeight - imgHeight) / 2;
-
-        pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
-        pdf.save('carteirinha.pdf');
-    }
-
-    function generateCard() {
-        // Preenche os dados da carteirinha
-        const fullName = document.getElementById('fullName').value;
-        const birthDate = formatDate(document.getElementById('birthDate').value);
-        const cpf = formatCPF(document.getElementById('cpf').value);
-        const planNumber = document.getElementById('planNumber').value;
-        const bloodTypeSelect = document.getElementById('bloodType');
-        const bloodType = bloodTypeSelect.value === 'outros' ? document.getElementById('otherBloodType').value : bloodTypeSelect.value;
-        const allergiesSelect = document.getElementById('allergies');
-        const selectedAllergies = Array.from(allergiesSelect.selectedOptions)
-            .map(option => option.value !== 'outros' ? option.text : '')
-            .filter(Boolean)
-            .join(', ');
-        const otherAllergy = document.getElementById('otherAllergy').value;
-        const allergiesFinal = otherAllergy ? selectedAllergies + ', ' + otherAllergy : selectedAllergies;
-        const chronicConditionsSelect = document.getElementById('chronicConditions');
-        const selectedChronicCondition = chronicConditionsSelect.value;
-        const otherChronicCondition = document.getElementById('otherChronicCondition').value;
-        const chronicConditionDisplay = selectedChronicCondition === 'outros' ? otherChronicCondition : selectedChronicCondition;
-        const chronicAcronymSelect = document.getElementById('chronicConditionAcronym');
-        const selectedChronicAcronym = chronicAcronymSelect.value;
-        const otherChronicAcronym = document.getElementById('otherChronicConditionAcronym').value;
-        const chronicConditionDisplayAcronym = selectedChronicAcronym === 'outros' ? otherChronicAcronym : selectedChronicAcronym;
-        const implantsSelect = document.getElementById('implants');
-        const implant = implantsSelect.value === 'outros' ? document.getElementById('otherImplant').value : implantsSelect.value;
-        const side = document.getElementById('side').value;
-        const implantDisplay = implant === 'nega' ? 'Nega' : implant.charAt(0).toUpperCase() + implant.slice(1) + (side ? ` (${side})` : '');
-        const healthPlanSelect = document.getElementById('healthPlan');
-        const healthPlan = healthPlanSelect.value === 'outros' ? document.getElementById('otherHealthPlan').value : healthPlanSelect.value;
-        const medications = document.getElementById('medications').value;
-        const emergencyContact = document.getElementById('emergencyContact').value;
-        const specialInstructions = document.getElementById('specialInstructions').value;
-
-        document.getElementById('cardName').textContent = fullName;
-        document.getElementById('cardBirthDate').textContent = birthDate;
-        document.getElementById('cardCpf').textContent = cpf;
-        document.getElementById('cardPlanNumber').textContent = planNumber;
-        document.getElementById('cardBloodType').textContent = bloodType;
-        document.getElementById('cardAllergies').textContent = allergiesFinal || 'Nega';
-        document.getElementById('cardChronicConditions').textContent = chronicConditionDisplay || 'Nega';
-        const chronicConditionElement = document.getElementById('cardChronicCondition');
-        if (chronicConditionDisplayAcronym && chronicConditionDisplayAcronym !== 'nega') {
-            chronicConditionElement.textContent = chronicConditionDisplayAcronym;
-            chronicConditionElement.style.display = 'block';
-        } else {
-            chronicConditionElement.textContent = '';
-            chronicConditionElement.style.display = 'none';
+            pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+            pdf.save('carteirinha.pdf');
         }
-        document.getElementById('cardImplants').textContent = implantDisplay;
-        document.getElementById('cardHealthPlan').textContent = healthPlan || 'Nega';
-        document.getElementById('cardMedications').textContent = medications || 'Nega';
-        document.getElementById('cardEmergencyContact').textContent = emergencyContact;
-        document.getElementById('cardSpecialInstructions').textContent = specialInstructions || 'Nega';
-        updateSpecialConditionWatermark();
 
-        document.getElementById('healthCard').style.display = 'block';
+        function generateCard() {
+            const fullName = document.getElementById('fullName').value;
+            const birthDate = formatDate(document.getElementById('birthDate').value);
+            const cpf = formatCPF(document.getElementById('cpf').value);
+            const planNumber = document.getElementById('planNumber').value;
+            const bloodTypeSelect = document.getElementById('bloodType');
+            const bloodType = bloodTypeSelect.value === 'outros' ? document.getElementById('otherBloodType').value : bloodTypeSelect.value;
+            const allergiesSelect = document.getElementById('allergies');
+            const selectedAllergies = Array.from(allergiesSelect.selectedOptions)
+                .map(option => option.value !== 'outros' ? option.text : '')
+                .filter(Boolean)
+                .join(', ');
+            const otherAllergy = document.getElementById('otherAllergy').value;
+            const allergiesFinal = otherAllergy ? selectedAllergies + ', ' + otherAllergy : selectedAllergies;
+            const chronicConditionsSelect = document.getElementById('chronicConditions');
+            const selectedChronicCondition = chronicConditionsSelect.value;
+            const otherChronicCondition = document.getElementById('otherChronicCondition').value;
+            const chronicConditionDisplay = selectedChronicCondition === 'Outros' ? otherChronicCondition : selectedChronicCondition;
+            const implantsSelect = document.getElementById('implants');
+            const implant = implantsSelect.value === 'outros' ? document.getElementById('otherImplant').value : implantsSelect.value;
+            const side = document.getElementById('side').value;
+            const implantDisplay = implant === 'nega' ? 'Nega' : implant.charAt(0).toUpperCase() + implant.slice(1) + (side ? ` (${side})` : '');
+            const healthPlanSelect = document.getElementById('healthPlan');
+            const healthPlan = healthPlanSelect.value === 'outros' ? document.getElementById('otherHealthPlan').value : healthPlanSelect.value;
+            const medications = document.getElementById('medications').value;
+            const emergencyContact = document.getElementById('emergencyContact').value;
+            const specialInstructions = document.getElementById('specialInstructions').value;
 
-        // Gera o PDF após exibir a carteirinha
-        generatePDF();
-    }
+            document.getElementById('cardName').textContent = fullName;
+            document.getElementById('cardBirthDate').textContent = birthDate;
+            document.getElementById('cardCpf').textContent = cpf;
+            document.getElementById('cardPlanNumber').textContent = planNumber;
+            document.getElementById('cardBloodType').textContent = bloodType;
+            document.getElementById('cardAllergies').textContent = allergiesFinal || 'Nega';
+            document.getElementById('cardChronicConditions').textContent = chronicConditionDisplay || 'Nega';
+            document.getElementById('cardImplants').textContent = implantDisplay;
+            document.getElementById('cardHealthPlan').textContent = healthPlan || 'Nega';
+            document.getElementById('cardMedications').textContent = medications || 'Nega';
+            document.getElementById('cardEmergencyContact').textContent = emergencyContact;
+            document.getElementById('cardSpecialInstructions').textContent = specialInstructions || 'Nega';
+            updateSpecialConditionWatermark();
 
+            document.getElementById('healthCard').style.display = 'block';
+            document.getElementById('symbolContainer').style.display = 'block'; // Mostra o contêiner dos símbolos
+
+            generatePDF();
+        }
     </script>
 </body>
 
