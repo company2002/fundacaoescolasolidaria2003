@@ -9,909 +9,1096 @@
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-       body {
-    font-family: 'roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #a6cff5;
-}
-
-header {
-    background-color: #f6fdfd;
-    color: #000000;
-    padding: 1em 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-header h1 {
-    margin: 0;
-    padding-right: 20px;
-    font-family: 'Roboto', sans-serif;
-}
-
-header .logo {
-    width: 100px;
-    max-width: 100px;
-    height: auto;
-    margin-left: 20px;
-    display: block;
-    border-radius: 10px;
-}
-
-.close-menu {
-    display: none;
-    /* Esconde o botão em telas maiores por padrão */
-}
-
-@media (max-width: 768px) {
-    .close-menu {
-        display: block;
-        /* Mostra o botão apenas em dispositivos móveis */
-    }
-}
-
-nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0.5em;
-    background-color: #ffffff;
-    z-index: 10;
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    margin-left: auto;
-    background-color: #fff3f3;
-}
-
-.bar {
-    height: 3px;
-    width: 25px;
-    background-color: #0d0d0d;
-    margin: 3px 0;
-    transition: all 0.3s ease;
-}
-
-.nav-list {
-    display: flex;
-    list-style: none;
-    justify-content: flex-end;
-    background-color: #52f28a;
-    color: #000000;
-    border-radius: 30px;
-    padding: 1em;
-    font-size: 1em;
-    font-weight: 300;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 0.3s;
-    font-family: 'Roboto', sans-serif;
-    z-index: 10;
-}
-
-.nav-list li {
-    margin: 0 1em;
-}
-
-.nav-list a {
-    color: #000000;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        margin-left: auto;
-        margin-top: 10px;
-    }
-
-    .nav-list {
-        display: none;
-        /* Esconder a lista de navegação por padrão */
-        flex-direction: column;
-        justify-content: flex-end;
-        background-color: #ffffff;
-        width: 100%;
-        top: 60px;
-        /* Ajuste conforme necessário */
-        left: 0;
-        z-index: 5;
-    }
-
-    .nav-list.active {
-        display: flex;
-        /* Mostrar quando ativa */
-    }
-
-    .nav-list li {
-        margin: 1em 0;
-        /* Margem vertical nos itens */
-    }
-}
-
-.social-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.social-buttons a {
-    text-decoration: none;
-    padding: 10px;
-    background-color: #268ef0;
-    border-radius: 50%;
-    transition: background-color 0.3s;
-    color: #ffffff;
-    font-size: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-}
-
-.social-buttons a:hover {
-    background-color: #e0e0e0;
-}
-
-@media (max-width: 600px) {
-    .social-buttons {
-        flex-direction: column;
-    }
-}
-
-nav a {
-    color: #090909;
-    margin: 0 1em;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-.section {
-    padding: 2em;
-    text-align: center;
-    margin-bottom: 2em;
-}
-
-.section h2 {
-    margin-top: 10px;
-    font-family: 'Roboto', sans-serif;
-}
-
-.gallery-container {
-    overflow: hidden;
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.gallery {
-    display: flex;
-    gap: 20px;
-    animation: slide 15s infinite linear;
-}
-
-.gallery img {
-    width: calc(20% - 20px);
-    flex-shrink: 0;
-    transition: transform 0.5s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.1);
-}
-
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 50%;
-    max-width: 300px;
-    margin: 0.5em 0;
-    padding: 0.5em;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-footer {
-    background-color: #ffffff;
-    color: #0f0f0f;
-    padding: 1em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-footer .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    flex-wrap: wrap;
-    padding: 0 1em;
-}
-
-footer .partners-logos {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    text-align: left;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
-footer .partners-logos img {
-    width: 100px;
-    height: 20%;
-    border-radius: 10px;
-}
-
-footer .center-text {
-    text-align: center;
-    flex-grow: 1;
-}
-
-footer p {
-    margin: 0.5em 0;
-    text-align: center;
-    width: 100%;
-}
-
-.section-gradient {
-    background: linear-gradient(135deg, #0762d9, #0540a8);
-    padding: 4em 0;
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
-
-.section-gradient .overlay {
-    background-image: url(fundo.png);
-    opacity: 0.12;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-attachment: fixed;
-    z-index: 1;
-}
-
-.section-gradient .container {
-    position: relative;
-    z-index: 2;
-    max-width: auto;
-    margin: 0 auto;
-    padding: 0 1em;
-}
-
-.heading {
-    color: #52f28a;
-    font-size: 3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.5em;
-    animation: fadeIn 1s;
-    font-family: 'Roboto', sans-serif;
-}
-
-.divider {
-    height: 4px;
-    width: 9%;
-    background-color: #52f28a;
-    margin: 0.5em auto;
-}
-
-.subheading {
-    color: #ffffff;
-    font-size: 1.5em;
-    font-weight: 400;
-    margin: 0.5em 0;
-}
-
-.text {
-    color: #ffffff;
-    text-align: justify;
-    margin: 1em auto;
-    padding: 1em;
-    max-width: 800px;
-    font-size: 0.95em;
-}
-
-.icon-container {
-    text-align: left;
-    animation: fadeInLeft 1s;
-}
-
-.icon-container i {
-    font-size: 42px;
-    color: #30d979;
-}
-
-.section-icons {
-    background-color: #30d979;
-    padding: 4em 0;
-    text-align: center;
-}
-
-.social-icons i {
-    font-size: 2em;
-    margin: 0 1em;
-    color: #27db96;
-}
-
-.section-cards {
-    background-color: #ffffff;
-    padding: 4em 0;
-    text-align: center;
-}
-
-.card {
-    display: inline-block;
-    background-color: #ffffff;
-    border-bottom: 5px solid #0762d9;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.11);
-    margin: 2em;
-    padding: 1em;
-    width: 20%;
-    border-radius: 6px;
-    transition: border-bottom-color 0.3s;
-}
-
-.card:hover {
-    border-bottom-color: #30d979;
-}
-
-.card img {
-    max-width: 20%;
-}
-
-.card h3 {
-    color: #0762d9;
-    font-family: 'Moulpali', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: fadeIn 1s;
-}
-
-.section-faq {
-    background-color: #ffffff;
-    padding: 4em 0;
-    text-align: center;
-}
-
-.section-faq .faq-content img {
-    width: 3%;
-}
-
-.section-faq .faq-content h2 {
-    color: #0762d9;
-    font-family: 'roboto', sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    animation: fadeIn 1s;
-}
-
-.section-faq .faq-content .divider {
-    height: 6px;
-    width: 9%;
-    background-color: #52f28a;
-    margin: 0.5em auto;
-}
-
-.section-faq .faq-content p {
-    font-size: 1.1em;
-    line-height: 1.5;
-}
-
-.section-video {
-    background-color: #0762d9;
-    padding: 2em 0;
-    position: relative;
-    text-align: center;
-}
-
-.section-video .overlay {
-    background-image: url(fundo.png);
-    opacity: 0.13;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-attachment: fixed;
-    z-index: 1;
-}
-
-.section-video .container {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 1em;
-    top: -1em;
-}
-
-.section-video .heading {
-    color: #ffffff;
-    font-size: 3rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 0.5em;
-    animation: fadeIn 1s;
-    font-family: 'Roboto', sans-serif;
-}
-
-.section-video .divider {
-    height: 6px;
-    width: 9%;
-    background-color: #52f28a;
-    margin: 0.5em auto;
-}
-
-.section-video .subheading {
-    color: #1919ff;
-    font-size: 1.7em;
-    font-weight: 400;
-    text-transform: capitalize;
-}
-
-.section-video .text {
-    color: #ffffff;
-    margin: 1em 3em 0 0;
-    padding-right: 3em;
-    border-right: 3px solid #30d979;
-    text-align: justify;
-}
-
-.section-video .btn {
-    background-color: #52f28a;
-    color: #ffffff;
-    border: 1px solid #52f28a;
-    border-radius: 100px;
-    padding: 1em;
-    font-size: 1em;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 0.3s;
-    font-family: 'Roboto', sans-serif;
-}
-
-.section-video .btn:hover {
-    transform: translateY(-5px);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@media (max-width: 1300px) {
-    .close-menu {
-        display: none;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: #268ef0;
-        color: #fff;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .nav-list.active+.close-menu {
-        display: block;
-    }
-}
-
-.btn-container {
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-    margin-top: 2em;
-}
-
-.btn {
-    background-color: #52f28a;
-    color: #000000;
-    border: none;
-    border-radius: 15px;
-    padding: 1em 2em;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-.btn:hover {
-    background-color: #30d979;
-    text-decoration: none;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 800px;
-    text-align: left;
-    border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
-    text-align: left;
-    z-index: 1001;
-}
-
-.modal h2 {
-    color: #0762d9;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.modal p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Estilos para a galeria */
-.gallery-container {
-    overflow: hidden;
-    position: relative;
-    max-width: 1300px;
-    margin: 0 auto;
-    margin-top: -5em;
-}
-
-.gallery {
-    display: flex;
-    gap: 20px;
-    animation: slide 15s infinite linear;
-}
-
-.gallery img {
-    width: 200px;
-    height: 200px;
-    flex-shrink: 0;
-    transition: transform 1.0s ease;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.gallery img:hover {
-    transform: scale(1.1);
-}
-
-/* Estilos para a seção de vídeos */
-.section-video {
-    background-color: #0762d9;
-    padding: 4em 0 3em;
-    position: relative;
-    text-align: center;
-}
-
-/* Animação para a galeria 2 (desliza da esquerda para a direita) */
-@keyframes slide2 {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.gallery2-container {
-    overflow: hidden;
-    position: relative;
-    max-width: 1300px;
-    margin: 0 auto;
-    margin-top: -5em;
-}
-
-.gallery2 {
-    display: flex;
-    gap: 20px;
-    animation: slide2 15s infinite linear;
-}
-
-.gallery2 img {
-    width: 200px;
-    height: 200px;
-    flex-shrink: 0;
-    transition: transform 1.0s ease;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.gallery2 img:hover {
-    transform: scale(1.1);
-}
-
-.video-map-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.video-container, .map-container {
-    flex: 1;
-    max-width: 48%; /* Largura padrão para telas maiores */
-}
-
-.map-container iframe, .video-container iframe {
-    width: 100%;
-    height: auto;
-    min-height: 350px;
-}
-
-@media (max-width: 768px) {
-    .video-map-container {
-        flex-direction: column; /* Altera a direção para coluna em telas menores */
-        align-items: center; /* Centraliza os itens */
-    }
-
-    .video-container {
-        order: 1; /* Define o vídeo para aparecer primeiro */
-    }
-
-    .map-container {
-        order: 2; /* Define o mapa para aparecer depois do vídeo */
-    }
-
-    .video-container, .map-container {
-        max-width: 100%; /* Ajusta a largura para 100% para ocupar toda a largura disponível */
-    }
-
-    .map-container iframe, .video-container iframe {
-        min-height: 200px; /* Ajusta a altura mínima se necessário para dispositivos móveis */
-    }
-}
-
-/* Estilos para a seção de contato */
-.section.contato {
-    background-color: #0762d9;
-    color: #fff;
-    position: relative;
-    padding: 4em 0;
-}
-
-.section.contato::before {
-    content: "";
-    background-image: url('crianças.png');
-    background-size: cover;
-    opacity: 0.3;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
-
-.section.contato .container {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 1em;
-}
-
-.blackboard {
-    background-color: #2c3e50;
-    border: 5px solid #e74c3c;
-    border-radius: 15px;
-    color: #fff;
-    font-family: 'Shadows Into Light', cursive;
-    padding: 2em;
-    margin: 2em 0;
-    min-height: 150px;
-    max-width: 600px;
-    margin: 2em auto;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.blackboard .vagas {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1em;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 3;
-}
-
-.blackboard h3 {
-    font-size: 1.8em;
-    color: #e74c3c;
-    text-align: justify;
-    margin-bottom: 1em;
-    text-transform: uppercase;
-}
-
-.blackboard .chalk {
-    font-size: 1.2em;
-    line-height: 1.4;
-    color: #ecf0f1;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    animation: writing 3s steps(40) 1;
-    white-space: pre-wrap;
-    text-align: left;
-    margin-left: 10px;
-}
-
-.donate-whatsapp-button {
-    background-color: #1a1c24;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 1em 2em;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    position: static;
-    margin-top: 1.5em;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes writing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-.donate-whatsapp-button:hover {
-    background-color: #e6771d;
-}
-
-.section.contato {
-    background-color: #0762d9;
-    color: #ffffff;
-    position: relative;
-    padding: 4em 0;
-    text-align: center;
-}
-
-.contact-info {
-    margin-bottom: 2em;
-    font-size: 1.1em;
-}
-
-.contact-info p {
-    margin: 0.5em 0;
-}
-
-.whatsapp-button {
-    background-color: #25D366;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 1em 2em;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-.whatsapp-button:hover {
-    background-color: #1DAE3D;
-}
-
-.blackboard {
-    background-color: #2c3e50;
-    border: 5px solid #e74c3c;
-    border-radius: 15px;
-    color: #ffffff;
-    font-family: 'Shadows Into Light', cursive;
-    padding: 2em;
-    margin: 2em 0;
-    min-height: 150px;
-    max-width: 800px;
-    margin: 2em auto;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.blackboard .vagas {
-    position: relative;
-    background-color: #e74c3c;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1em;
-    margin-bottom: 1em;
-}
-
-.blackboard h3 {
-    font-size: 1.8em;
-    color: #e74c3c;
-    text-align: center;
-    margin-bottom: 1em;
-    text-transform: uppercase;
-}
-
-.blackboard .chalk {
-    font-size: 1.2em;
-    line-height: 1.4;
-    color: #ecf0f1;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
+        body {
+            font-family: 'roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #a6cff5;
+        }
+
+        header {
+            background-color: #f6fdfd;
+            color: #000000;
+            padding: 1em 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header h1 {
+            margin: 0;
+            padding-right: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        header .logo {
+            width: 100px;
+            max-width: 100px;
+            height: auto;
+            margin-left: 20px;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .close-menu {
+            display: none;
+            /* Esconde o botão em telas maiores por padrão */
+        }
+
+        @media (max-width: 768px) {
+            .close-menu {
+                display: block;
+                /* Mostra o botão apenas em dispositivos móveis */
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0.5em;
+            background-color: #ffffff;
+            z-index: 10;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: auto;
+            background-color: #fff3f3;
+        }
+
+        .bar {
+            height: 3px;
+            width: 25px;
+            background-color: #0d0d0d;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            justify-content: flex-end;
+            background-color: #52f28a;
+            color: #000000;
+            border-radius: 30px;
+            padding: 1em;
+            font-size: 1em;
+            font-weight: 300;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+            z-index: 10;
+        }
+
+        .nav-list li {
+            margin: 0 1em;
+        }
+
+        .nav-list a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                margin-left: auto;
+                margin-top: 10px;
+            }
+
+            .nav-list {
+                display: none;
+                /* Esconder a lista de navegação por padrão */
+                flex-direction: column;
+                justify-content: flex-end;
+                background-color: #ffffff;
+                width: 100%;
+                top: 60px;
+                /* Ajuste conforme necessário */
+                left: 0;
+                z-index: 5;
+            }
+
+            .nav-list.active {
+                display: flex;
+                /* Mostrar quando ativa */
+            }
+
+            .nav-list li {
+                margin: 1em 0;
+                /* Margem vertical nos itens */
+            }
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-buttons a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: #268ef0;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            color: #ffffff;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-buttons a:hover {
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .social-buttons {
+                flex-direction: column;
+            }
+        }
+
+        nav a {
+            color: #090909;
+            margin: 0 1em;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section {
+            padding: 2em;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .section h2 {
+            margin-top: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .gallery-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            animation: slide 15s infinite linear;
+        }
+
+        .gallery img {
+            width: calc(20% - 20px);
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 50%;
+            max-width: 300px;
+            margin: 0.5em 0;
+            padding: 0.5em;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        footer {
+            background-color: #ffffff;
+            color: #0f0f0f;
+            padding: 1em 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        footer .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 0 1em;
+        }
+
+        footer .partners-logos {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            text-align: left;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        footer .partners-logos img {
+            width: 100px;
+            height: 20%;
+            border-radius: 10px;
+        }
+
+        footer .center-text {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        footer p {
+            margin: 0.5em 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-gradient {
+            background: linear-gradient(135deg, #0762d9, #0540a8);
+            padding: 4em 0;
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-gradient .overlay {
+            background-image: url(fundo.png);
+            opacity: 0.12;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .section-gradient .container {
+            position: relative;
+            z-index: 2;
+            max-width: auto;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+
+        .heading {
+            color: #52f28a;
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5em;
+            animation: fadeIn 1s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .divider {
+            height: 4px;
+            width: 9%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .subheading {
+            color: #ffffff;
+            font-size: 1.5em;
+            font-weight: 400;
+            margin: 0.5em 0;
+        }
+
+        .text {
+            color: #ffffff;
+            text-align: justify;
+            margin: 1em auto;
+            padding: 1em;
+            max-width: 800px;
+            font-size: 0.95em;
+        }
+
+        .icon-container {
+            text-align: left;
+            animation: fadeInLeft 1s;
+        }
+
+        .icon-container i {
+            font-size: 42px;
+            color: #30d979;
+        }
+
+        .section-icons {
+            background-color: #30d979;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .social-icons i {
+            font-size: 2em;
+            margin: 0 1em;
+            color: #27db96;
+        }
+
+        .section-cards {
+            background-color: #ffffff;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .card {
+            display: inline-block;
+            background-color: #ffffff;
+            border-bottom: 5px solid #0762d9;
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.11);
+            margin: 2em;
+            padding: 1em;
+            width: 20%;
+            border-radius: 6px;
+            transition: border-bottom-color 0.3s;
+        }
+
+        .card:hover {
+            border-bottom-color: #30d979;
+        }
+
+        .card img {
+            max-width: 20%;
+        }
+
+        .card h3 {
+            color: #0762d9;
+            font-family: 'Moulpali', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s;
+        }
+
+        .section-faq {
+            background-color: #ffffff;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .section-faq .faq-content img {
+            width: 3%;
+        }
+
+        .section-faq .faq-content h2 {
+            color: #0762d9;
+            font-family: 'roboto', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: fadeIn 1s;
+        }
+
+        .section-faq .faq-content .divider {
+            height: 6px;
+            width: 9%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .section-faq .faq-content p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .section-video {
+            background-color: #0762d9;
+            padding: 2em 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-video .overlay {
+            background-image: url(fundo.png);
+            opacity: 0.13;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+
+        .section-video .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 1em;
+            top: -1em;
+        }
+
+        .section-video .heading {
+            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.5em;
+            animation: fadeIn 1s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section-video .divider {
+            height: 6px;
+            width: 9%;
+            background-color: #52f28a;
+            margin: 0.5em auto;
+        }
+
+        .section-video .subheading {
+            color: #1919ff;
+            font-size: 1.7em;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+
+        .section-video .text {
+            color: #ffffff;
+            margin: 1em 3em 0 0;
+            padding-right: 3em;
+            border-right: 3px solid #30d979;
+            text-align: justify;
+        }
+
+        .section-video .btn {
+            background-color: #52f28a;
+            color: #ffffff;
+            border: 1px solid #52f28a;
+            border-radius: 100px;
+            padding: 1em;
+            font-size: 1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .section-video .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .close-menu {
+                display: none;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #268ef0;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .nav-list.active+.close-menu {
+                display: block;
+            }
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-top: 2em;
+        }
+
+        .btn {
+            background-color: #52f28a;
+            color: #000000;
+            border: none;
+            border-radius: 15px;
+            padding: 1em 2em;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #30d979;
+            text-decoration: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+            border-radius: 10px;
+            font-family: 'Roboto', sans-serif;
+            text-align: left;
+            z-index: 1001;
+        }
+
+        .modal h2 {
+            color: #0762d9;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Estilos para a galeria */
+        .gallery-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            margin-top: -5em;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            animation: slide 15s infinite linear;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            transition: transform 1.0s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para a seção de vídeos */
+        .section-video {
+            background-color: #0762d9;
+            padding: 4em 0 3em;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Animação para a galeria 2 (desliza da esquerda para a direita) */
+        @keyframes slide2 {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .gallery2-container {
+            overflow: hidden;
+            position: relative;
+            max-width: 1300px;
+            margin: 0.5em auto;
+
+        }
+
+        .gallery2 {
+            display: flex;
+            gap: 20px;
+            animation: slide2 15s infinite linear;
+            margin: 0.5em auto;
+        }
+
+        .gallery2 img {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            transition: transform 1.0s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0.5em auto;
+        }
+
+        .gallery2 img:hover {
+            transform: scale(1.1);
+        }
+
+        .video-map-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 1em;
+            border-radius: 4px;
+            background-color: #5112ff;
+            padding: 1em;
+        }
+
+        .video-container,
+        .map-container {
+            flex: 1;
+            max-width: 48%;
+            /* Largura padrão para telas maiores */
+        }
+
+        .video-title {
+            color: #ffffff;
+            /* Altere para a cor desejada, por exemplo, vermelho */
+            font-size: 30px;
+            /* Altere para o tamanho de fonte desejado */
+            font-weight: 700;
+            /* Ajuste o peso da fonte conforme necessário */
+            text-transform: uppercase;
+            /* Se desejar manter todas as letras em maiúsculas */
+            letter-spacing: 2px;
+            /* Espaçamento entre letras, ajuste conforme necessário */
+            margin-bottom: 0.5em;
+            /* Ajuste a margem inferior conforme necessário */
+            font-family: 'Roboto', sans-serif;
+            /* Mantenha a fonte ou altere conforme necessário */
+            text-align: center;
+        }
+
+
+
+
+        .map-container iframe,
+        .video-container iframe {
+            width: 100%;
+            height: auto;
+            min-height: 350px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .video-map-container {
+                flex-direction: column;
+                /* Altera a direção para coluna em telas menores */
+                align-items: center;
+                /* Centraliza os itens */
+            }
+
+            .video-container {
+                order: 1;
+                /* Define o vídeo para aparecer primeiro */
+            }
+
+            .map-container {
+                order: 2;
+                /* Define o mapa para aparecer depois do vídeo */
+            }
+
+            .video-container,
+            .map-container {
+                max-width: 100%;
+                /* Ajusta a largura para 100% para ocupar toda a largura disponível */
+            }
+
+            .map-container iframe,
+            .video-container iframe {
+                min-height: 200px;
+                /* Ajusta a altura mínima se necessário para dispositivos móveis */
+            }
+        }
+
+        /* Estilos para a seção de contato */
+        .section.contato {
+            background-color: #0762d9;
+            color: #fff;
+            position: relative;
+            padding: 4em 0;
+        }
+
+        .section.contato::before {
+            content: "";
+            background-image: url('crianças.png');
+            background-size: cover;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .section.contato .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+
+
+        .blackboard {
+            background-color: #2c3e50;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            color: #ffffff;
+            font-family: 'Shadows Into Light', cursive;
+            padding: 2em;
+            margin: 2em auto;
+            /* Centraliza o quadro horizontalmente */
+            min-height: 150px;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Centraliza o texto dentro do quadro */
+        }
+
+
+        .blackboard .vagas {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1em;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+
+        .blackboard h3 {
+            font-size: 1.8em;
+            color: #e74c3c;
+            text-align: justify;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+
+        .blackboard .chalk {
+            font-size: 1.2em;
+            line-height: 1.4;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: writing 3s steps(40) 1;
+            white-space: pre-wrap;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .blackboard {
+                padding: 1em;
+                /* Reduz o padding para telas menores */
+                max-width: calc(100%);
+                /* Ajusta a largura máxima */
+            }
+        }
+
+
+        .blackboard h3 {
+            font-size: 1.5em;
+            /* Ajusta o tamanho da fonte para telas menores */
+        }
+
+        .blackboard .chalk {
+            font-size: 1em;
+            /* Ajusta o tamanho da fonte para o texto do quadro */
+        }
+
+
+
+
+        .donate-whatsapp-button {
+            background-color: #1a1c24;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 1em 2em;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            position: static;
+            margin-top: 1.0em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes writing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .donate-whatsapp-button:hover {
+            background-color: #e6771d;
+        }
+
+        .section.contato {
+            background-color: #0762d9;
+            color: #ffffff;
+            position: relative;
+            padding: 4em 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 2em;
+            font-size: 1.1em;
+        }
+
+        .contact-info p {
+            margin: 0.5em 0;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 1em 2em;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1DAE3D;
+        }
+
+        .blackboard {
+            background-color: #2c3e50;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            color: #ffffff;
+            font-family: 'Shadows Into Light', cursive;
+            padding: 2em;
+            margin: 2em 0;
+            min-height: 150px;
+            max-width: 800px;
+            margin: 2em auto;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .blackboard .vagas {
+            position: relative;
+            background-color: #e74c3c;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 1em;
+        }
+
+        .blackboard h3 {
+            font-size: 1.8em;
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+
+        .blackboard .chalk {
+            font-size: 1.2em;
+            line-height: 1.4;
+            color: #ecf0f1;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .contact-info-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #2c3e50;
+            border: 5px solid #e74c3c;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+            margin: 2em auto;
+            min-height: 100px;
+            max-width: 750px;
+            text-align: center;
+        }
+
+
+
+        .contact-info p {
+            margin: 0.2em 0;
+            /* Espaçamento entre os parágrafos */
+        }
+
+        /* Adicione espaçamento entre as seções principais */
+        .section {
+            margin: 2em 0;
+            /* Adiciona 2em de margem acima e abaixo de cada seção */
+            padding: 2em;
+            /* Mantém o preenchimento interno */
+            text-align: center;
+        }
+
+        /* Específicos para contêineres que podem precisar de ajustes adicionais */
+
+        /* Contêineres de galeria e vídeo */
+        .gallery-container,
+        .gallery2-container,
+        .video-map-container {
+            margin: 2em 0;
+            /* Espaçamento entre as seções de galeria e vídeo */
+        }
+
+        /* Contêiner de formulário de contato */
+        .contact-form {
+            margin: 2em 0;
+            /* Espaçamento para o formulário de contato */
+        }
+
+        /* Contêiner de informações de contato */
+        .contact-info-container {
+            margin: 2em 0;
+            /* Espaçamento para a seção de informações de contato */
+        }
+
+        /* Contêiner de quadro-negro */
+        .blackboard {
+            margin: 2em 0;
+            /* Espaçamento para a seção do quadro-negro */
+        }
+
+        /* Contêiner de vídeo e mapa */
+        .video-container,
+        .map-container {
+            margin: 1em 0;
+            /* Espaçamento entre vídeo e mapa, se necessário */
+        }
+
+        /* Ajustes adicionais para seções com gradiente */
+        .section-gradient {
+            margin: 2em 0;
+            /* Espaçamento para seções com gradiente */
+        }
+
+        /* Seções de ícones e cartões */
+        .section-icons,
+        .section-cards {
+            margin: 2em 0;
+            /* Espaçamento para seções de ícones e cartões */
+        }
+
+        /* Seções de FAQ e vídeo */
+        .section-faq,
+        .section-video {
+            margin: 2em 0;
+            /* Espaçamento para seções de FAQ e vídeo */
+        }
+
+        .blackboard,
+        .contact-info-container {
+            max-width: 800px;
+            /* Certifique-se de que ambos tenham o mesmo max-width */
+            margin: 2em auto;
+            /* Centraliza ambos horizontalmente */
+            padding: 2em;
+            background-color: #2c3e50;
+            border: 5px solid #e74c3c;
+            border-radius: 15px;
+            /* Use o mesmo valor para consistência visual */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Centraliza o texto dentro do contêiner */
+            position: relative;
+        }
+
+        .contact-info-container {
+            min-height: 100px;
+        }
+
+        .blackboard {
+            min-height: 150px;
+            font-family: 'Shadows Into Light', cursive;
+        }
     </style>
 </head>
 
@@ -1074,27 +1261,25 @@ footer p {
                 <img src="30.jpg" alt="Foto 12">
             </div>
         </div>
-        </secti<section id="videos" class="section-video">
-        <div class="overlay"></div>
-        <div class="container">
-            <h1 class="heading">Vídeos do Projeto</h1>
-            <div class="divider"></div>
-            <h3 class="subheading">Nossos Momentos</h3>
-            <div class="video-map-container">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/5JHDyIAnMPY" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="map-container">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d914.4151568367034!2d-43.39245267198597!3d-22.752074837213357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e3!4m5!1s0x9965ec194a9003%3A0xc7d7d689f8879263!2sR.%20Goi%C3%A2nia%2C%20159%20-%20Santa%20Am%C3%A9lia%2C%20Belford%20Roxo%20-%20RJ%2C%2026116-570!3m2!1d-22.752134599999998!2d-43.3918764!4m4!1s0x9965ec194a9003%3A0xc7d7d689f8879263!3m2!1d-22.752134599999998!2d-43.3918764!5e1!3m2!1spt-BR!2sbr!4v1739908062683!5m2!1spt-BR!2sbr"
-                        width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+    </section id="videos" class="section-video">
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 class="heading video-title">Vídeo e Localização do Projeto</h1>
+        <div class="divider"></div>
 
-
-
+        <div class="video-map-container">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/5JHDyIAnMPY" frameborder="0" allowfullscreen></iframe>
             </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d914.4151568367034!2d-43.39245267198597!3d-22.752074837213357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e3!4m5!1s0x9965ec194a9003%3A0xc7d7d689f8879263!2sR.%20Goi%C3%A2nia%2C%20159%20-%20Santa%20Am%C3%A9lia%2C%20Belford%20Roxo%20-%20RJ%2C%2026116-570!3m2!1d-22.752134599999998!2d-43.3918764!4m4!1s0x9965ec194a9003%3A0xc7d7d689f8879263!3m2!1d-22.752134599999998!2d-43.3918764!5e1!3m2!1spt-BR!2sbr!4v1739908062683!5m2!1spt-BR!2sbr"
+                    width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
         </div>
+    </div>
     </section>
     </section>
     <section id="galeria2" class="section">
@@ -1133,211 +1318,231 @@ footer p {
                 <img src="30.jpg" alt="Foto 12">
             </div>
         </div>
-    </section>
+        <section id="contato" class="section contato">
+            <h2>Atendimento ao Aluno/Responsável</h2>
+            <div class="container">
 
-    <section id="contato" class="section contato">
-        <h2>Atendimento ao Aluno/Responsável</h2>
-        <div class="container">
-            <div class="contact-info">
-                <p><strong>Endereço:</strong> Rua José Gonçalves Leal, 159 - Santa Amélia - Loteamento Vilar Novo,
-                    Belford Roxo - RJ, 26116-570</p>
-                <p><strong>Telefone:</strong> (21) 2661-2767</p>
-                <p><strong>Email:</strong> <a href="mailto:contato@escolafundacao.org"
-                        style="color: #52f28a;">contato@escolafundacao.org</a></p>
+                <div class="blackboard">
+                    <div class="vagas">Número de vagas de alunos: <span>135</span> | Reservas: <span>15</span></div>
+                    <h3>Aviso</h3>
+                    <p class="chalk">Prezado(a) Parceiro(a), desde 2003, a Fundação Escola Solidária oferece educação e
+                        suporte a crianças em situação de vulnerabilidade. Com seu apoio financeiro, podemos garantir
+                        uma
+                        oportunidade para um futuro melhor. Sua contribuição é essencial para fornecer educação,
+                        alimentação
+                        e cuidados essenciais. Junte-se a nós para construir uma sociedade mais justa e inclusiva.
+                        Contamos
+                        com você para fazer a diferença.</p>
+                    <a href="https://api.whatsapp.com/send?phone=5521973080269&text=Ol%C3%A1,%20como%20posso%20me%20tornar%20parceiro%20no%20projeto?"
+                        class="donate-whatsapp-button">Clique aqui e saiba mais.</a>
+                </div>
+
+                <div class="contact-info-container">
+                    <div class="contact-info">
+                        <p><strong>Endereço:</strong> R. Goiânia, 159 - Santa Amélia, Belford Roxo - RJ, 26116-570</p>
+                        <p><strong>Telefone:</strong> (21) 2661-2767</p>
+                        <p><strong>Email:</strong> <a href="mailto:contato@escolafundacao.org"
+                                style="color: #52f28a;">contato@escolafundacao.org</a></p>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <a href="https://api.whatsapp.com/send?phone=5521992471091&text=Sou%20o%20respons%C3%A1vel%20pelo%20aluno(a)%20e%20gostaria%20de%20solicitar%20atendimento."
+                        target="_blank" class="btn whatsapp-button">WhatsApp</a>
+                </form>
             </div>
+        </section>
 
-            <form class="contact-form">
-                <a href="https://api.whatsapp.com/send?phone=5521992471091&text=Sou%20o%20respons%C3%A1vel%20pelo%20aluno(a)%20e%20gostaria%20de%20solicitar%20atendimento."
-                    target="_blank" class="btn whatsapp-button">WhatsApp</a>
-            </form>
+        <footer>
+            <div class="footer-container">
+                <div class="partners-logos">
+                    <img src="logo bel.png" alt="Logo Parceiro 1">
+                    <img src="seu logo aqui.png" alt="Logo Parceiro 2">
+                    <img src="seu logo aqui.png" alt="Logo Parceiro 3">
+                </div>
+                <div class="center-text">
+                    <p>&copy; 2024 Fundação Escola Solidária CNPJ Nº 06.018.029/0001-87. Todos os direitos reservados.
+                    </p>
+                    <p><a href="#" class="privacy-link">Política de Privacidade e Termo de Privacidade</a></p>
+                </div>
+            </div>
+        </footer>
 
-            <div class="blackboard">
-                <div class="vagas">Número de vagas de alunos: <span>135</span> | Reservas: <span>15</span></div>
-                <h3>Aviso</h3>
-                <p class="chalk">Prezado(a) Parceiro(a), desde 2003, a Fundação Escola Solidária oferece educação e
-                    suporte a crianças em situação de vulnerabilidade. Com seu apoio financeiro, podemos garantir uma
-                    oportunidade para um futuro melhor. Sua contribuição é essencial para fornecer educação, alimentação
-                    e cuidados essenciais. Junte-se a nós para construir uma sociedade mais justa e inclusiva. Contamos
-                    com você para fazer a diferença.</p>
-                <a href="https://api.whatsapp.com/send?phone=5521973080269&text=Ol%C3%A1,%20como%20posso%20me%20tornar%20parceiro%20no%20projeto?"
-                    class="donate-whatsapp-button">Clique aqui e saiba mais.</a>
+        <!-- Modal Política de Privacidade e Termos de Uso -->
+        <div id="privacy-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Política de Privacidade e Termos de Uso</h2>
+                <p>A Fundação Escola Solidária, inscrita no CNPJ sob o número 06.018.029/0001-87, apresenta os Termos de
+                    Uso
+                    e a Política de Privacidade aplicáveis ao seu site. O acesso e utilização deste site implicam na
+                    aceitação dos termos aqui dispostos, cujo objetivo é proteger os direitos e a privacidade dos
+                    usuários,
+                    em conformidade com as leis brasileiras vigentes, incluindo a Lei nº 13.709/2018, conhecida como Lei
+                    Geral de Proteção de Dados Pessoais (LGPD).
+                    Os dados pessoais dos usuários podem ser coletados por meio de formulários de contato, inscrições em
+                    eventos ou outras interações realizadas no site. Esses dados podem incluir informações como nome,
+                    endereço de e-mail, telefone e outras necessárias para a prestação dos serviços oferecidos. A
+                    Fundação
+                    Escola Solidária compromete-se a utilizar tais dados exclusivamente para fins institucionais, tais
+                    como
+                    resposta a solicitações de informações, envio de comunicados e newsletters, aprimoramento da
+                    experiência
+                    do usuário no site e realização de pesquisas de satisfação. Ademais, a Fundação compromete-se a
+                    tratar
+                    os dados pessoais de acordo com os princípios estabelecidos pela LGPD, que incluem, entre outros, a
+                    finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança,
+                    prevenção e não discriminação.
+                    Os dados pessoais dos usuários não serão compartilhados com terceiros, exceto quando necessário para
+                    o
+                    cumprimento de obrigações legais ou para a execução de serviços essenciais, sempre garantindo que
+                    esses
+                    terceiros cumpram com a legislação de proteção de dados. Os dados coletados serão armazenados em
+                    servidores seguros, protegidos por medidas técnicas e administrativas que visam evitar acessos não
+                    autorizados, vazamentos ou qualquer outro incidente. Em conformidade com o artigo 46 da LGPD, a
+                    Fundação
+                    Escola Solidária implementa todas as medidas de segurança apropriadas para garantir a integridade
+                    dos
+                    dados pessoais.
+                    Os usuários têm o direito de solicitar a confirmação da existência de tratamento de seus dados
+                    pessoais,
+                    o acesso a esses dados, a correção de informações incompletas, inexatas ou desatualizadas, a
+                    anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em
+                    desconformidade com a LGPD. Têm também o direito à portabilidade dos dados, à eliminação dos dados
+                    tratados com consentimento do titular e à revogação do consentimento, conforme previsto no artigo
+                    8º,
+                    §5º da LGPD.
+                    Este site utiliza cookies para melhorar a experiência do usuário. Cookies são pequenos arquivos de
+                    texto
+                    armazenados no navegador do usuário, com a finalidade de autenticação, registro de preferências e
+                    análise de uso do site. O usuário tem a opção de desabilitar os cookies nas configurações de seu
+                    navegador, embora isso possa impactar a funcionalidade do site.
+                    A Fundação Escola Solidária reserva-se o direito de alterar os Termos de Uso e a Política de
+                    Privacidade
+                    a qualquer momento, sendo que as alterações serão publicadas no próprio site. Recomenda-se que os
+                    usuários revisitem esta página periodicamente para se manterem informados sobre possíveis mudanças.
+                    Este
+                    documento é regido pelas leis da República Federativa do Brasil, e qualquer disputa decorrente do
+                    uso
+                    deste site será submetida ao foro da comarca onde se encontra a sede da Fundação Escola Solidária,
+                    com
+                    renúncia expressa a qualquer outro foro, por mais privilegiado que seja.
+                    Em caso de dúvidas sobre estes Termos de Uso e Política de Privacidade, ou para exercer seus
+                    direitos
+                    como titular de dados, os usuários podem entrar em contato pelo e-mail:
+                    contato@escolasolidaria.org.br.
+                </p>
             </div>
         </div>
-    </section>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const navList = document.querySelector('.nav-list');
+                const closeMenuButton = document.querySelector('.close-menu');
+                const contactForm = document.querySelector('.contact-form');
+                const modals = document.querySelectorAll('.modal');
+                const btns = document.querySelectorAll('.btn');
+                const spans = document.querySelectorAll('.modal .close');
+                const privacyLink = document.querySelector('.privacy-link');
+                const privacyModal = document.getElementById('privacy-modal');
 
-    <footer>
-        <div class="footer-container">
-            <div class="partners-logos">
-                <img src="logo bel.png" alt="Logo Parceiro 1">
-                <img src="seu logo aqui.png" alt="Logo Parceiro 2">
-                <img src="seu logo aqui.png" alt="Logo Parceiro 3">
-            </div>
-            <div class="center-text">
-                <p>&copy; 2024 Fundação Escola Solidária CNPJ Nº 06.018.029/0001-87. Todos os direitos reservados.</p>
-                <p><a href="#" class="privacy-link">Política de Privacidade e Termo de Privacidade</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal Política de Privacidade e Termos de Uso -->
-    <div id="privacy-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Política de Privacidade e Termos de Uso</h2>
-            <p>A Fundação Escola Solidária, inscrita no CNPJ sob o número 06.018.029/0001-87, apresenta os Termos de Uso
-                e a Política de Privacidade aplicáveis ao seu site. O acesso e utilização deste site implicam na
-                aceitação dos termos aqui dispostos, cujo objetivo é proteger os direitos e a privacidade dos usuários,
-                em conformidade com as leis brasileiras vigentes, incluindo a Lei nº 13.709/2018, conhecida como Lei
-                Geral de Proteção de Dados Pessoais (LGPD).
-                Os dados pessoais dos usuários podem ser coletados por meio de formulários de contato, inscrições em
-                eventos ou outras interações realizadas no site. Esses dados podem incluir informações como nome,
-                endereço de e-mail, telefone e outras necessárias para a prestação dos serviços oferecidos. A Fundação
-                Escola Solidária compromete-se a utilizar tais dados exclusivamente para fins institucionais, tais como
-                resposta a solicitações de informações, envio de comunicados e newsletters, aprimoramento da experiência
-                do usuário no site e realização de pesquisas de satisfação. Ademais, a Fundação compromete-se a tratar
-                os dados pessoais de acordo com os princípios estabelecidos pela LGPD, que incluem, entre outros, a
-                finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança,
-                prevenção e não discriminação.
-                Os dados pessoais dos usuários não serão compartilhados com terceiros, exceto quando necessário para o
-                cumprimento de obrigações legais ou para a execução de serviços essenciais, sempre garantindo que esses
-                terceiros cumpram com a legislação de proteção de dados. Os dados coletados serão armazenados em
-                servidores seguros, protegidos por medidas técnicas e administrativas que visam evitar acessos não
-                autorizados, vazamentos ou qualquer outro incidente. Em conformidade com o artigo 46 da LGPD, a Fundação
-                Escola Solidária implementa todas as medidas de segurança apropriadas para garantir a integridade dos
-                dados pessoais.
-                Os usuários têm o direito de solicitar a confirmação da existência de tratamento de seus dados pessoais,
-                o acesso a esses dados, a correção de informações incompletas, inexatas ou desatualizadas, a
-                anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em
-                desconformidade com a LGPD. Têm também o direito à portabilidade dos dados, à eliminação dos dados
-                tratados com consentimento do titular e à revogação do consentimento, conforme previsto no artigo 8º,
-                §5º da LGPD.
-                Este site utiliza cookies para melhorar a experiência do usuário. Cookies são pequenos arquivos de texto
-                armazenados no navegador do usuário, com a finalidade de autenticação, registro de preferências e
-                análise de uso do site. O usuário tem a opção de desabilitar os cookies nas configurações de seu
-                navegador, embora isso possa impactar a funcionalidade do site.
-                A Fundação Escola Solidária reserva-se o direito de alterar os Termos de Uso e a Política de Privacidade
-                a qualquer momento, sendo que as alterações serão publicadas no próprio site. Recomenda-se que os
-                usuários revisitem esta página periodicamente para se manterem informados sobre possíveis mudanças. Este
-                documento é regido pelas leis da República Federativa do Brasil, e qualquer disputa decorrente do uso
-                deste site será submetida ao foro da comarca onde se encontra a sede da Fundação Escola Solidária, com
-                renúncia expressa a qualquer outro foro, por mais privilegiado que seja.
-                Em caso de dúvidas sobre estes Termos de Uso e Política de Privacidade, ou para exercer seus direitos
-                como titular de dados, os usuários podem entrar em contato pelo e-mail: contato@escolasolidaria.org.br.
-            </p>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navList = document.querySelector('.nav-list');
-            const closeMenuButton = document.querySelector('.close-menu');
-            const contactForm = document.querySelector('.contact-form');
-            const modals = document.querySelectorAll('.modal');
-            const btns = document.querySelectorAll('.btn');
-            const spans = document.querySelectorAll('.modal .close');
-            const privacyLink = document.querySelector('.privacy-link');
-            const privacyModal = document.getElementById('privacy-modal');
-
-            // Função para aplicar classes responsivas
-            function applyResponsiveClasses() {
-                const body = document.body;
-                body.classList.remove('desktop-mode', 'mobile-mode');
-                if (window.innerWidth <= 768) {
-                    body.classList.add('mobile-mode');
-                } else {
-                    body.classList.add('desktop-mode');
-                }
-            }
-
-            // Aplica classes responsivas ao carregar a página
-            applyResponsiveClasses();
-
-            // Chama a função ao redimensionar a janela
-            window.addEventListener('resize', applyResponsiveClasses);
-
-            // Lógica do menu mobile
-            if (mobileMenu && navList) {
-                mobileMenu.addEventListener('click', () => {
-                    navList.classList.toggle('active');
-                    if (closeMenuButton) {
-                        closeMenuButton.style.display = navList.classList.contains('active') ? 'block' : 'none';
+                // Função para aplicar classes responsivas
+                function applyResponsiveClasses() {
+                    const body = document.body;
+                    body.classList.remove('desktop-mode', 'mobile-mode');
+                    if (window.innerWidth <= 768) {
+                        body.classList.add('mobile-mode');
+                    } else {
+                        body.classList.add('desktop-mode');
                     }
-                });
-
-                if (closeMenuButton) {
-                    closeMenuButton.addEventListener('click', () => {
-                        navList.classList.remove('active');
-                        closeMenuButton.style.display = 'none';  // Esconde o botão ao fechar
-                    });
                 }
 
-                // Fecha o menu ao clicar fora
-                window.addEventListener('click', (event) => {
-                    if (!mobileMenu.contains(event.target) && !navList.contains(event.target) && navList.classList.contains('active')) {
-                        navList.classList.remove('active');
+                // Aplica classes responsivas ao carregar a página
+                applyResponsiveClasses();
+
+                // Chama a função ao redimensionar a janela
+                window.addEventListener('resize', applyResponsiveClasses);
+
+                // Lógica do menu mobile
+                if (mobileMenu && navList) {
+                    mobileMenu.addEventListener('click', () => {
+                        navList.classList.toggle('active');
                         if (closeMenuButton) {
-                            closeMenuButton.style.display = 'none'; // Esconde o botão ao clicar fora do menu
+                            closeMenuButton.style.display = navList.classList.contains('active') ? 'block' : 'none';
                         }
+                    });
+
+                    if (closeMenuButton) {
+                        closeMenuButton.addEventListener('click', () => {
+                            navList.classList.remove('active');
+                            closeMenuButton.style.display = 'none';  // Esconde o botão ao fechar
+                        });
                     }
-                });
-            } else {
-                console.error('O elemento mobile-menu ou nav-list não foi encontrado.');
-            }
 
-            // Formulário de contato
-            if (contactForm) {
-                contactForm.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    alert('Formulário enviado com sucesso!');
-                });
-            }
+                    // Fecha o menu ao clicar fora
+                    window.addEventListener('click', (event) => {
+                        if (!mobileMenu.contains(event.target) && !navList.contains(event.target) && navList.classList.contains('active')) {
+                            navList.classList.remove('active');
+                            if (closeMenuButton) {
+                                closeMenuButton.style.display = 'none'; // Esconde o botão ao clicar fora do menu
+                            }
+                        }
+                    });
+                } else {
+                    console.error('O elemento mobile-menu ou nav-list não foi encontrado.');
+                }
 
-            // Funcionalidade do modal
-            btns.forEach((btn) => {
-                btn.addEventListener('click', function () {
-                    const modalId = btn.getAttribute('data-modal');
-                    const modal = document.getElementById(modalId);
-                    if (modal) {
-                        modal.style.display = 'block';
-                    }
-                });
-            });
-
-            spans.forEach((span) => {
-                span.addEventListener('click', function () {
-                    span.closest('.modal').style.display = 'none';
-                });
-            });
-
-            window.addEventListener('click', function (event) {
-                modals.forEach((modal) => {
-                    if (event.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
-            });
-
-            // Modal para Política de Privacidade e Termos de Uso
-            if (privacyLink && privacyModal) {
-                privacyLink.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    privacyModal.style.display = 'block';
-                });
-
-                const closePrivacyModal = privacyModal.querySelector('.close');
-                if (closePrivacyModal) {
-                    closePrivacyModal.addEventListener('click', function () {
-                        privacyModal.style.display = 'none';
+                // Formulário de contato
+                if (contactForm) {
+                    contactForm.addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        alert('Formulário enviado com sucesso!');
                     });
                 }
-            }
-        });
 
-    </script>
+                // Funcionalidade do modal
+                btns.forEach((btn) => {
+                    btn.addEventListener('click', function () {
+                        const modalId = btn.getAttribute('data-modal');
+                        const modal = document.getElementById(modalId);
+                        if (modal) {
+                            modal.style.display = 'block';
+                        }
+                    });
+                });
 
+                spans.forEach((span) => {
+                    span.addEventListener('click', function () {
+                        span.closest('.modal').style.display = 'none';
+                    });
+                });
 
+                window.addEventListener('click', function (event) {
+                    modals.forEach((modal) => {
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+                });
+
+                // Modal para Política de Privacidade e Termos de Uso
+                if (privacyLink && privacyModal) {
+                    privacyLink.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        privacyModal.style.display = 'block';
+                    });
+
+                    const closePrivacyModal = privacyModal.querySelector('.close');
+                    if (closePrivacyModal) {
+                        closePrivacyModal.addEventListener('click', function () {
+                            privacyModal.style.display = 'none';
+                        });
+                    }
+                }
+            });
+
+        </script>
 
 </body>
 
