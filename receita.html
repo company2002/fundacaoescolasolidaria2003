@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>RECEITAS
+        
+    </header>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Buscar item..." onkeyup="filterTable()">
+        <button onclick="filterTable()" aria-label="Buscar">🔍</button>
+    </div>
+    <div class="filter-box">
+        <label for="start-date">De: </label>
+        <input type="date" id="start-date">
+        <label for="end-date">Até: </label>
+        <input type="date" id="end-date">
+        <button onclick="filterByDate()">Filtrar</button>
+    </div>
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)" aria-label="Ordenar por Fonte">Fonte</th>
+                <th onclick="sortTable(1)" aria-label="Ordenar por Data">Data</th>
+                <th onclick="sortTable(2)" aria-label="Ordenar por Valor">Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Doações</td><td>05/03/2025</td><td>3000.00</td></tr>
+            <tr><td>Venda de Produtos</td><td>12/03/2025</td><td>2500.00</td></tr>
+            <tr><td>Alimentos</td><td>10/03/2025</td><td>2000.00</td></tr>
+            <tr><td>Material Escolar</td><td>15/03/2025</td><td>1500.00</td></tr>
+            <tr><td>Alimentos</td><td>10/03/2025</td><td>2000.00</td></tr>
+            <tr><td>Material Escolar</td><td>15/03/2025</td><td>1500.00</td></tr>
+            <tr><td>Alimentos</td><td>10/03/2025</td><td>2000.00</td></tr>
+            <tr><td>Material Escolar</td><td>15/03/2025</td><td>1500.00</td></tr>
+            <tr><td>Alimentos</td><td>10/03/2025</td><td>2000.00</td></tr>
+            <tr><td>Material Escolar</td><td>15/03/2025</td><td>1500.00</td></tr>
+        </tbody>
+    </table>
+    <p style="text-align:center; font-size:18px;"><strong>Total:</strong> <span id="total">R$ 0,00</span></p>
+    <div style="text-align:center;">
+        <button onclick="exportCSV()">Exportar CSV</button>
+        <button onclick="saveAsPDF()">Salvar como PDF</button>
+        <button onclick="window.location.href='transp.html'">Voltar</button>
+    </div>
+    <footer>© 2025 Fundação Escola Solidária</footer>
+</body>
+</html>
+
