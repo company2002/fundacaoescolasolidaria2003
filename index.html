@@ -99,12 +99,21 @@
 
         .nav-list li {
             margin: 0 1em;
+            position: relative;
+
         }
 
         .nav-list a {
             color: #000000;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
+
+        .nav-list a:hover {
+            color: #007BFF;
+            /* Cor de destaque no hover */
+        }
+
 
         @media (max-width: 768px) {
             .menu-toggle {
@@ -1121,10 +1130,11 @@
             <li><a href="doc.html">Enviar Documentos</a></li>
             <li><a href="transp.html">Trasparência</a></li>
             <li><a href="ficha.html">Ficha do(a) Aluno(a)</a></li>
-            <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#videos">Vídeos</a></li>
-            <li><a href="#contato">Contato</a></li>
             <li><a href="termo.html">Termo Geral</a></li>
+            <li><a href="#contato">Contato</a></li>
+
+
+            
         </ul>
         <!-- Botão para fechar o menu -->
         <button class="close-menu">Fechar</button>
