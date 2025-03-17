@@ -1,0 +1,474 @@
+/* ===============================
+   CSS Base (o seu CSS atual)
+   =============================== */
+
+/* Variáveis de Cores e Tipografia */
+:root {
+    --primary-color: #fffafa;        /* Cor principal */
+    --secondary-color: #03dac6;      /* Cor secundária */
+    --accent-color: #ff0266;         /* Cor de destaque */
+    --background-color: #e3f2fd;     /* Cor de fundo */
+    --text-color: #212121;           /* Cor do texto */
+    --font-family: 'Roboto', sans-serif; /* Fonte principal */
+}
+
+.card-footer {
+    text-align: right;
+    padding: 10px;
+    font-size: 7px;
+    color: #000000;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+
+
+/* Estilos Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-image: url(002.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100vw;
+        padding: 20px;
+        height: auto;
+        margin: 0;
+        box-sizing: border-box;
+        border-radius: 0;
+    }
+    
+}
+@media (max-width: 600px) {
+    .card {
+        width: 90vw !important; /* Mantém a largura adaptável */
+        font-size: 10px !important; /* Reduz a fonte */
+        display: flex;
+        max-width: 350px;
+        flex-direction: column;
+        padding: 10px;
+        height: auto;
+    }
+
+    .info {
+        padding-left: 5px;
+        font-size: 8px !important;
+    }
+
+    .positioned-elements p {
+        font-size: 9px !important;
+    }
+
+    .chronic-condition {
+        font-size: 10px !important;
+        top: -60px !important;
+    }
+}
+
+
+.container {
+    background: rgb(83, 3, 241);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(112, 114, 228, 0.781);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    margin: 20px auto;
+}
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fffdfd;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+h6 {
+    color: #ffffff;
+    background-color: #3500f3;
+    font-size: 7px;
+    
+    padding-left: 20px;
+    
+}
+
+.form-group {
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #000000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+input,
+select {
+    width: calc(100% - 26px);
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.8);
+    margin: auto;
+    display: block;
+    border-color: #ff7b3e;
+    margin-bottom: 20px;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    background-color: #e8f0fe;
+}
+
+button {
+    width: calc(100% - 26px);
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ec520a, #ffb347);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px auto;
+    display: block;
+}
+
+button2 {
+    width: calc(35% - 26px);
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ec520a, #ffb347);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px auto;
+    display: block;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff5e1f, #ffa726);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Cartão */
+.card {
+    position: relative;
+    box-shadow: none;
+    overflow: visible;
+    width: 70%;
+    max-width: 400px;
+    border-radius: 25px;
+    padding: 15px;
+    border: 2px solid #ff0000;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+    color: #fff; /* Define o texto como branco para visibilidade */
+    margin-top: 20px;
+    box-sizing: border-box;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1; /* Garante que o conteúdo esteja acima da camada de fundo */
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://i.imgur.com/stDbMYO.jpg'); /* Link direto da imagem */
+    background-size: cover; /* Faz a imagem cobrir todo o card */
+    background-position: center; /* Centraliza a imagem no card */
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    opacity: 0.1; /* Define a transparência da imagem */
+    border-radius: 25px; /* Combina com o border-radius do card */
+    z-index: -1; /* Coloca a imagem atrás do conteúdo */
+}
+
+
+
+.photo {
+    grid-column: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+}
+
+.photo img.profile-image {
+    border-radius: 10px;
+    width: 100%;
+    max-width: 65px;
+    height: 85px;
+    object-fit: cover;
+    margin: 5px;
+}
+
+#specialConditionContainer {
+    position: relative;
+}
+
+.special-condition-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: auto;
+}
+
+.info {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: 10px;
+    height: auto;
+    overflow: visible;
+}
+
+.positioned-elements {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+/* Força quebra de palavras longas */
+.positioned-elements p,
+.info p,
+.card p {
+    margin: 3px 0;
+    font-size: 10px;
+    color: #000000;
+    text-align: left;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.card span {
+    color: rgb(0, 0, 0); /* Altera a cor do texto das respostas para vermelho */
+    font-weight: bold; /* Opcional: deixa o texto em negrito para destacar mais */
+}
+
+
+.info h3 {
+    margin-bottom: 3px;
+    font-size: 12px;
+    color: #ff0404;
+}
+
+.info hr {
+    margin: 5px 0;
+    border: 0;
+    border-top: 1px solid #ff0000;
+}
+
+#cardBloodType {
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+}
+
+#cardAllergies {
+    color: rgb(255, 0, 0);
+    font-size: 8px;
+}
+
+.qr-section {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-section canvas {
+    width: 80px;
+    height: 80px;
+}
+
+.card-footer {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 10px;
+    color: rgb(0, 0, 0);
+    text-align: right;
+}
+
+.chronic-condition {
+    position: absolute;
+    top: -90px;
+    right: 10px;
+    color: rgb(255, 1, 1);
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.watermark {
+    position: absolute;
+    top: 52%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 0;
+    display: none;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.watermark-diagonal {
+    position: absolute;
+    top: 45%;
+    left: 80%;
+    transform: translate(-80%, -20%) rotate(-35deg);
+    font-size: 30px;
+    color: rgba(255, 2, 2, 0.422);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#generatePDFButton {
+    width: calc(100% - 26px);
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ec520a, #ffb347);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+
+#generatePDFButton:hover {
+    background: linear-gradient(135deg, #ff5e1f, #ffa726);
+}
+
+#generatePDFButton:active {
+    transform: scale(0.98);
+}
+
+
+.info,
+.card-footer {
+    position: relative;
+    z-index: 1;
+}
+
+a:focus,
+button:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* ===============================
+   Regras de Impressão (desktop)
+   =============================== */
+   @media print {
+    @page {
+        size: 86.mm 54mm;
+        margin: 0;
+    }
+
+    body {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: 100vh !important;
+        background: none !important;
+    }
+
+    .card {
+        display: block !important;
+        position: static !important;
+        margin: auto !important;
+        background: #fff !important;
+        color: #000 !important;
+        width: 856px !important; /* Largura fixa para impressão */
+        height: 540px !important; /* Ajuste dinâmico */
+        max-width: 100% !important;
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        font-size: 10pt !important;
+        page-break-inside: avoid !important;
+    }
+
+    .symbol-container {
+        position: absolute; /* Permite posicionamento relativo à carteirinha */
+        top: 10px; /* Ajuste conforme necessário para o espaçamento desejado */
+        right: 10px; /* Coloca o contêiner no canto direito */
+        width: 50px; /* Ajuste o tamanho conforme necessário */
+        height: auto; /* Mantém a proporção da imagem */
+        z-index: 10; /* Garante que o símbolo fique acima de outros elementos */
+    }
+    
+    .special-condition-image {
+        width: 100%; /* Ocupa toda a largura do contêiner */
+        height: auto; /* Mantém a proporção da imagem */
+    }
+
+
+
+
+    .qr-section, .watermark, .watermark-diagonal {
+        display: none !important;
+    }
+}
