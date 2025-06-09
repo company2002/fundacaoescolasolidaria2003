@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carteirinha</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="carteirinha.css">
+    <link rel="stylesheet" href="styles1.css">
     <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
+    <div id="successMessage" class="success-message" style="display:none;">Salvo com sucesso!</div>
     <div class="container">
         <form id="healthCardForm" onsubmit="return false;">
             <h1 class="form-title">
@@ -503,6 +504,15 @@
 
             document.getElementById('healthCard').style.display = 'block';
             document.getElementById('symbolContainer').style.display = 'block'; // Mostra o contêiner dos símbolos
+
+            // Exibe mensagem de sucesso
+            const msg = document.getElementById('successMessage');
+            msg.style.display = 'flex';
+            msg.classList.add('show');
+            setTimeout(() => {
+                msg.classList.remove('show');
+                msg.style.display = 'none';
+            }, 2500);
 
             generatePDF();
         }
