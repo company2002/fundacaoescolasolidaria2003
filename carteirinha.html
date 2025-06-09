@@ -15,211 +15,217 @@
 <body>
     <div class="container">
         <form id="healthCardForm" onsubmit="return false;">
-            <h1>Carteirinha Fundação Escola Solidária </h1>
-            <div class="form-group">
-                <label for="photo">Foto:</label>
-                <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="fullName">Nome Completo:</label>
-                <input type="text" id="fullName" required>
-            </div>
-            <div class="form-group">
-                <label for="birthDate">Data de Nascimento:</label>
-                <input type="date" id="birthDate" required>
-            </div>
-            <div class="form-group">
-                <label for="cpf">Número do CPF:</label>
-                <input type="text" id="cpf" required>
-            </div>
-
-            <div class="form-group">
-                <label for="allergies">Alergias:</label>
-                <select id="allergies" onchange="toggleOtherAllergy()">
-                    <option value="" disabled selected>Nega</option>
-                    <option value="poeira">a poeira</option>
-                    <option value="pollen">a pólen</option>
-                    <option value="acaros">a ácaros</option>
-                    <option value="mofo">a mofo</option>
-                    <option value="peloAnimais">a pelo de animais</option>
-                    <option value="leite">ao leite</option>
-                    <option value="gluten">ao glúten</option>
-                    <option value="frutosDoMar">a frutos do mar</option>
-                    <option value="peixes">a peixes</option>
-                    <option value="amendoim">a amendoim</option>
-                    <option value="nozes">a nozes</option>
-                    <option value="ovo">ao ovo</option>
-                    <option value="soja">à soja</option>
-                    <option value="trigo">ao trigo</option>
-                    <option value="picadasInsetos">a picadas de insetos</option>
-                    <option value="medicamentos">a medicamentos</option>
-                    <option value="latex">ao látex</option>
-                    <option value="corantes">a corantes alimentares</option>
-                    <option value="conservantes">a conservantes</option>
-                    <option value="niquel">ao níquel</option>
-                    <option value="perfumes">a perfumes</option>
-                    <option value="sol">ao sol</option>
-                    <option value="calor">ao calor</option>
-                    <option value="fungos">a fungos</option>
-                    <option value="detergentes">a detergentes</option>
-                    <option value="maquiagem">a maquiagem</option>
-                    <option value="tintasCabelo">a tintas de cabelo</option>
-                    <option value="conservantesVacinas">a conservantes de vacinas</option>
-                    <option value="sulfitos">a sulfitos</option>
-                    <option value="produtosQuimicos">a produtos químicos industriais</option>
-                    <option value="outros">Outros</option>
-                </select>
-                <input type="text" id="otherAllergy" placeholder="Informe sua alergia" style="display:none;"
-                    maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="bloodType">Grupo Sanguíneo:</label>
-                <select id="bloodType" onchange="toggleOtherBloodType()">
-                    <option value="" disabled selected>Selecione...</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-                    <option value="outros">Outros</option>
-                </select>
-                <input type="text" id="otherBloodType" placeholder="Informe seu tipo sanguíneo" style="display:none;"
-                    maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="emergencyContact">Contato de Emergência:</label>
-                <input type="text" id="emergencyContact" maxlength="15" oninput="formatPhone(this)"
-                    placeholder="(xx) xxxxx-xxxx" required>
-            </div>
-            <hr>
-            <div class="form-group">
-                <label for="chronicConditions">Condições de Saúde Crônicas (Nome Completo):</label>
-                <select id="chronicConditions" onchange="updateChronicCondition()">
-                    <option value="" disabled selected>Selecione...</option>
-                    <option value="TDAH">Transtorno de Déficit de Atenção e Hiperatividade (TDAH)</option>
-                    <option value="Autismo">Transtorno do Espectro Autista (Autismo)</option>
-                    <option value="DoençasCardiacas">Doenças Cardíacas Infantis</option>
-                    <option value="DiabetesInfantil">Diabetes Infantil</option>
-                    <option value="Asma">Asma</option>
-                    <option value="Epilepsia">Epilepsia</option>
-                    <option value="AlergiasSeveras">Alergias Severas</option>
-                    <option value="DoençasInvisíveis">Doenças Invisíveis</option>
-                    <option value="DistúrbiosDoSono">Distúrbios do Sono</option>
-                    <option value="Outros">Outros</option>
-                </select>
-                <input type="text" id="otherChronicCondition" placeholder="Informe a condição" style="display:none;"
-                    maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="implants">Implantes ou Próteses:</label>
-                <select id="implants" onchange="toggleOtherImplant()">
-                    <option value="nega">Nega</option>
-                    <option value="quadril">Prótese de quadril</option>
-                    <option value="joelho">Prótese de joelho</option>
-                    <option value="ombro">Prótese de ombro</option>
-                    <option value="cotovelo">Prótese de cotovelo</option>
-                    <option value="tornozelo">Prótese de tornozelo</option>
-                    <option value="mao">Prótese de mão</option>
-                    <option value="perna">Prótese de perna</option>
-                    <option value="braco">Prótese de braço</option>
-                    <option value="dedo">Prótese de dedo</option>
-                    <option value="implanteDentarioFixo">Prótese dentária fixa (implante dentário)</option>
-                    <option value="dentadura">Prótese dentária removível (dentadura)</option>
-                    <option value="coclear">Implante coclear</option>
-                    <option value="ocular">Prótese ocular</option>
-                    <option value="marcapasso">Marcapasso cardíaco</option>
-                    <option value="outros">Outros</option>
-                </select>
-                <input type="text" id="otherImplant" placeholder="Informe seu implante ou prótese" style="display:none;"
-                    maxlength="36">
-                <div id="sideOptions" style="display:none;">
-                    <label for="side">Lado:</label>
-                    <select id="side">
-                        <option value="superior">Superior</option>
-                        <option value="inferior">Inferior</option>
-                        <option value="esquerdo">Esquerdo</option>
-                        <option value="direito">Direito</option>
+            <h1 class="form-title">
+                <img src="fundo.png" alt="Logo" style="height:32px;vertical-align:middle;margin-right:8px;opacity:0.85;">
+                Carteirinha Fundação Escola Solidária
+            </h1>
+            <div class="form-steps">
+                <div class="form-group">
+                    <label for="photo"><span class="icon">📷</span> Foto</label>
+                    <input type="file" id="photo" accept="image/*" onchange="loadFile(event)" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="fullName"><span class="icon">👤</span> Nome Completo</label>
+                        <input type="text" id="fullName" required placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="form-group half">
+                        <label for="birthDate"><span class="icon">🎂</span> Data de Nascimento</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="cpf"><span class="icon">🆔</span> CPF</label>
+                        <input type="text" id="cpf" required placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group half">
+                        <label for="emergencyContact"><span class="icon">📞</span> Emergência</label>
+                        <input type="text" id="emergencyContact" maxlength="15" oninput="formatPhone(this)" placeholder="(xx) xxxxx-xxxx" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="bloodType"><span class="icon">🩸</span> Grupo Sanguíneo</label>
+                        <select id="bloodType" onchange="toggleOtherBloodType()">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <input type="text" id="otherBloodType" placeholder="Informe seu tipo sanguíneo" style="display:none;" maxlength="36">
+                    </div>
+                    <div class="form-group half">
+                        <label for="allergies"><span class="icon">⚠️</span> Alergias</label>
+                        <select id="allergies" onchange="toggleOtherAllergy()">
+                            <option value="" disabled selected>Nega</option>
+                            <option value="poeira">a poeira</option>
+                            <option value="pollen">a pólen</option>
+                            <option value="acaros">a ácaros</option>
+                            <option value="mofo">a mofo</option>
+                            <option value="peloAnimais">a pelo de animais</option>
+                            <option value="leite">ao leite</option>
+                            <option value="gluten">ao glúten</option>
+                            <option value="frutosDoMar">a frutos do mar</option>
+                            <option value="peixes">a peixes</option>
+                            <option value="amendoim">a amendoim</option>
+                            <option value="nozes">a nozes</option>
+                            <option value="ovo">ao ovo</option>
+                            <option value="soja">à soja</option>
+                            <option value="trigo">ao trigo</option>
+                            <option value="picadasInsetos">a picadas de insetos</option>
+                            <option value="medicamentos">a medicamentos</option>
+                            <option value="latex">ao látex</option>
+                            <option value="corantes">a corantes alimentares</option>
+                            <option value="conservantes">a conservantes</option>
+                            <option value="niquel">ao níquel</option>
+                            <option value="perfumes">a perfumes</option>
+                            <option value="sol">ao sol</option>
+                            <option value="calor">ao calor</option>
+                            <option value="fungos">a fungos</option>
+                            <option value="detergentes">a detergentes</option>
+                            <option value="maquiagem">a maquiagem</option>
+                            <option value="tintasCabelo">a tintas de cabelo</option>
+                            <option value="conservantesVacinas">a conservantes de vacinas</option>
+                            <option value="sulfitos">a sulfitos</option>
+                            <option value="produtosQuimicos">a produtos químicos industriais</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <input type="text" id="otherAllergy" placeholder="Informe sua alergia" style="display:none;" maxlength="36">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="chronicConditions"><span class="icon">💊</span> Condições Crônicas</label>
+                        <select id="chronicConditions" onchange="updateChronicCondition()">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="TDAH">TDAH</option>
+                            <option value="Autismo">Autismo</option>
+                            <option value="DoençasCardiacas">Doenças Cardíacas Infantis</option>
+                            <option value="DiabetesInfantil">Diabetes Infantil</option>
+                            <option value="Asma">Asma</option>
+                            <option value="Epilepsia">Epilepsia</option>
+                            <option value="AlergiasSeveras">Alergias Severas</option>
+                            <option value="DoençasInvisíveis">Doenças Invisíveis</option>
+                            <option value="DistúrbiosDoSono">Distúrbios do Sono</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                        <input type="text" id="otherChronicCondition" placeholder="Informe a condição" style="display:none;" maxlength="36">
+                    </div>
+                    <div class="form-group half">
+                        <label for="implants"><span class="icon">🦾</span> Implantes/Próteses</label>
+                        <select id="implants" onchange="toggleOtherImplant()">
+                            <option value="nega">Nega</option>
+                            <option value="quadril">Prótese de quadril</option>
+                            <option value="joelho">Prótese de joelho</option>
+                            <option value="ombro">Prótese de ombro</option>
+                            <option value="cotovelo">Prótese de cotovelo</option>
+                            <option value="tornozelo">Prótese de tornozelo</option>
+                            <option value="mao">Prótese de mão</option>
+                            <option value="perna">Prótese de perna</option>
+                            <option value="braco">Prótese de braço</option>
+                            <option value="dedo">Prótese de dedo</option>
+                            <option value="implanteDentarioFixo">Prótese dentária fixa</option>
+                            <option value="dentadura">Prótese dentária removível</option>
+                            <option value="coclear">Implante coclear</option>
+                            <option value="ocular">Prótese ocular</option>
+                            <option value="marcapasso">Marcapasso cardíaco</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <input type="text" id="otherImplant" placeholder="Informe seu implante ou prótese" style="display:none;" maxlength="36">
+                        <div id="sideOptions" style="display:none;">
+                            <label for="side">Lado</label>
+                            <select id="side">
+                                <option value="superior">Superior</option>
+                                <option value="inferior">Inferior</option>
+                                <option value="esquerdo">Esquerdo</option>
+                                <option value="direito">Direito</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="healthPlan"><span class="icon">🏥</span> Plano de Saúde</label>
+                        <select id="healthPlan" onchange="toggleOtherHealthPlan()">
+                            <option value="nega">Nega</option>
+                            <option value="SUS">SUS</option>
+                            <option value="amil">Amil</option>
+                            <option value="bradesco">Bradesco Saúde</option>
+                            <option value="unimedRio">Unimed Rio</option>
+                            <option value="sulAmerica">SulAmérica Saúde</option>
+                            <option value="notreDame">NotreDame Intermédica</option>
+                            <option value="goldenCross">Golden Cross</option>
+                            <option value="assimSaude">Assim Saúde</option>
+                            <option value="hapvida">Hapvida</option>
+                            <option value="portoSeguro">Porto Seguro Saúde</option>
+                            <option value="medial">Medial Saúde</option>
+                            <option value="vivaSaude">Viva Saúde</option>
+                            <option value="cassi">Cassi (Banco do Brasil)</option>
+                            <option value="caixaSaude">Caixa Saúde</option>
+                            <option value="saudePetrobras">Saúde Petrobras</option>
+                            <option value="geap">GEAP Saúde</option>
+                            <option value="samp">Samp</option>
+                            <option value="preventSenior">Prevent Senior</option>
+                            <option value="greenLine">GreenLine Saúde</option>
+                            <option value="unimedNacional">Unimed Nacional</option>
+                            <option value="unimedFederacaoRJ">Unimed Federação RJ</option>
+                            <option value="unimedSeguros">Unimed Seguros</option>
+                            <option value="carePlus">Care Plus</option>
+                            <option value="benSaude">BenSaúde</option>
+                            <option value="allianz">Allianz Saúde</option>
+                            <option value="promed">Promed Assistência Médica</option>
+                            <option value="biovida">Biovida Saúde</option>
+                            <option value="qsaude">Qsaúde</option>
+                            <option value="trasmontano">Trasmontano Saúde</option>
+                            <option value="sampSaude">Samp Saúde</option>
+                            <option value="vivest">Vivest Saúde</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <input type="text" id="otherHealthPlan" placeholder="Informe seu plano de saúde" style="display:none;" maxlength="36">
+                    </div>
+                    <div class="form-group half">
+                        <label for="planNumber"><span class="icon">#️⃣</span> Nº do Plano</label>
+                        <input type="text" id="planNumber">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="medicationsUsed"><span class="icon">💉</span> Usa Medicações?</label>
+                        <select id="medicationsUsed" onchange="toggleMedicationsInput()">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                        <input type="text" id="medications" placeholder="Informe suas medicações" style="display:none;" maxlength="36">
+                    </div>
+                    <div class="form-group half">
+                        <label for="specialInstructionsUsed"><span class="icon">📝</span> Orientações Especiais?</label>
+                        <select id="specialInstructionsUsed" onchange="toggleSpecialInstructionsInput()">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                        <input type="text" id="specialInstructions" placeholder="Informe as orientações especiais" style="display:none;" maxlength="36">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="specialConditions"><span class="icon">♿</span> Condições Especiais</label>
+                    <select id="specialConditions" onchange="updateSpecialConditionWatermark()">
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="cadeirante">CADEIRANTE</option>
+                        <option value="D.AUDITIVA">D.AUDITIVA</option>
+                        <option value="D.VISUAL">D.VISUAL</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="healthPlan">Plano de Saúde:</label>
-                <select id="healthPlan" onchange="toggleOtherHealthPlan()">
-                    <option value="nega">Nega</option>
-                    <option value="SUS">SUS</option>
-                    <option value="amil">Amil</option>
-                    <option value="bradesco">Bradesco Saúde</option>
-                    <option value="unimedRio">Unimed Rio</option>
-                    <option value="sulAmerica">SulAmérica Saúde</option>
-                    <option value="notreDame">NotreDame Intermédica</option>
-                    <option value="goldenCross">Golden Cross</option>
-                    <option value="assimSaude">Assim Saúde</option>
-                    <option value="hapvida">Hapvida</option>
-                    <option value="portoSeguro">Porto Seguro Saúde</option>
-                    <option value="medial">Medial Saúde</option>
-                    <option value="vivaSaude">Viva Saúde</option>
-                    <option value="cassi">Cassi (Banco do Brasil)</option>
-                    <option value="caixaSaude">Caixa Saúde</option>
-                    <option value="saudePetrobras">Saúde Petrobras</option>
-                    <option value="geap">GEAP Saúde</option>
-                    <option value="samp">Samp</option>
-                    <option value="preventSenior">Prevent Senior</option>
-                    <option value="greenLine">GreenLine Saúde</option>
-                    <option value="unimedNacional">Unimed Nacional</option>
-                    <option value="unimedFederacaoRJ">Unimed Federação RJ</option>
-                    <option value="unimedSeguros">Unimed Seguros</option>
-                    <option value="carePlus">Care Plus</option>
-                    <option value="benSaude">BenSaúde</option>
-                    <option value="allianz">Allianz Saúde</option>
-                    <option value="promed">Promed Assistência Médica</option>
-                    <option value="biovida">Biovida Saúde</option>
-                    <option value="qsaude">Qsaúde</option>
-                    <option value="trasmontano">Trasmontano Saúde</option>
-                    <option value="sampSaude">Samp Saúde</option>
-                    <option value="vivest">Vivest Saúde</option>
-                    <option value="outros">Outros</option>
-                </select>
-                <input type="text" id="otherHealthPlan" placeholder="Informe seu plano de saúde" style="display:none;"
-                    maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="planNumber">Número do Plano de Saúde:</label>
-                <input type="text" id="planNumber">
-            </div>
-            <div class="form-group">
-                <label for="medicationsUsed">Está usando Medicações?</label>
-                <select id="medicationsUsed" onchange="toggleMedicationsInput()">
-                    <option value="" disabled selected>Selecione...</option>
-                    <option value="sim">Sim</option>
-                    <option value="nao">Não</option>
-                </select>
-                <input type="text" id="medications" placeholder="Informe suas medicações" style="display:none;"
-                    maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="specialInstructionsUsed">Precisa de Orientações Especiais de Tratamento?</label>
-                <select id="specialInstructionsUsed" onchange="toggleSpecialInstructionsInput()">
-                    <option value="" disabled selected>Selecione...</option>
-                    <option value="sim">Sim</option>
-                    <option value="nao">Não</option>
-                </select>
-                <input type="text" id="specialInstructions" placeholder="Informe as orientações especiais"
-                    style="display:none;" maxlength="36">
-            </div>
-            <div class="form-group">
-                <label for="specialConditions">Condições Especiais:</label>
-                <select id="specialConditions" onchange="updateSpecialConditionWatermark()">
-                    <option value="" disabled selected>Selecione...</option>
-                    <option value="cadeirante">CADEIRANTE</option>
-                    <option value="D.AUDITIVA">D.AUDITIVA</option>
-                    <option value="D.VISUAL">D.VISUAL</option>
-                </select>
-            </div>
-            <button type="button" onclick="generateCard()">Gerar Carteira</button>
+            <button type="button" onclick="generateCard()"><span class="icon">🧾</span> Gerar Carteira</button>
         </form>
     </div>
     <div class="card" id="healthCard" style="display:none;">
