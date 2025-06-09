@@ -1,8 +1,3 @@
-/* ===============================
-   CSS Base (o seu CSS atual)
-   =============================== */
-
-/* Variáveis de Cores e Tipografia */
 :root {
     --primary-color: #fffafa;        /* Cor principal */
     --secondary-color: #03dac6;      /* Cor secundária */
@@ -86,17 +81,24 @@ body {
 
 
 .container {
-    background: rgb(83, 3, 241);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(112, 114, 228, 0.781);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 20px;
-    max-width: 400px;
+    background: linear-gradient(135deg, #4f8cff 0%, #a084ee 100%);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(80, 80, 180, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 32px 38px 28px 38px;
+    max-width: 800px;
+    min-width: 340px;
     width: 100%;
     text-align: left;
     position: relative;
-    margin: 20px auto;
+    margin: 32px auto 24px auto;
+    border: 1.5px solid #fff6;
+    transition: box-shadow 0.3s, max-width 0.3s;
+}
+
+.container:hover {
+    box-shadow: 0 12px 40px 0 rgba(80, 80, 180, 0.28);
 }
 
 h1 {
@@ -116,83 +118,91 @@ h6 {
 }
 
 .form-group {
-    font-size: 12px;
+    font-size: 15px;
     text-align: left;
-    margin-bottom: 20px;
-    color: #000000;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 18px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    letter-spacing: 0.5px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     text-transform: uppercase;
-    font-weight: 500;
-    color: var(--primary-color);
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
 }
 
 input,
 select {
-    width: calc(100% - 26px);
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 30px;
+    width: 100%;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 18px;
     font-size: 16px;
     outline: none;
-    transition: all 0.3s;
-    background: rgba(255, 255, 255, 0.8);
-    margin: auto;
-    display: block;
-    border-color: #ff7b3e;
-    margin-bottom: 20px;
+    transition: box-shadow 0.2s, border 0.2s;
+    background: rgba(255,255,255,0.92);
+    color: #222;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(80,80,180,0.07);
 }
 
 input:focus,
 select:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    background-color: #e8f0fe;
+    border: 2px solid var(--accent-color);
+    background-color: #f3f7ff;
+    box-shadow: 0 0 0 2px #ff026633;
 }
 
-button {
-    width: calc(100% - 26px);
-    padding: 12px;
+button[type="button"] {
+    width: 100%;
+    padding: 14px;
     border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ec520a, #ffb347);
-    color: white;
+    border-radius: 22px;
+    background: linear-gradient(90deg, #ff0266 0%, #ffb347 100%);
+    color: #fff;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s;
-    margin: 10px auto;
-    display: block;
+    transition: background 0.2s, transform 0.1s;
+    margin: 18px 0 0 0;
+    box-shadow: 0 2px 8px rgba(255,2,102,0.08);
+    letter-spacing: 1px;
 }
 
-button2 {
-    width: calc(35% - 26px);
-    padding: 12px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ec520a, #ffb347);
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 10px auto;
-    display: block;
+button[type="button"]:hover {
+    background: linear-gradient(90deg, #ff5e1f 0%, #ffa726 100%);
+    transform: translateY(-2px) scale(1.02);
 }
 
-button:hover {
-    background: linear-gradient(135deg, #ff5e1f, #ffa726);
-}
-
-button:active {
+button[type="button"]:active {
     transform: scale(0.98);
 }
 
-/* Cartão */
+@media (max-width: 600px) {
+    .container {
+        padding: 16px 6px 12px 6px;
+        max-width: 98vw;
+        border-radius: 0;
+    }
+    .form-group {
+        font-size: 12px;
+    }
+    input, select {
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+    button[type="button"] {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+/* ...existing code... */
+
 .card {
     position: relative;
     box-shadow: none;
@@ -470,5 +480,73 @@ button:focus {
 
     .qr-section, .watermark, .watermark-diagonal {
         display: none !important;
+    }
+}
+
+.form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(80,80,180,0.10);
+}
+
+.form-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+}
+
+.form-group.half {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.form-group {
+    background: rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 10px 14px 6px 14px;
+    margin-bottom: 0;
+    box-shadow: 0 1px 4px rgba(80,80,180,0.04);
+    transition: box-shadow 0.2s;
+}
+
+.form-group:focus-within {
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+label .icon {
+    margin-right: 6px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    opacity: 0.85;
+}
+
+input[type="file"] {
+    background: transparent;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+}
+
+@media (max-width: 700px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-group.half {
+        width: 100%;
     }
 }
