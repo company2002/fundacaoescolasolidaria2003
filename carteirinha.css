@@ -201,6 +201,124 @@ button[type="button"]:active {
     }
 }
 
+/* --- MOBILE FIRST: APP-LIKE FORM --- */
+@media (max-width: 700px) {
+    body {
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #4f8cff 0%, #a084ee 100%);
+    }
+    .container {
+        max-width: 100vw;
+        min-width: 0;
+        width: 100vw;
+        border-radius: 0;
+        margin: 0;
+        box-shadow: none;
+        padding: 0 0 24px 0;
+    }
+    .form-title {
+        font-size: 1.3rem;
+        padding: 18px 8px 8px 8px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .form-steps {
+        gap: 12px;
+        padding: 0 8px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+    .form-group, .form-group.half {
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 10px 6px 6px 6px;
+        border-radius: 10px;
+    }
+    label {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    input, select {
+        width: 100%;
+        font-size: 16px !important;
+        padding: 16px 12px !important;
+        border-radius: 10px;
+        margin-bottom: 0;
+        min-height: 48px;
+    }
+    input[type="file"] {
+        padding: 0;
+        min-height: unset;
+    }
+    button[type="button"], #saveImageButton {
+        width: 100%;
+        font-size: 18px;
+        min-height: 48px;
+        padding: 14px 0;
+        margin: 18px 0 0 0;
+        border-radius: 12px;
+        letter-spacing: 1px;
+    }
+    .card {
+        width: 98vw !important;
+        max-width: 370px !important;
+        min-width: 0;
+        font-size: 11px !important;
+        padding: 8px !important;
+        margin: 12px auto 0 auto;
+        border-radius: 16px;
+        grid-template-columns: 1fr 2fr;
+    }
+    .info h3 {
+        font-size: 13px;
+    }
+    .info, .positioned-elements p, .card p {
+        font-size: 11px !important;
+    }
+    .qr-section canvas {
+        width: 60px;
+        height: 60px;
+    }
+    .special-condition-image {
+        width: 22px;
+        height: 22px;
+    }
+    .watermark-diagonal {
+        font-size: 18px;
+    }
+}
+
+/* Espaçamento confortável entre campos em todas as telas */
+.form-group + .form-group,
+.form-row + .form-row {
+    margin-top: 12px;
+}
+
+/* Ajuste para botões ficarem sempre grandes e fáceis de clicar */
+button[type="button"], #saveImageButton {
+    min-height: 48px;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+/* Garantir fonte mínima para inputs/selects em todas as telas */
+input, select {
+    font-size: 16px;
+}
+
+/* Remove min-width da .container para mobile */
+@media (max-width: 400px) {
+    .container {
+        min-width: 0;
+        padding: 0 0 16px 0;
+    }
+}
+
 /* ...existing code... */
 
 .card {
@@ -542,11 +660,118 @@ input[type="file"] {
 }
 
 @media (max-width: 700px) {
+    body {
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #4f8cff 0%, #a084ee 100%);
+    }
+    .container {
+        max-width: 100vw;
+        min-width: 0;
+        width: 100vw;
+        border-radius: 0;
+        margin: 0;
+        box-shadow: none;
+        padding: 0 0 24px 0;
+    }
+    .form-title {
+        font-size: 1.3rem;
+        padding: 18px 8px 8px 8px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .form-steps {
+        gap: 12px;
+        padding: 0 8px;
+    }
     .form-row {
         flex-direction: column;
         gap: 0;
-    }
-    .form-group.half {
         width: 100%;
+    }
+    .form-group, .form-group.half {
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 10px 6px 6px 6px;
+        border-radius: 10px;
+    }
+    label {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    input, select {
+        width: 100%;
+        font-size: 16px !important;
+        padding: 16px 12px !important;
+        border-radius: 10px;
+        margin-bottom: 0;
+        min-height: 48px;
+    }
+    input[type="file"] {
+        padding: 0;
+        min-height: unset;
+    }
+    button[type="button"], #saveImageButton {
+        width: 100%;
+        font-size: 18px;
+        min-height: 48px;
+        padding: 14px 0;
+        margin: 18px 0 0 0;
+        border-radius: 12px;
+        letter-spacing: 1px;
+    }
+    .card {
+        width: 98vw !important;
+        max-width: 370px !important;
+        min-width: 0;
+        font-size: 11px !important;
+        padding: 8px !important;
+        margin: 12px auto 0 auto;
+        border-radius: 16px;
+        grid-template-columns: 1fr 2fr;
+    }
+    .info h3 {
+        font-size: 13px;
+    }
+    .info, .positioned-elements p, .card p {
+        font-size: 11px !important;
+    }
+    .qr-section canvas {
+        width: 60px;
+        height: 60px;
+    }
+    .special-condition-image {
+        width: 22px;
+        height: 22px;
+    }
+    .watermark-diagonal {
+        font-size: 18px;
+    }
+}
+
+/* Espaçamento confortável entre campos em todas as telas */
+.form-group + .form-group,
+.form-row + .form-row {
+    margin-top: 12px;
+}
+
+/* Ajuste para botões ficarem sempre grandes e fáceis de clicar */
+button[type="button"], #saveImageButton {
+    min-height: 48px;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-top: 18px;
+}
+
+/* Garantir fonte mínima para inputs/selects em todas as telas */
+input, select {
+    font-size: 16px;
+}
+
+/* Remove min-width da .container para mobile */
+@media (max-width: 400px) {
+    .container {
+        min-width: 0;
+        padding: 0 0 16px 0;
     }
 }
