@@ -319,8 +319,6 @@ input, select {
     }
 }
 
-/* ...existing code... */
-
 .card {
     position: relative;
     box-shadow: none;
@@ -659,6 +657,30 @@ input[type="file"] {
     padding-left: 0;
 }
 
+.success-message {
+    display: none;
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: linear-gradient(90deg, #00c853 0%, #b2ff59 100%);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 18px 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    text-align: center;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s, top 0.3s;
+}
+.success-message.show {
+    display: flex;
+    opacity: 1;
+    top: 48px;
+}
 @media (max-width: 700px) {
     body {
         padding: 0;
