@@ -7,7 +7,7 @@
     <title>FUNDAÇÃO ESCOLA SOLIDÁRIA</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="mae.css" rel="stylesheet">
 </head>
 
@@ -31,10 +31,9 @@
             <li><a href="transp.html">Trasparência</a></li>
             <li><a href="ficha.html">Ficha do(a) Aluno(a)</a></li>
             <li><a href="termo.html">Termo Geral</a></li>
-           
         </ul>
         <!-- Botão para fechar o menu -->
-        <button class="close-menu">Fechar</button>
+        <button class="close-menu" aria-label="Fechar menu" title="Fechar menu"></button>
     </nav>
 
 
@@ -133,8 +132,9 @@
         </div>
     </section>
 
-    <section id="galeria" class="section">
+    <section id="galeria" class="section rounded-top">
         <div class="gallery-container">
+            <h2 class="carousel-label"><i class="fas fa-images"></i> Galeria de Fotos - Atividades Recentes</h2>
             <div class="gallery">
                 <img src="32.jpg" alt="Foto 1">
                 <img src="02.jpg" alt="Foto 2">
@@ -169,30 +169,31 @@
                 <img src="30.jpg" alt="Foto 12">
             </div>
         </div>
-    </section id="videos" class="section-video">
-    <div class="overlay"></div>
-    <div class="container">
-        <h1 class="heading video-title" style="text-align: center; width: 100%; display: block;">Vídeo e Localização do Projeto</h1>
-        <div class="divider"></div>
+    </section>
 
-        <div class="video-map-container">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/5JHDyIAnMPY" frameborder="0" allowfullscreen></iframe>
+    <section id="videos" class="section-video rounded-top">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1 class="heading video-title" style="text-align: center; width: 100%; display: block;">Vídeo e Localização do Projeto</h1>
+            <div class="divider"></div>
+            <div class="video-map-container">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/5JHDyIAnMPY" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d914.4151568367034!2d-43.39245267198597!3d-22.752074837213357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e3!4m5!1s0x9965ec194a9003%3A0xc7d7d689f8879263!2sR.%20Goi%C3%A2nia%2C%20159%20-%20Santa%20Am%C3%A9lia%2C%20Belford%20Roxo%20-%20RJ%2C%2026116-570!3m2!1d-22.752134599999998!2d-43.3918764!4m4!1s0x9965ec194a9003%3A0xc7d7d689f8879263!3m2!1d-22.752134599999998!2d-43.3918764!5e1!3m2!1spt-BR!2sbr!4v1739908062683!5m2!1spt-BR!2sbr"
+                        width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m27!1m12!1m3!1d914.4151568367034!2d-43.39245267198597!3d-22.752074837213357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m12!3e3!4m5!1s0x9965ec194a9003%3A0xc7d7d689f8879263!2sR.%20Goi%C3%A2nia%2C%20159%20-%20Santa%20Am%C3%A9lia%2C%20Belford%20Roxo%20-%20RJ%2C%2026116-570!3m2!1d-22.752134599999998!2d-43.3918764!4m4!1s0x9965ec194a9003%3A0xc7d7d689f8879263!3m2!1d-22.752134599999998!2d-43.3918764!5e1!3m2!1spt-BR!2sbr!4v1739908062683!5m2!1spt-BR!2sbr"
-                    width="600" height="450" style="border:0;" allowfullscreen loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-
         </div>
-    </div>
     </section>
-    </section>
+
     <section id="galeria2" class="section">
-        <div class="gallery2-container">
-            <div class="gallery2">
+        <div class="gallery-container">
+            <h2 class="carousel-label"><i class="fas fa-child"></i> Galeria de Fotos - Momentos Especiais</h2>
+            <div class="gallery reverse">
                 <img src="32.jpg" alt="Foto 1">
                 <img src="02.jpg" alt="Foto 2">
                 <img src="03.jpg" alt="Foto 3">
@@ -226,229 +227,239 @@
                 <img src="30.jpg" alt="Foto 12">
             </div>
         </div>
-        <section id="contato" class="section contato">
-            <h2>Atendimento ao Aluno/Responsável</h2>
-            <div class="container">
+    </section>
 
-                <div class="blackboard">
-                    <div class="vagas">Número de vagas de alunos: <span>135</span> | Reservas: <span>15</span></div>
-                    <h3>Aviso</h3>
-                    <p class="chalk">Prezado(a) Parceiro(a), desde 2003, a Fundação Escola Solidária oferece educação e
-                        suporte a crianças em situação de vulnerabilidade. Com seu apoio financeiro, podemos garantir
-                        uma
-                        oportunidade para um futuro melhor. Sua contribuição é essencial para fornecer educação,
-                        alimentação
-                        e cuidados essenciais. Junte-se a nós para construir uma sociedade mais justa e inclusiva.
-                        Contamos
-                        com você para fazer a diferença.</p>
-                    <a href="https://api.whatsapp.com/send?phone=5521973080269" target="_blank" class="donate-whatsapp-button">Clique aqui e saiba mais.</a>
-                </div>
+    <section id="contato" class="section contato">
+        <h2>Atendimento ao Aluno/Responsável</h2>
+        <div class="container">
 
-                <div class="contact-info-container">
-                    <div class="contact-info">
-                        <p><strong>Endereço:</strong> R. Goiânia, 159 - Santa Amélia, Belford Roxo - RJ, 26116-570</p>
-                        <p><strong>Telefone:</strong> (21) 2661-2767</p>
-                        <p><strong>Email:</strong> <a href="mailto:contato@escolafundacao.org"
-                                style="color: #52f28a;">contato@escolafundacao.org</a></p>
+            <div class="blackboard">
+                <div class="vagas">Número de vagas de alunos: <span>135</span> | Reservas: <span>15</span></div>
+                <h3>Aviso</h3>
+                <p class="chalk">Prezado(a) Parceiro(a), desde 2003, a Fundação Escola Solidária oferece educação e
+                    suporte a crianças em situação de vulnerabilidade. Com seu apoio financeiro, podemos garantir
+                    uma
+                    oportunidade para um futuro melhor. Sua contribuição é essencial para fornecer educação,
+                    alimentação
+                    e cuidados essenciais. Junte-se a nós para construir uma sociedade mais justa e inclusiva.
+                    Contamos
+                    com você para fazer a diferença.</p>
+                <a href="https://api.whatsapp.com/send?phone=5521973080269" target="_blank" class="donate-whatsapp-button">Clique aqui e saiba mais.</a>
+            </div>
+
+            <div class="contact-info-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <strong>Endereço:</strong> R. Goiânia, 159 - Santa Amélia, Belford Roxo - RJ, 26116-570
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <strong>Telefone:</strong> (21) 2661-2767
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <strong>Email:</strong> <a href="mailto:contato@escolafundacao.org">contato@escolafundacao.org</a>
                     </div>
                 </div>
-
-                <form class="contact-form">
-                    <a href="https://api.whatsapp.com/send?phone=5521973080269" target="_blank" class="btn whatsapp-button">WhatsApp</a>
-                </form>
             </div>
-        </section>
 
-        <footer>
-            <div class="footer-container">
-                <div class="partners-logos">
-                    <img src="logo bel.png" alt="Logo Parceiro 1">
-                    <img src="seu logo aqui.png" alt="Logo Parceiro 2">
-                    <img src="seu logo aqui.png" alt="Logo Parceiro 3">
-                </div>
-                <div class="center-text">
-                    <p>&copy; 2024 Fundação Escola Solidária CNPJ Nº 06.018.029/0001-87. Todos os direitos reservados.
-                    </p>
-                    <p><a href="#" class="privacy-link">Política de Privacidade e Termo de Privacidade</a></p>
-                </div>
+            <form class="contact-form">
+                <a href="https://api.whatsapp.com/send?phone=5521973080269" target="_blank" class="btn whatsapp-button">WhatsApp</a>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="partners-logos">
+                <img src="logo bel.png" alt="Logo Parceiro 1">
+                <img src="seu logo aqui.png" alt="Logo Parceiro 2">
+                <img src="seu logo aqui.png" alt="Logo Parceiro 3">
             </div>
-        </footer>
-
-        <!-- Modal Política de Privacidade e Termos de Uso -->
-        <div id="privacy-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Política de Privacidade e Termos de Uso</h2>
-                <p>A Fundação Escola Solidária, inscrita no CNPJ sob o número 06.018.029/0001-87, apresenta os Termos de
-                    Uso
-                    e a Política de Privacidade aplicáveis ao seu site. O acesso e utilização deste site implicam na
-                    aceitação dos termos aqui dispostos, cujo objetivo é proteger os direitos e a privacidade dos
-                    usuários,
-                    em conformidade com as leis brasileiras vigentes, incluindo a Lei nº 13.709/2018, conhecida como Lei
-                    Geral de Proteção de Dados Pessoais (LGPD).
-                    Os dados pessoais dos usuários podem ser coletados por meio de formulários de contato, inscrições em
-                    eventos ou outras interações realizadas no site. Esses dados podem incluir informações como nome,
-                    endereço de e-mail, telefone e outras necessárias para a prestação dos serviços oferecidos. A
-                    Fundação
-                    Escola Solidária compromete-se a utilizar tais dados exclusivamente para fins institucionais, tais
-                    como
-                    resposta a solicitações de informações, envio de comunicados e newsletters, aprimoramento da
-                    experiência
-                    do usuário no site e realização de pesquisas de satisfação. Ademais, a Fundação compromete-se a
-                    tratar
-                    os dados pessoais de acordo com os princípios estabelecidos pela LGPD, que incluem, entre outros, a
-                    finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança,
-                    prevenção e não discriminação.
-                    Os dados pessoais dos usuários não serão compartilhados com terceiros, exceto quando necessário para
-                    o
-                    cumprimento de obrigações legais ou para a execução de serviços essenciais, sempre garantindo que
-                    esses
-                    terceiros cumpram com a legislação de proteção de dados. Os dados coletados serão armazenados em
-                    servidores seguros, protegidos por medidas técnicas e administrativas que visam evitar acessos não
-                    autorizados, vazamentos ou qualquer outro incidente. Em conformidade com o artigo 46 da LGPD, a
-                    Fundação
-                    Escola Solidária implementa todas as medidas de segurança apropriadas para garantir a integridade
-                    dos
-                    dados pessoais.
-                    Os usuários têm o direito de solicitar a confirmação da existência de tratamento de seus dados
-                    pessoais,
-                    o acesso a esses dados, a correção de informações incompletas, inexatas ou desatualizadas, a
-                    anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em
-                    desconformidade com a LGPD. Têm também o direito à portabilidade dos dados, à eliminação dos dados
-                    tratados com consentimento do titular e à revogação do consentimento, conforme previsto no artigo
-                    8º,
-                    §5º da LGPD.
-                    Este site utiliza cookies para melhorar a experiência do usuário. Cookies são pequenos arquivos de
-                    texto
-                    armazenados no navegador do usuário, com a finalidade de autenticação, registro de preferências e
-                    análise de uso do site. O usuário tem a opção de desabilitar os cookies nas configurações de seu
-                    navegador, embora isso possa impactar a funcionalidade do site.
-                    A Fundação Escola Solidária reserva-se o direito de alterar os Termos de Uso e a Política de
-                    Privacidade
-                    a qualquer momento, sendo que as alterações serão publicadas no próprio site. Recomenda-se que os
-                    usuários revisitem esta página periodicamente para se manterem informados sobre possíveis mudanças.
-                    Este
-                    documento é regido pelas leis da República Federativa do Brasil, e qualquer disputa decorrente do
-                    uso
-                    deste site será submetida ao foro da comarca onde se encontra a sede da Fundação Escola Solidária,
-                    com
-                    renúncia expressa a qualquer outro foro, por mais privilegiado que seja.
-                    Em caso de dúvidas sobre estes Termos de Uso e Política de Privacidade, ou para exercer seus
-                    direitos
-                    como titular de dados, os usuários podem entrar em contato pelo e-mail:
-                    contato@escolasolidaria.org.br.
+            <div class="center-text">
+                <p>&copy; 2024 Fundação Escola Solidária CNPJ Nº 06.018.029/0001-87. Todos os direitos reservados.
                 </p>
+                <p><a href="#" class="privacy-link">Política de Privacidade e Termo de Privacidade</a></p>
             </div>
         </div>
+    </footer>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const mobileMenu = document.getElementById('mobile-menu');
-                const navList = document.querySelector('.nav-list');
-                const closeMenuButton = document.querySelector('.close-menu');
-                const contactForm = document.querySelector('.contact-form');
-                const modals = document.querySelectorAll('.modal');
-                const btns = document.querySelectorAll('.btn');
-                const spans = document.querySelectorAll('.modal .close');
-                const privacyLink = document.querySelector('.privacy-link');
-                const privacyModal = document.getElementById('privacy-modal');
+    <!-- Modal Política de Privacidade e Termos de Uso -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Política de Privacidade e Termos de Uso</h2>
+            <p>A Fundação Escola Solidária, inscrita no CNPJ sob o número 06.018.029/0001-87, apresenta os Termos de
+                Uso
+                e a Política de Privacidade aplicáveis ao seu site. O acesso e utilização deste site implicam na
+                aceitação dos termos aqui dispostos, cujo objetivo é proteger os direitos e a privacidade dos
+                usuários,
+                em conformidade com as leis brasileiras vigentes, incluindo a Lei nº 13.709/2018, conhecida como Lei
+                Geral de Proteção de Dados Pessoais (LGPD).
+                Os dados pessoais dos usuários podem ser coletados por meio de formulários de contato, inscrições em
+                eventos ou outras interações realizadas no site. Esses dados podem incluir informações como nome,
+                endereço de e-mail, telefone e outras necessárias para a prestação dos serviços oferecidos. A
+                Fundação
+                Escola Solidária compromete-se a utilizar tais dados exclusivamente para fins institucionais, tais
+                como
+                resposta a solicitações de informações, envio de comunicados e newsletters, aprimoramento da
+                experiência
+                do usuário no site e realização de pesquisas de satisfação. Ademais, a Fundação compromete-se a
+                tratar
+                os dados pessoais de acordo com os princípios estabelecidos pela LGPD, que incluem, entre outros, a
+                finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança,
+                prevenção e não discriminação.
+                Os dados pessoais dos usuários não serão compartilhados com terceiros, exceto quando necessário para
+                o
+                cumprimento de obrigações legais ou para a execução de serviços essenciais, sempre garantindo que
+                esses
+                terceiros cumpram com a legislação de proteção de dados. Os dados coletados serão armazenados em
+                servidores seguros, protegidos por medidas técnicas e administrativas que visam evitar acessos não
+                autorizados, vazamentos ou qualquer outro incidente. Em conformidade com o artigo 46 da LGPD, a
+                Fundação
+                Escola Solidária implementa todas as medidas de segurança apropriadas para garantir a integridade
+                dos
+                dados pessoais.
+                Os usuários têm o direito de solicitar a confirmação da existência de tratamento de seus dados
+                pessoais,
+                o acesso a esses dados, a correção de informações incompletas, inexatas ou desatualizadas, a
+                anonimização, o bloqueio ou a eliminação de dados desnecessários, excessivos ou tratados em
+                desconformidade com a LGPD. Têm também o direito à portabilidade dos dados, à eliminação dos dados
+                tratados com consentimento do titular e à revogação do consentimento, conforme previsto no artigo
+                8º,
+                §5º da LGPD.
+                Este site utiliza cookies para melhorar a experiência do usuário. Cookies são pequenos arquivos de
+                texto
+                armazenados no navegador do usuário, com a finalidade de autenticação, registro de preferências e
+                análise de uso do site. O usuário tem a opção de desabilitar os cookies nas configurações de seu
+                navegador, embora isso possa impactar a funcionalidade do site.
+                A Fundação Escola Solidária reserva-se o direito de alterar os Termos de Uso e a Política de
+                Privacidade
+                a qualquer momento, sendo que as alterações serão publicadas no próprio site. Recomenda-se que os
+                usuários revisitem esta página periodicamente para se manterem informados sobre possíveis mudanças.
+                Este
+                documento é regido pelas leis da República Federativa do Brasil, e qualquer disputa decorrente do
+                uso
+                deste site será submetida ao foro da comarca onde se encontra a sede da Fundação Escola Solidária,
+                com
+                renúncia expressa a qualquer outro foro, por mais privilegiado que seja.
+                Em caso de dúvidas sobre estes Termos de Uso e Política de Privacidade, ou para exercer seus
+                direitos
+                como titular de dados, os usuários podem entrar em contato pelo e-mail:
+                contato@escolasolidaria.org.br.
+            </p>
+        </div>
+    </div>
 
-                // Função para aplicar classes responsivas
-                function applyResponsiveClasses() {
-                    const body = document.body;
-                    body.classList.remove('desktop-mode', 'mobile-mode');
-                    if (window.innerWidth <= 768) {
-                        body.classList.add('mobile-mode');
-                    } else {
-                        body.classList.add('desktop-mode');
-                    }
-                }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navList = document.querySelector('.nav-list');
+            const closeMenuButton = document.querySelector('.close-menu');
+            const contactForm = document.querySelector('.contact-form');
+            const modals = document.querySelectorAll('.modal');
+            const btns = document.querySelectorAll('.btn');
+            const spans = document.querySelectorAll('.modal .close');
+            const privacyLink = document.querySelector('.privacy-link');
+            const privacyModal = document.getElementById('privacy-modal');
 
-                // Aplica classes responsivas ao carregar a página
-                applyResponsiveClasses();
-
-                // Chama a função ao redimensionar a janela
-                window.addEventListener('resize', applyResponsiveClasses);
-
-                // Lógica do menu mobile
-                if (mobileMenu && navList) {
-                    mobileMenu.addEventListener('click', () => {
-                        navList.classList.toggle('active');
-                        if (closeMenuButton) {
-                            closeMenuButton.style.display = navList.classList.contains('active') ? 'block' : 'none';
-                        }
-                    });
-
-                    if (closeMenuButton) {
-                        closeMenuButton.addEventListener('click', () => {
-                            navList.classList.remove('active');
-                            closeMenuButton.style.display = 'none';  // Esconde o botão ao fechar
-                        });
-                    }
-
-                    // Fecha o menu ao clicar fora
-                    window.addEventListener('click', (event) => {
-                        if (!mobileMenu.contains(event.target) && !navList.contains(event.target) && navList.classList.contains('active')) {
-                            navList.classList.remove('active');
-                            if (closeMenuButton) {
-                                closeMenuButton.style.display = 'none'; // Esconde o botão ao clicar fora do menu
-                            }
-                        }
-                    });
+            // Função para aplicar classes responsivas
+            function applyResponsiveClasses() {
+                const body = document.body;
+                body.classList.remove('desktop-mode', 'mobile-mode');
+                if (window.innerWidth <= 768) {
+                    body.classList.add('mobile-mode');
                 } else {
-                    console.error('O elemento mobile-menu ou nav-list não foi encontrado.');
+                    body.classList.add('desktop-mode');
                 }
+            }
 
-                // Formulário de contato
-                if (contactForm) {
-                    contactForm.addEventListener('submit', function (event) {
-                        event.preventDefault();
-                        alert('Formulário enviado com sucesso!');
-                    });
-                }
+            // Aplica classes responsivas ao carregar a página
+            applyResponsiveClasses();
 
-                // Funcionalidade do modal
-                btns.forEach((btn) => {
-                    btn.addEventListener('click', function () {
-                        const modalId = btn.getAttribute('data-modal');
-                        const modal = document.getElementById(modalId);
-                        if (modal) {
-                            modal.style.display = 'block';
-                        }
-                    });
-                });
+            // Chama a função ao redimensionar a janela
+            window.addEventListener('resize', applyResponsiveClasses);
 
-                spans.forEach((span) => {
-                    span.addEventListener('click', function () {
-                        span.closest('.modal').style.display = 'none';
-                    });
-                });
-
-                window.addEventListener('click', function (event) {
-                    modals.forEach((modal) => {
-                        if (event.target === modal) {
-                            modal.style.display = 'none';
-                        }
-                    });
-                });
-
-                // Modal para Política de Privacidade e Termos de Uso
-                if (privacyLink && privacyModal) {
-                    privacyLink.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        privacyModal.style.display = 'block';
-                    });
-
-                    const closePrivacyModal = privacyModal.querySelector('.close');
-                    if (closePrivacyModal) {
-                        closePrivacyModal.addEventListener('click', function () {
-                            privacyModal.style.display = 'none';
-                        });
+            // Lógica do menu mobile
+            if (mobileMenu && navList) {
+                mobileMenu.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    if (closeMenuButton) {
+                        closeMenuButton.style.display = navList.classList.contains('active') ? 'block' : 'none';
                     }
+                });
+
+                if (closeMenuButton) {
+                    closeMenuButton.addEventListener('click', () => {
+                        navList.classList.remove('active');
+                        closeMenuButton.style.display = 'none';  // Esconde o botão ao fechar
+                    });
                 }
+
+                // Fecha o menu ao clicar fora
+                window.addEventListener('click', (event) => {
+                    if (!mobileMenu.contains(event.target) && !navList.contains(event.target) && navList.classList.contains('active')) {
+                        navList.classList.remove('active');
+                        if (closeMenuButton) {
+                            closeMenuButton.style.display = 'none'; // Esconde o botão ao clicar fora do menu
+                        }
+                    }
+                });
+            } else {
+                console.error('O elemento mobile-menu ou nav-list não foi encontrado.');
+            }
+
+            // Formulário de contato
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    alert('Formulário enviado com sucesso!');
+                });
+            }
+
+            // Funcionalidade do modal
+            btns.forEach((btn) => {
+                btn.addEventListener('click', function () {
+                    const modalId = btn.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'block';
+                    }
+                });
             });
 
-        </script>
+            spans.forEach((span) => {
+                span.addEventListener('click', function () {
+                    span.closest('.modal').style.display = 'none';
+                });
+            });
+
+            window.addEventListener('click', function (event) {
+                modals.forEach((modal) => {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+
+            // Modal para Política de Privacidade e Termos de Uso
+            if (privacyLink && privacyModal) {
+                privacyLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    privacyModal.style.display = 'block';
+                });
+
+                const closePrivacyModal = privacyModal.querySelector('.close');
+                if (closePrivacyModal) {
+                    closePrivacyModal.addEventListener('click', function () {
+                        privacyModal.style.display = 'none';
+                    });
+                }
+            }
+        });
+
+    </script>
 
 </body>
 
