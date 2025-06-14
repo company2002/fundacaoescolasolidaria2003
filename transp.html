@@ -1,22 +1,619 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transparência - Fundação Escola Solidária</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background-color: #e9ecef;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .breadcrumb-content {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .breadcrumb a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .intro-section h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .transparency-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .transparency-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-header.receitas {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .card-header.despesas {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .financial-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .financial-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .financial-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .financial-list {
+            list-style: none;
+        }
+
+        .financial-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .financial-list li:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        .item-value {
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .download-section {
+            margin-top: 2rem;
+        }
+        .download-section h3 {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            justify-items: center;
+        }
+        .download-btn {
+            background: #2196f3;
+            color: #fff;
+            border-radius: 12px;
+            padding: 1.2rem 0.7rem 1rem 0.7rem;
+            min-height: 320px;
+            min-width: 220px;
+            max-width: 320px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 16px rgba(33,150,243,0.08);
+            font-size: 1.1rem;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            position: relative;
+        }
+        .download-btn:hover {
+            background: #1769aa;
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(33,150,243,0.15);
+        }
+        .download-btn .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .download-btn canvas {
+            margin-top: 1.2rem;
+            max-width: 90%;
+            height: 140px !important;
+            width: 100% !important;
+        }
+        @media (max-width: 700px) {
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+            .download-btn {
+                min-width: 0;
+                max-width: 100%;
+                padding: 1.5rem 0.5rem 1rem 0.5rem;
+            }
+        }
+
+        .last-update {
+            background: #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item .icon {
+            margin-right: 0.75rem;
+            color: #007bff;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .transparency-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .financial-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+            cursor: pointer;
+        }
+        .btn-download:hover {
+            background: #1769aa;
+        }
+        .btn-download .icon {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .graficos-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: flex-start;
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 16px rgba(33,150,243,0.08);
+        }
+        .grafico-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: transparent;
+            color: #1e3c72;
+            min-width: 240px;
+            max-width: 260px;
+            flex: 1 1 0;
+        }
+        .grafico-item .icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .grafico-titulo {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        Transparência - Fundação Escola Solidária
-       
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Transparência Pública</h1>
+                <p>Fundação Escola Solidária - Prestação de Contas</p>
+            </div>
+        </div>
     </header>
-    <div class="container">
-        <button aria-label="Despesas" onclick="window.location.href='despesas.html'">Despesas</button>
-        <button aria-label="Receita" onclick="window.location.href='receita.html'">Receita</button>
-    </div>
-    <footer>© 2025 Fundação Escola Solidária | Transparência e Compromisso</footer>
 
-    <script src="script.js"></script>
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="#">Início</a> > <a href="#">Transparência</a> > Entradas e Saídas
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="intro-section">
+                <h2>Transparência Financeira</h2>
+                <p>Em cumprimento à Lei de Acesso à Informação (Lei nº 12.527/2011) e aos princípios da administração pública, a Fundação Escola Solidária disponibiliza informações detalhadas sobre suas receitas e despesas.</p>
+                <p>Nosso compromisso é manter a sociedade informada sobre a aplicação dos recursos públicos destinados ao desenvolvimento educacional e social da comunidade.</p>
+            </section>
+
+            <div class="transparency-grid">
+                <div class="transparency-card">
+                    <div class="card-header receitas">
+                        <div class="icon">📈</div>
+                        <h3>Receitas</h3>
+                        <p>Entradas de Recursos</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="financial-summary">
+                            <div>
+                                <div class="financial-value">R$ 40.000,00</div>
+                                <div class="financial-label">Total do Exercício 2024</div>
+                            </div>
+                        </div>
+                        <ul class="financial-list">
+                            <li>
+                                <span class="item-name">Repasses Governamentais</span>
+                                <span class="item-value">R$ 20.000,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Convênios e Parcerias</span>
+                                <span class="item-value">R$ 5.200,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Doações</span>
+                                <span class="item-value">R$ 5.850,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Rendimentos Financeiros</span>
+                                <span class="item-value">R$ 300,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Outras Receitas</span>
+                                <span class="item-value">R$ 8.650,00</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="transparency-card">
+                    <div class="card-header despesas">
+                        <div class="icon">📊</div>
+                        <h3>Despesas</h3>
+                        <p>Saídas de Recursos</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="financial-summary">
+                            <div>
+                                <div class="financial-value">R$ 40.000,00</div>
+                                <div class="financial-label">Total do Exercício 2024</div>
+                            </div>
+                        </div>
+                        <ul class="financial-list">
+                            <li>
+                                <span class="item-name">Pessoal e Encargos</span>
+                                <span class="item-value">R$ 26.000,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Material e Equipamentos</span>
+                                <span class="item-value">R$ 4.541,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Serviços de Terceiros</span>
+                                <span class="item-value">R$ 3.321,00</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Manutenção e Infraestrutura</span>
+                                <span class="item-value">R$ 2.685,20</span>
+                            </li>
+                            <li>
+                                <span class="item-name">Programas Sociais</span>
+                                <span class="item-value">R$ 3.452,80 </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <h3>Documentos para Download</h3>
+                <div class="graficos-container">
+                    <div class="grafico-item">
+                        <span class="icon">📊</span>
+                        <div class="grafico-titulo">Balancete Financeiro</div>
+                        <canvas id="balanceteChart" width="240" height="120" style="margin-top:0.7rem;"></canvas>
+                    </div>
+                    <div class="grafico-item">
+                        <span class="icon">📈</span>
+                        <div class="grafico-titulo">Relatório de Execução Orçamentária</div>
+                        <canvas id="execucaoLineChart" width="240" height="120" style="margin-top:0.7rem;"></canvas>
+                    </div>
+                </div>
+                <!-- Botões de download abaixo dos gráficos -->
+                <div class="download-actions" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+                    <a href="relatorio-mensal-junho-2024.pdf" class="btn-download" download>
+                        <span class="icon">📄</span>
+                        Relatório Mensal - Junho/2024
+                    </a>
+                    <a href="demonstrativo-receitas.pdf" class="btn-download" download>
+                        <span class="icon">📋</span>
+                        Demonstrativo de Receitas
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>Informações de Contato</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <span>contato@escolafundacao.org</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📞</span>
+                        <span>(21) 2661-2767</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📍</span>
+                        <span>R. Goiânia, 159 - Santa Amélia, Belford Roxo - RJ, 26116-570</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🕒</span>
+                        <span>Atendimento: 8h às 15h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="last-update">
+                <p><strong>Última atualização:</strong> 14 de junho de 2025</p>
+                <p>Os dados são atualizados mensalmente até o dia 15 de cada mês</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Fundação Escola Solidária</p>
+            <p>Comprometida com a transparência e o desenvolvimento social</p>
+            <p>CNPJ Nº 06.018.029/0001-87. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Função para extrair valor numérico de string tipo 'R$ 40.000,00'
+        function extrairValor(str) {
+            return Number(str.replace(/[^\d,]/g, '').replace('.', '').replace(',', '.'));
+        }
+        // Captura os valores reais do HTML
+        const receitaTotal = extrairValor(document.querySelectorAll('.financial-value')[0].textContent);
+        const despesaTotal = extrairValor(document.querySelectorAll('.financial-value')[1].textContent);
+
+        // Gráfico Balancete Financeiro (barra)
+        const ctxBalancete = document.getElementById('balanceteChart').getContext('2d');
+        new Chart(ctxBalancete, {
+            type: 'bar',
+            data: {
+                labels: ['Receita', 'Despesa'],
+                datasets: [{
+                    label: 'Valores',
+                    data: [receitaTotal, despesaTotal],
+                    backgroundColor: ['#007bff', '#dc3545'],
+                }]
+            },
+            options: {
+                responsive: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // Gráfico de linha para Execução Orçamentária
+        const ctxExecucaoLine = document.getElementById('execucaoLineChart').getContext('2d');
+        new Chart(ctxExecucaoLine, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Receita',
+                        data: [receitaTotal, receitaTotal, receitaTotal, receitaTotal, receitaTotal, receitaTotal],
+                        borderColor: '#2196f3',
+                        backgroundColor: 'rgba(33,150,243,0.08)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#2196f3',
+                    },
+                    {
+                        label: 'Despesa',
+                        data: [despesaTotal, despesaTotal, despesaTotal, despesaTotal, despesaTotal, despesaTotal],
+                        borderColor: '#e53935',
+                        backgroundColor: 'rgba(229,57,53,0.08)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#e53935',
+                    }
+                ]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: { display: true, position: 'bottom' }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
