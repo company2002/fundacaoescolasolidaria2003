@@ -497,11 +497,11 @@
                 </div>
                 <!-- Botões de download abaixo dos gráficos -->
                 <div class="download-actions" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
-                    <a href="relatorio-mensal-junho-2024.pdf" class="btn-download" download>
+                    <a href="#" class="btn-download" data-csv="mensal">
                         <span class="icon">📄</span>
                         Relatório Mensal - Junho/2024
                     </a>
-                    <a href="demonstrativo-receitas.pdf" class="btn-download" download>
+                    <a href="#" class="btn-download" data-csv="receitas">
                         <span class="icon">📋</span>
                         Demonstrativo de Receitas
                     </a>
@@ -613,6 +613,57 @@
                     y: { beginAtZero: true }
                 }
             }
+        });
+
+        // Função para gerar e baixar CSV
+        function baixarCSV(nomeArquivo, linhas) {
+            const csv = linhas.map(linha => linha.join(';')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = nomeArquivo;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Extrai dados de receitas e despesas do HTML
+        function getReceitas() {
+            const lista = Array.from(document.querySelectorAll('.financial-list'))[0];
+            return Array.from(lista.querySelectorAll('li')).map(li => [
+                li.querySelector('.item-name').textContent.trim(),
+                li.querySelector('.item-value').textContent.trim()
+            ]);
+        }
+        function getDespesas() {
+            const lista = Array.from(document.querySelectorAll('.financial-list'))[1];
+            return Array.from(lista.querySelectorAll('li')).map(li => [
+                li.querySelector('.item-name').textContent.trim(),
+                li.querySelector('.item-value').textContent.trim()
+            ]);
+        }
+
+        // Evento para Relatório Mensal (receitas + despesas)
+        document.querySelector('.btn-download[data-csv="mensal"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            const receitas = getReceitas();
+            const despesas = getDespesas();
+            const linhas = [
+                ['Tipo', 'Categoria', 'Valor'],
+                ...receitas.map(r => ['Receita', ...r]),
+                ...despesas.map(d => ['Despesa', ...d])
+            ];
+            baixarCSV('relatorio-mensal-junho-2024.csv', linhas);
+        });
+        // Evento para Demonstrativo de Receitas
+        document.querySelector('.btn-download[data-csv="receitas"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            const receitas = getReceitas();
+            const linhas = [
+                ['Categoria', 'Valor'],
+                ...receitas
+            ];
+            baixarCSV('demonstrativo-receitas.csv', linhas);
         });
     </script>
 </body>
