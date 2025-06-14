@@ -3,247 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de Pré-Matrícula do Aluno</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>🌟 Ficha de Pré-Matrícula do Aluno 🌟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Nunito', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background: linear-gradient(135deg, #ff9a9e 0%, #0018f3 50%, #fecfef 90%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Elementos decorativos flutuantes */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-star, .floating-heart, .floating-balloon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .floating-star:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; font-size: 20px; }
+        .floating-star:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; font-size: 25px; }
+        .floating-heart:nth-child(3) { top: 60%; left: 5%; animation-delay: 2s; font-size: 18px; }
+        .floating-balloon:nth-child(4) { top: 40%; right: 10%; animation-delay: 3s; font-size: 22px; }
+        .floating-star:nth-child(5) { top: 80%; left: 20%; animation-delay: 4s; font-size: 16px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            50% { transform: translateY(-5px) rotate(-3deg); }
+            75% { transform: translateY(-15px) rotate(3deg); }
+        }
+
         .form-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 2em auto;
-            padding: 2em;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2.5em;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 0 3px #ff6b9d;
+            position: relative;
+            z-index: 2;
+            border: 4px solid transparent;
+            background-clip: padding-box;
         }
-        .form-container h2, .form-container h3 {
-            margin-bottom: 1em;
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, #ff6b9d, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            border-radius: 29px;
+            z-index: -1;
+        }
+
+        .header-section {
             text-align: center;
+            margin-bottom: 2em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2em;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
         }
+
+        .header-section::before {
+            content: '🌈✨🎒✨🌈';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .form-container h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2em;
+            color: #fff;
+            margin: 0.5em 0 0.2em 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .section-header {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4em;
+            color: #333;
+            margin: 2em 0 1em 0;
+            text-align: center;
+            padding: 0.8em;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            border-radius: 15px;
+            border: 3px solid #e17055;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-header::before {
+            content: attr(data-icon);
+            font-size: 1.2em;
+            margin-right: 0.5em;
+        }
+
+        .input-group {
+            position: relative;
+            margin: 1em 0;
+        }
+
         .form-container input,
         .form-container textarea,
         .form-container select {
-            width: 90%;
-            margin: 0.5em 0;
-            padding: 0.5em;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            width: 100%;
+            padding: 1em 1.2em;
+            border-radius: 15px;
+            border: 3px solid #ddd;
+            font-size: 1em;
+            font-family: 'Nunito', sans-serif;
+            background: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-transform: uppercase;
         }
+
+        .form-container input:focus,
+        .form-container textarea:focus,
+        .form-container select:focus {
+            outline: none;
+            border-color: #ff6b9d;
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.2), 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
         .form-container input:invalid {
-            border-color: red;
+            border-color: #ff7675;
+            background-color: #fff5f5;
         }
-        .form-container button {
-            background-color: #268ef0;
+
+        .form-container input:valid {
+            border-color: #00b894;
+            background-color: #f0fff4;
+        }
+
+        .photo-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .photo-preview {
+            display: none;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff6b9d;
+            object-fit: cover;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            z-index: 3;
+        }
+
+        .photo-input {
+            padding-right: 140px !important;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin: 1em 0;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 1em;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 3px solid #0984e3;
+        }
+
+        .file-input-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .file-input-label::before {
+            content: '📷 ';
+            font-size: 1.2em;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .toggle-section {
+            background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+            padding: 1.5em;
+            border-radius: 15px;
+            margin: 1.5em 0;
+            border: 3px solid #e84393;
+        }
+
+        .toggle-section select {
+            background: white;
+            font-weight: 600;
+        }
+
+        .hidden-section {
+            display: none;
+            margin-top: 1em;
+            padding: 1em;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            border: 2px dashed #e84393;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 1.5em 0;
+            padding: 1em;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: auto;
+            margin-right: 1em;
+            transform: scale(1.5);
+        }
+
+        .checkbox-container a {
+            color: #ffeaa7;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .print-button {
+            background: linear-gradient(135deg, #00cec9 0%, #55a3ff 100%);
             color: #fff;
             border: none;
-            padding: 0.7em 1.5em;
-            border-radius: 4px;
+            padding: 1.2em 2.5em;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .form-container button:hover {
-            background-color: #176dc1;
-        }
-        .document-upload input {
-            padding: 0.2em;
-        }
-        .consentimento label {
+            font-size: 1.1em;
+            font-weight: 700;
+            font-family: 'Fredoka One', cursive;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border: 3px solid #00b894;
             display: block;
-            margin: 0.5em 0;
+            margin: 2em auto;
         }
-        .page-break {
-            page-break-before: always;
-            page-break-inside: avoid;
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
         }
-        @media print {
-            body, .form-container {
-                width: 100%;
-                margin: 0;
-                box-shadow: none;
-                background-color: white;
-            }
-            .form-container input[type="file"] {
-                display: block;
-            }
-            .form-container label {
-                display: inline-block;
-                margin-bottom: 0.5em;
-            }
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-            .form-container {
-                padding: 1em;
-            }
-            button {
-                display: none;
-            }
-            .foto-aluno, .foto-outros {
-                float: right;
-                margin-left: 15px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
+
+        .print-button::before {
+            content: '🖨️ ';
+            font-size: 1.2em;
         }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
         }
+
         .modal-content {
-            background-color: #fefefe;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f3f4 100%);
             margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
+            padding: 2em;
+            border: none;
             width: 80%;
-            border-radius: 10px;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
         }
+
         .close {
-            color: #aaa;
+            color: #ff6b9d;
             float: right;
-            font-size: 28px;
+            font-size: 2em;
             font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
+            background: none;
+            border: none;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .necessidades-especiais {
-            display: none;
+        .close:hover {
+            color: #e84393;
+            transform: scale(1.2);
         }
 
-        .outros-dados {
-            display: none;
+        @media print {
+            body, html {
+                background: #fff !important;
+                color: #000 !important;
+                margin: 0;
+                padding: 0;
+                width: 210mm;
+                height: 297mm;
+                font-size: 12pt;
+            }
+            .floating-elements, .print-button, .file-input-wrapper, .checkbox-container, .modal, .section-header[data-icon], .subtitle, .form-container::before, .header-section::before, .header-section, .photo-preview, .file-input-label, .toggle-section, .hidden-section, .notificacao, [class*="floating-"] {
+                display: none !important;
+            }
+            .form-container {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+                max-width: 100% !important;
+            }
+            #fichaTabelaImpressao {
+                display: table !important;
+                width: 100%;
+                border-collapse: collapse;
+                margin: 0 auto;
+                font-size: 12pt;
+            }
+            #fichaTabelaImpressao th, #fichaTabelaImpressao td {
+                border: 1px solid #000;
+                padding: 6px 10px;
+                text-align: left;
+                background: #fff !important;
+                color: #000 !important;
+            }
+            #fichaTabelaImpressao th {
+                font-weight: bold;
+                background: #f2f2f2 !important;
+            }
+            #fichaTabelaImpressao img {
+                max-width: 100px;
+                max-height: 120px;
+                float: right;
+                margin-left: 10px;
+                border: 1px solid #000;
+            }
+            #form-content form, #form-content .form-container > *:not(#fichaTabelaImpressao) {
+                display: none !important;
+            }
         }
+
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 1em;
+                padding: 1.5em;
+            }
+            .header-section {
+                padding: 1.5em;
+            }
+            .form-container h2 {
+                font-size: 1.8em;
+            }
+            .photo-preview {
+                position: static;
+                transform: none;
+                margin: 1em auto;
+                display: block;
+            }
+            .photo-input {
+                padding-right: 1.2em !important;
+            }
+        }
+
+        th, td { padding: 10px 12px; text-align: left; font-size: 1em; word-break: break-word; max-width: 0; }
+        td { max-width: 350px; white-space: pre-line; }
+        .ficha-container { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px #0001; padding: 2em; }
+        table { width: 100%; border-collapse: separate; border-spacing: 0 8px; table-layout: fixed; }
+        @media print { body, html { background: #fff !important; color: #000 !important; } .ficha-container { box-shadow: none !important; border: none !important; } }
     </style>
 </head>
 <body>
+    <div class="floating-elements">
+        <div class="floating-star">⭐</div>
+        <div class="floating-star">🌟</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-balloon">🎈</div>
+        <div class="floating-star">✨</div>
+    </div>
+
     <div class="form-container" id="form-content">
-        <h2>Ficha de Pré-Matrícula do Aluno</h2>
+        <div class="header-section">
+            <h2>🌟 Ficha de Pré-Matrícula 🌟</h2>
+            <p class="subtitle">Vamos conhecer nosso novo amiguinho! 🎒✨</p>
+        </div>
+
         <form id="fichaForm" novalidate>
-            <h3>Informações Pessoais do Aluno</h3>
-            <div style="position: relative;">
-                <input type="text" name="nomeAluno" placeholder="Nome Completo" required style="display: inline-block; width: 75%;" aria-label="Nome Completo">
-                <img id="previewFotoAluno" class="foto-aluno" style="display:none; width: 100px; height: 100px;" alt="Pré-visualização da foto do aluno">
+            <h3 class="section-header" data-icon="👦👧">Informações do Nosso Pequeno Estudante</h3>
+            
+            <div class="input-group photo-container">
+                <input type="text" name="nomeAluno" placeholder="🎭 Nome Completo do Aluno" required class="photo-input" aria-label="Nome Completo">
+                <img id="previewFotoAluno" class="photo-preview" alt="Foto do aluno">
             </div>
-            <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*" style="display: inline-block; width: 90%;" onchange="previewImage('fotoAluno', 'previewFotoAluno')" aria-label="Foto do aluno">
-            <input type="date" name="dataNascimento" placeholder="Data de Nascimento" required aria-label="Data de Nascimento">
-            <select name="nacionalidade" required aria-label="Nacionalidade">
-                <option value="">Nacionalidade</option>
-                <option value="brasileiro">Brasileiro</option>
-                <option value="estrangeiro">Estrangeiro</option>
-            </select>
-            <input type="text" name="naturalidade" placeholder="Naturalidade (cidade e estado)" required aria-label="Naturalidade">
-            <select name="genero" required aria-label="Gênero">
-                <option value="">Gênero</option>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outro">Outro</option>
-            </select>
-            <input type="text" id="cep" name="cep" placeholder="CEP" required onblur="buscarCep()" aria-label="CEP">
-            <input type="text" id="logradouro" name="logradouro" placeholder="Logradouro" required aria-label="Logradouro">
-            <input type="text" id="numero" name="numero" placeholder="Número" required aria-label="Número">
-            <input type="text" id="complemento" name="complemento" placeholder="Complemento" aria-label="Complemento">
-            <input type="text" id="bairro" name="bairro" placeholder="Bairro" required aria-label="Bairro">
-            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required aria-label="Cidade">
-            <input type="text" id="uf" name="uf" placeholder="Estado" required aria-label="Estado">
-            <input type="tel" name="telefone" placeholder="Telefones de Contato" required aria-label="Telefone de Contato">
-            <input type="email" name="email" placeholder="E-mail" required aria-label="E-mail">
-            <input type="text" name="rg" placeholder="Número de Registro Geral (RG)" required aria-label="RG">
-            <input type="text" name="cpf" placeholder="CPF (se aplicável)" aria-label="CPF">
-            <input type="text" name="certidao" placeholder="Número da Certidão de Nascimento ou Casamento" required aria-label="Certidão">
-            <input type="text" name="raca" placeholder="Raça/Cor (opcional)" aria-label="Raça/Cor">
-
-            <h3>Necessidades Especiais</h3>
-            <label>Possui necessidades especiais?</label>
-            <select id="necessidadeSelect" onchange="toggleNecessidadeInput()" aria-label="Possui necessidades especiais?">
-                <option value="">Selecione</option>
-                <option value="sim">Sim</option>
-                <option value="nao">Não</option>
-            </select>
-            <div id="necessidadeInput" class="necessidades-especiais">
-                <input type="text" name="especificacaoNecessidade" placeholder="Especifique quais necessidades especiais" aria-label="Especifique necessidades especiais">
+            
+            <div class="file-input-wrapper">
+                <label for="fotoAluno" class="file-input-label">Adicionar Foto do Aluno</label>
+                <input type="file" id="fotoAluno" name="fotoAluno" accept="image/*" onchange="previewImage('fotoAluno', 'previewFotoAluno')" aria-label="Foto do aluno">
             </div>
 
-            <h3>Filiação</h3>
-            <input type="text" name="nomePai" placeholder="Nome do Pai" aria-label="Nome do Pai">
-            <input type="text" name="nomeMae" placeholder="Nome da Mãe" aria-label="Nome da Mãe">
+            <div class="input-group">
+                <input type="date" name="dataNascimento" placeholder="🎂 Data de Nascimento" required aria-label="Data de Nascimento">
+            </div>
 
-            <h3>Responsável pela ficha do aluno</h3>
-            <input type="text" name="nomeResponsavel" placeholder="Nome Completo do Responsável" required aria-label="Nome do Responsável">
-            <input type="text" name="rgResponsavel" placeholder="RG do Responsável" required aria-label="RG do Responsável">
-            <input type="text" name="cpfResponsavel" placeholder="CPF do Responsável" required aria-label="CPF do Responsável">
-            <input type="text" id="cepResponsavel" name="cepResponsavel" placeholder="CEP" required onblur="buscarCepResponsavel()" aria-label="CEP do Responsável">
-            <input type="text" id="logradouroResponsavel" name="logradouroResponsavel" placeholder="Logradouro" required aria-label="Logradouro do Responsável">
-            <input type="text" id="numeroResponsavel" name="numeroResponsavel" placeholder="Número" aria-label="Número do Responsável">
-            <input type="text" id="complementoResponsavel" name="complementoResponsavel" placeholder="Complemento" aria-label="Complemento do Responsável">
-            <input type="text" id="bairroResponsavel" name="bairroResponsavel" placeholder="Bairro" required aria-label="Bairro do Responsável">
-            <input type="text" id="cidadeResponsavel" name="cidadeResponsavel" placeholder="Cidade" required aria-label="Cidade do Responsável">
-            <input type="text" id="ufResponsavel" name="ufResponsavel" placeholder="Estado" required aria-label="Estado do Responsável">
-            <input type="tel" name="telefoneResponsavel" placeholder="Telefones de Contato do Responsável" required aria-label="Telefone do Responsável">
-            <input type="text" name="profissaoResponsavel" placeholder="Profissão do Responsável" required aria-label="Profissão do Responsável">
-            <input type="email" name="emailResponsavel" placeholder="E-mail do Responsável" required aria-label="E-mail do Responsável">
+            <div class="input-group">
+                <select name="nacionalidade" required aria-label="Nacionalidade">
+                    <option value="">🌍 Nacionalidade</option>
+                    <option value="brasileiro">🇧🇷 Brasileiro</option>
+                    <option value="estrangeiro">🌎 Estrangeiro</option>
+                </select>
+            </div>
 
-            <h3>Quem irá buscar e levar o aluno</h3>
-            <select id="quemBuscarLevar" onchange="toggleOutrosDados()" aria-label="Quem irá buscar e levar o aluno?">
-                <option value="">Selecione</option>
-                <option value="pai">Pai</option>
-                <option value="mae">Mãe</option>
-                <option value="outros">Outros</option>
-            </select>
-            <div id="outrosDados" class="outros-dados">
-                <div style="position: relative;">
-                    <input type="text" name="nomeOutros" placeholder="Nome Completo" aria-label="Nome Completo de outra pessoa">
-                    <img id="previewFotoOutros" class="foto-outros" style="display:none; width: 100px; height: 100px;" alt="Pré-visualização da foto de outra pessoa">
+            <div class="input-group">
+                <input type="text" name="naturalidade" placeholder="🏠 Naturalidade (cidade e estado)" required aria-label="Naturalidade">
+            </div>
+
+            <div class="input-group">
+                <select name="genero" required aria-label="Gênero">
+                    <option value="">👤 Gênero</option>
+                    <option value="masculino">👦 Masculino</option>
+                    <option value="feminino">👧 Feminino</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="cep" name="cep" placeholder="📮 CEP" required onblur="buscarCep()" aria-label="CEP">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="logradouro" name="logradouro" placeholder="🏘️ Logradouro" required aria-label="Logradouro">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="numero" name="numero" placeholder="🔢 Número" required aria-label="Número">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="complemento" name="complemento" placeholder="🏢 Complemento" aria-label="Complemento">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="bairro" name="bairro" placeholder="🏘️ Bairro" required aria-label="Bairro">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="cidade" name="cidade" placeholder="🏙️ Cidade" required aria-label="Cidade">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="uf" name="uf" placeholder="🗺️ Estado" required aria-label="Estado">
+            </div>
+
+            <div class="input-group">
+                <input type="tel" name="telefone" placeholder="📱 Telefones de Contato" required aria-label="Telefone de Contato">
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder="📧 E-mail" required aria-label="E-mail">
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="rg" placeholder="🆔 Número do RG" required aria-label="RG">
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="cpf" placeholder="📄 CPF (se aplicável)" aria-label="CPF">
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="certidao" placeholder="📜 Número da Certidão de Nascimento" required aria-label="Certidão">
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="raca" placeholder="🌈 Raça/Cor (opcional)" aria-label="Raça/Cor">
+            </div>
+
+            <h3 class="section-header" data-icon="🫂">Necessidades Especiais</h3>
+            <div class="toggle-section">
+                <label>💝 Nosso aluno possui necessidades especiais?</label>
+                <select id="necessidadeSelect" onchange="toggleNecessidadeInput()" aria-label="Possui necessidades especiais?">
+                    <option value="">Selecione</option>
+                    <option value="sim">✅ Sim</option>
+                    <option value="nao">❌ Não</option>
+                </select>
+                <div id="necessidadeInput" class="hidden-section">
+                    <input type="text" name="especificacaoNecessidade" placeholder="💬 Conte-nos quais necessidades especiais" aria-label="Especifique necessidades especiais">
                 </div>
-                <input type="file" id="fotoOutros" name="fotoOutros" accept="image/*" style="display: inline-block; width: 90%;" onchange="previewImage('fotoOutros', 'previewFotoOutros')" aria-label="Foto de outra pessoa">
-                <input type="text" name="rgOutros" placeholder="RG" aria-label="RG de outra pessoa">
-                <input type="text" name="cpfOutros" placeholder="CPF" aria-label="CPF de outra pessoa">
-                <input type="tel" name="telefoneOutros" placeholder="Telefone de Contato" aria-label="Telefone de contato de outra pessoa">
-                <input type="email" name="emailOutros" placeholder="E-mail" aria-label="E-mail de outra pessoa">
             </div>
 
-            <h3>Informações sobre Saúde</h3>
-            <textarea name="infoMedicas" placeholder="Informações Médicas Relevantes (alergias, medicamentos em uso, condições médicas específicas)" required aria-label="Informações Médicas"></textarea>
-            <input type="text" name="planoSaude" placeholder="Nome do Plano de Saúde (se aplicável)" aria-label="Plano de Saúde">
-            <input type="text" name="contatoEmergencia" placeholder="Nome e Contato de Emergência" required aria-label="Contato de Emergência">
+            <h3 class="section-header" data-icon="👨‍👩‍👧‍👦">Família do Nosso Aluno</h3>
+            <div class="input-group">
+                <input type="text" name="nomePai" placeholder="👨 Nome do Papai" aria-label="Nome do Pai">
+            </div>
+            <div class="input-group">
+                <input type="text" name="nomeMae" placeholder="👩 Nome da Mamãe" aria-label="Nome da Mãe">
+            </div>
 
-            <h3>Informações Socioeconômicas (opcional)</h3>
-            <input type="text" name="rendaFamiliar" placeholder="Renda Familiar" aria-label="Renda Familiar">
-            <textarea name="composicaoFamiliar" placeholder="Composição Familiar" aria-label="Composição Familiar"></textarea>
-            <input type="text" name="beneficiosSociais" placeholder="Benefícios Sociais (Bolsa Família, etc.)" aria-label="Benefícios Sociais">
+            <h3 class="section-header" data-icon="👤">Responsável pela Ficha</h3>
+            <div class="input-group">
+                <input type="text" name="nomeResponsavel" placeholder="👤 Nome Completo do Responsável" required aria-label="Nome do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" name="rgResponsavel" placeholder="🆔 RG do Responsável" required aria-label="RG do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" name="cpfResponsavel" placeholder="📄 CPF do Responsável" required aria-label="CPF do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="cepResponsavel" name="cepResponsavel" placeholder="📮 CEP do Responsável" required onblur="buscarCepResponsavel()" aria-label="CEP do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="logradouroResponsavel" name="logradouroResponsavel" placeholder="🏘️ Logradouro do Responsável" required aria-label="Logradouro do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="numeroResponsavel" name="numeroResponsavel" placeholder="🔢 Número" aria-label="Número do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="complementoResponsavel" name="complementoResponsavel" placeholder="🏢 Complemento" aria-label="Complemento do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="bairroResponsavel" name="bairroResponsavel" placeholder="🏘️ Bairro do Responsável" required aria-label="Bairro do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="cidadeResponsavel" name="cidadeResponsavel" placeholder="🏙️ Cidade do Responsável" required aria-label="Cidade do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" id="ufResponsavel" name="ufResponsavel" placeholder="🗺️ Estado do Responsável" required aria-label="Estado do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="tel" name="telefoneResponsavel" placeholder="📱 Telefone do Responsável" required aria-label="Telefone do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="text" name="profissaoResponsavel" placeholder="💼 Profissão do Responsável" required aria-label="Profissão do Responsável">
+            </div>
+            <div class="input-group">
+                <input type="email" name="emailResponsavel" placeholder="📧 E-mail do Responsável" required aria-label="E-mail do Responsável">
+            </div>
 
-            <div class="consentimento">
+            <h3 class="section-header" data-icon="🚗">Transporte Escolar</h3>
+            <div class="toggle-section">
+                <label>🚌 Quem irá buscar e levar nosso aluno?</label>
+                <select id="quemBuscarLevar" onchange="toggleOutrosDados()" aria-label="Quem irá buscar e levar o aluno?">
+                    <option value="">Selecione</option>
+                    <option value="pai">👨 Papai</option>
+                    <option value="mae">👩 Mamãe</option>
+                    <option value="outros">👥 Outra pessoa</option>
+                </select>
+                <div id="outrosDados" class="hidden-section">
+                    <div class="photo-container">
+                        <input type="text" name="nomeOutros" placeholder="👤 Nome Completo da Pessoa" aria-label="Nome Completo de outra pessoa" class="photo-input">
+                        <img id="previewFotoOutrosRosto" class="photo-preview" alt="Foto do rosto da pessoa" style="width:90px;height:110px;object-fit:cover;border-radius:12px;border:3px solid #ff6b9d;padding:2px;background:#fff;box-shadow:0 2px 8px #ccc;">
+                    </div>
+                    <div class="file-input-wrapper">
+                        <label for="fotoOutrosRosto" class="file-input-label">Adicionar Foto do Rosto (3x4)</label>
+                        <input type="file" id="fotoOutrosRosto" name="fotoOutrosRosto" accept="image/*" onchange="previewImage('fotoOutrosRosto', 'previewFotoOutrosRosto')" aria-label="Foto do rosto da pessoa">
+                    </div>
+                    <div class="file-input-wrapper">
+                        <label for="fotoOutrosRG" class="file-input-label">Adicionar Foto do RG/Documento</label>
+                        <input type="file" id="fotoOutrosRG" name="fotoOutrosRG" accept="image/*" onchange="previewImage('fotoOutrosRG', 'previewFotoOutrosRG')" aria-label="Foto do RG da pessoa">
+                    </div>
+                    <img id="previewFotoOutrosRG" style="display:none;width:120px;height:80px;border-radius:10px;border:3px solid #0984e3;object-fit:cover;margin-top:10px;" alt="Foto do RG da pessoa">
+                    <input type="text" name="rgOutros" placeholder="🆔 RG" aria-label="RG de outra pessoa">
+                    <input type="text" name="cpfOutros" placeholder="📄 CPF" aria-label="CPF de outra pessoa">
+                    <input type="tel" name="telefoneOutros" placeholder="📱 Telefone de Contato" aria-label="Telefone de contato de outra pessoa">
+                    <input type="email" name="emailOutros" placeholder="📧 E-mail" aria-label="E-mail de outra pessoa">
+                </div>
+            </div>
+
+            <h3 class="section-header" data-icon="🏥">Informações de Saúde</h3>
+            <div class="input-group">
+                <textarea name="infoMedicas" placeholder="💊 INFORMAÇÕES MÉDICAS IMPORTANTES (ALERGIAS, MEDICAMENTOS, CONDIÇÕES ESPECIAIS)" required aria-label="Informações Médicas" rows="4" maxlength="140" style="text-transform:uppercase;"></textarea>
+            </div>
+            <div class="input-group">
+                <input type="text" name="planoSaude" placeholder="🏥 Nome do Plano de Saúde (se tiver)" aria-label="Plano de Saúde">
+            </div>
+            <div class="input-group">
+                <input type="text" name="contatoEmergencia" placeholder="🚨 Contato de Emergência (nome e telefone)" required aria-label="Contato de Emergência">
+            </div>
+
+            <h3 class="section-header" data-icon="🏠">Informações da Família (opcional)</h3>
+            <div class="input-group">
+                <input type="text" name="rendaFamiliar" placeholder="💰 Renda Familiar" aria-label="Renda Familiar">
+            </div>
+            <div class="input-group">
+                <textarea name="composicaoFamiliar" placeholder="👨‍👩‍👧‍👦 Como é formada nossa família?" aria-label="Composição Familiar" rows="3"></textarea>
+            </div>
+            <div class="input-group">
+                <input type="text" name="beneficiosSociais" placeholder="🤝 Benefícios Sociais (Bolsa Família, etc.)" aria-label="Benefícios Sociais">
+            </div>
+
+            <div class="checkbox-container">
                 <input type="checkbox" name="termos" required aria-label="Aceito os termos e condições">
                 <label>
-                    Li e concordo com os <a href="#" onclick="abrirModal()">termos e condições</a>.
+                    📋 Eu li e aceito os <a href="#" onclick="abrirModal()">termos e condições</a> da escola.
                 </label>
             </div>
-            <button type="button" onclick="prepararImpressao()">Imprimir</button>
+            <button type="button" class="print-button" style="background:linear-gradient(135deg,#636e72 0%,#b2bec3 100%);border-color:#636e72;" onclick="exportarComoHTML()">Exportar para impressão</button>
         </form>
     </div>
 
     <div id="modalTermos" class="modal" aria-hidden="true" role="dialog">
         <div class="modal-content">
             <span class="close" onclick="fecharModal()" aria-label="Fechar">&times;</span>
-            <h2>TERMO DE CONDIÇÕES E TRATAMENTO DE DADOS PESSOAIS</h2>
+            <h2>📋 TERMO DE CONDIÇÕES E TRATAMENTO DE DADOS PESSOAIS</h2>
             <p>
                 Ao preencher a presente ficha, declaro que as informações pessoais fornecidas, incluindo, mas não se limitando a, nome, endereço, telefone, e-mail, dados acadêmicos e qualquer outra informação solicitada, são verdadeiras, completas e precisas. Compreendo que esses dados serão coletados e tratados pela [Nome da Escola] em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 - LGPD), e que serão utilizados exclusivamente para fins educacionais e administrativos, como registro acadêmico, comunicação com os responsáveis, e acompanhamento do desempenho escolar dos alunos, entre outras finalidades relacionadas ao processo educacional.
             </p>
@@ -262,13 +679,16 @@
             <p>
                 Por fim, ao submeter esta ficha, confirmo que li, compreendi e aceitei integralmente os termos e condições aqui estabelecidos, declarando a veracidade de todas as informações fornecidas e ciente da finalidade e duração do armazenamento dos meus dados pessoais.
             </p>
-            <p>
-                Fundação escola solidária
+            <p style="text-align: center; font-weight: bold; color: #667eea;">
+                🌟 Fundação Escola Solidária 🌟
             </p>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.7.0/jspdf.plugin.autotable.min.js"></script>
     <script>
+        // Função para buscar CEP do aluno
         function buscarCep() {
             var cep = document.getElementById('cep').value.replace(/\D/g, '');
             if (cep.length === 8) {
@@ -276,20 +696,22 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.erro) {
-                            alert('CEP não encontrado');
+                            mostrarNotificacao('CEP não encontrado! 😅', 'error');
                         } else {
                             document.getElementById('logradouro').value = data.logradouro;
                             document.getElementById('bairro').value = data.bairro;
                             document.getElementById('cidade').value = data.localidade;
                             document.getElementById('uf').value = data.uf;
+                            mostrarNotificacao('Endereço encontrado! 🎉', 'success');
                         }
                     })
-                    .catch(error => alert('Erro ao buscar o CEP'));
+                    .catch(error => mostrarNotificacao('Erro ao buscar o CEP! 😔', 'error'));
             } else {
-                alert('Por favor, insira um CEP válido com 8 dígitos.');
+                mostrarNotificacao('Por favor, insira um CEP válido com 8 dígitos! 📮', 'warning');
             }
         }
 
+        // Função para buscar CEP do responsável
         function buscarCepResponsavel() {
             var cep = document.getElementById('cepResponsavel').value.replace(/\D/g, '');
             if (cep.length === 8) {
@@ -297,76 +719,594 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.erro) {
-                            alert('CEP não encontrado');
+                            mostrarNotificacao('CEP não encontrado! 😅', 'error');
                         } else {
                             document.getElementById('logradouroResponsavel').value = data.logradouro;
                             document.getElementById('bairroResponsavel').value = data.bairro;
                             document.getElementById('cidadeResponsavel').value = data.localidade;
                             document.getElementById('ufResponsavel').value = data.uf;
+                            mostrarNotificacao('Endereço encontrado! 🎉', 'success');
                         }
                     })
-                    .catch(error => alert('Erro ao buscar o CEP'));
+                    .catch(error => mostrarNotificacao('Erro ao buscar o CEP! 😔', 'error'));
             } else {
-                alert('Por favor, insira um CEP válido com 8 dígitos.');
+                mostrarNotificacao('Por favor, insira um CEP válido com 8 dígitos! 📮', 'warning');
             }
         }
 
+        // Função para mostrar notificações
+        function mostrarNotificacao(mensagem, tipo) {
+            // Remove notificação anterior se existir
+            const notificacaoAnterior = document.querySelector('.notificacao');
+            if (notificacaoAnterior) {
+                notificacaoAnterior.remove();
+            }
+
+            const notificacao = document.createElement('div');
+            notificacao.className = 'notificacao';
+            notificacao.textContent = mensagem;
+            
+            // Estilos baseados no tipo
+            const cores = {
+                success: 'linear-gradient(135deg, #00b894 0%, #00cec9 100%)',
+                error: 'linear-gradient(135deg, #ff7675 0%, #fd79a8 100%)',
+                warning: 'linear-gradient(135deg, #fdcb6e 0%, #e17055 100%)'
+            };
+
+            notificacao.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${cores[tipo]};
+                color: white;
+                padding: 1em 1.5em;
+                border-radius: 15px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+                z-index: 2000;
+                font-weight: 600;
+                font-family: 'Nunito', sans-serif;
+                animation: slideIn 0.3s ease-out;
+            `;
+
+            // Adiciona animação CSS
+            if (!document.querySelector('#notificacao-styles')) {
+                const styles = document.createElement('style');
+                styles.id = 'notificacao-styles';
+                styles.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(styles);
+            }
+
+            document.body.appendChild(notificacao);
+
+            // Remove a notificação após 3 segundos
+            setTimeout(() => {
+                notificacao.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => notificacao.remove(), 300);
+            }, 3000);
+        }
+
+        // Função para preparar impressão
         function prepararImpressao() {
-            window.print();
+            // Valida se os campos obrigatórios estão preenchidos
+            const form = document.getElementById('fichaForm');
+            const camposObrigatorios = form.querySelectorAll('[required]');
+            let camposVazios = [];
+
+            camposObrigatorios.forEach(campo => {
+                if (!campo.value.trim()) {
+                    camposVazios.push(campo.placeholder || campo.name);
+                }
+            });
+
+            if (camposVazios.length > 0) {
+                mostrarNotificacao('Por favor, preencha todos os campos obrigatórios! 📝', 'warning');
+                return;
+            }
+
+            montarTabelaFicha();
+            setTimeout(() => {
+                window.print();
+                // Após impressão, esconde a tabela
+                setTimeout(() => {
+                    const tabela = document.getElementById('fichaTabelaImpressao');
+                    if (tabela) tabela.style.display = 'none';
+                }, 1000);
+            }, 300);
         }
 
+        // Função para montar tabela de impressão
+        function montarTabelaFicha() {
+            const form = document.getElementById('fichaForm');
+            const formData = new FormData(form);
+            // Agrupamento dos campos por seção
+            const quemBuscarLevar = document.getElementById('quemBuscarLevar').value;
+            // Foto do aluno
+            let fotoAluno = '';
+            const inputFoto = document.getElementById('fotoAluno');
+            if (inputFoto && inputFoto.files && inputFoto.files[0]) {
+                fotoAluno = document.getElementById('previewFotoAluno').src;
+            }
+            // Foto do outro responsável (rosto)
+            let fotoOutrosRosto = '';
+            let fotoOutrosRG = '';
+            if (quemBuscarLevar === 'outros') {
+                const inputFotoOutrosRosto = document.getElementById('fotoOutrosRosto');
+                if (inputFotoOutrosRosto && inputFotoOutrosRosto.files && inputFotoOutrosRosto.files[0]) {
+                    fotoOutrosRosto = document.getElementById('previewFotoOutrosRosto').src;
+                }
+                const inputFotoOutrosRG = document.getElementById('fotoOutrosRG');
+                if (inputFotoOutrosRG && inputFotoOutrosRG.files && inputFotoOutrosRG.files[0]) {
+                    fotoOutrosRG = document.getElementById('previewFotoOutrosRG').src;
+                }
+            }
+            const dados = {
+                'Dados do Aluno': [
+                    ['Nome Completo', formData.get('nomeAluno') || ''],
+                    ['Data de Nascimento', formData.get('dataNascimento') || ''],
+                    ['Nacionalidade', formData.get('nacionalidade') || ''],
+                    ['Naturalidade', formData.get('naturalidade') || ''],
+                    ['Gênero', formData.get('genero') || ''],
+                    ['CEP', formData.get('cep') || ''],
+                    ['Logradouro', formData.get('logradouro') || ''],
+                    ['Número', formData.get('numero') || ''],
+                    ['Complemento', formData.get('complemento') || ''],
+                    ['Bairro', formData.get('bairro') || ''],
+                    ['Cidade', formData.get('cidade') || ''],
+                    ['Estado', formData.get('uf') || ''],
+                    ['Telefone', formData.get('telefone') || ''],
+                    ['E-mail', formData.get('email') || ''],
+                    ['RG', formData.get('rg') || ''],
+                    ['CPF', formData.get('cpf') || ''],
+                    ['Certidão de Nascimento', formData.get('certidao') || ''],
+                    ['Raça/Cor', formData.get('raca') || ''],
+                ],
+                'Necessidades Especiais': [
+                    ['Possui necessidades especiais?', document.getElementById('necessidadeSelect').value === 'sim' ? 'Sim' : 'Não'],
+                    ['Especificação', formData.get('especificacaoNecessidade') || ''],
+                ],
+                'Família do Aluno': [
+                    ['Nome do Pai', formData.get('nomePai') || ''],
+                    ['Nome da Mãe', formData.get('nomeMae') || ''],
+                ],
+                'Responsável': [
+                    ['Nome do Responsável', formData.get('nomeResponsavel') || ''],
+                    ['RG do Responsável', formData.get('rgResponsavel') || ''],
+                    ['CPF do Responsável', formData.get('cpfResponsavel') || ''],
+                    ['CEP', formData.get('cepResponsavel') || ''],
+                    ['Logradouro', formData.get('logradouroResponsavel') || ''],
+                    ['Número', formData.get('numeroResponsavel') || ''],
+                    ['Complemento', formData.get('complementoResponsavel') || ''],
+                    ['Bairro', formData.get('bairroResponsavel') || ''],
+                    ['Cidade', formData.get('cidadeResponsavel') || ''],
+                    ['Estado', formData.get('ufResponsavel') || ''],
+                    ['Telefone', formData.get('telefoneResponsavel') || ''],
+                    ['Profissão', formData.get('profissaoResponsavel') || ''],
+                    ['E-mail', formData.get('emailResponsavel') || ''],
+                ],
+                'Transporte Escolar': [
+                    ['Quem busca/leva', quemBuscarLevar === 'pai' ? 'Papai' : quemBuscarLevar === 'mae' ? 'Mamãe' : quemBuscarLevar === 'outros' ? 'Outra pessoa' : ''],
+                ],
+                'Saúde': [
+                    ['Informações Médicas', formData.get('infoMedicas') || ''],
+                    ['Plano de Saúde', formData.get('planoSaude') || ''],
+                    ['Contato de Emergência', formData.get('contatoEmergencia') || ''],
+                ],
+                'Informações da Família': [
+                    ['Renda Familiar', formData.get('rendaFamiliar') || ''],
+                    ['Composição Familiar', formData.get('composicaoFamiliar') || ''],
+                    ['Benefícios Sociais', formData.get('beneficiosSociais') || ''],
+                ]
+            };
+            // Se for outro, adiciona dados extras
+            if (quemBuscarLevar === 'outros') {
+                // Nome
+                dados['Transporte Escolar'].push(['Nome', formData.get('nomeOutros') || '']);
+                // RG (sempre exibe o número)
+                let rgOutro = formData.get('rgOutros') || '';
+                dados['Transporte Escolar'].push(['RG', rgOutro]);
+                // Foto do rosto
+                if (fotoOutrosRosto) {
+                    dados['Transporte Escolar'].push(['Foto 3x4', `<div style=\"margin-top:4px;text-align:left;\"><img src=\"${fotoOutrosRosto}\" alt=\"Foto do rosto\" style=\"max-width:70px;max-height:90px;border-radius:50%;display:block;\"></div>`]);
+                }
+                // Foto do RG
+                if (fotoOutrosRG) {
+                    dados['Transporte Escolar'].push(['Foto do Documento (RG)', `<div style=\"margin-top:4px;text-align:left;\"><img src=\"${fotoOutrosRG}\" alt=\"Foto do RG\" style=\"max-width:120px;max-height:80px;border-radius:10px;display:block;\"></div>`]);
+                }
+                // CPF, Telefone, E-mail
+                dados['Transporte Escolar'].push(['CPF', formData.get('cpfOutros') || '']);
+                dados['Transporte Escolar'].push(['Telefone', formData.get('telefoneOutros') || '']);
+                dados['Transporte Escolar'].push(['E-mail', formData.get('emailOutros') || '']);
+            }
+            // Monta tabela HTML com imagens sempre dentro das células
+            let html = '<table id="fichaTabelaImpressao" style="display:none;width:100%;border-collapse:collapse;">';
+            // Cabeçalho com foto do aluno em célula própria
+            html += '<tr>';
+            html += '<th colspan="2" style="font-size:1.2em;text-align:center;">Ficha de Pré-Matrícula do Aluno</th>';
+            html += (fotoAluno ? `<th rowspan="7" style="text-align:center;vertical-align:top;"><img src="${fotoAluno}" alt="Foto do aluno" style="width:90px;height:110px;object-fit:cover;border-radius:12px;border:3px solid #ff6b9d;padding:2px;background:#fff;box-shadow:0 2px 8px #ccc;"></th>` : '<th rowspan="7"></th>');
+            html += '</tr>';
+            html += `<tr><td style="font-weight:bold;width:35%;">Nome Completo</td><td>${formData.get('nomeAluno') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Data de Nascimento</td><td>${formData.get('dataNascimento') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Nacionalidade</td><td>${formData.get('nacionalidade') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Naturalidade</td><td>${formData.get('naturalidade') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Gênero</td><td>${formData.get('genero') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">CEP</td><td>${formData.get('cep') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Logradouro</td><td>${formData.get('logradouro') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Número</td><td>${formData.get('numero') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Complemento</td><td>${formData.get('complemento') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Bairro</td><td>${formData.get('bairro') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Cidade</td><td>${formData.get('cidade') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Estado</td><td>${formData.get('uf') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Telefone</td><td>${formData.get('telefone') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">E-mail</td><td>${formData.get('email') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">RG</td><td>${formData.get('rg') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">CPF</td><td>${formData.get('cpf') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Certidão de Nascimento</td><td>${formData.get('certidao') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Raça/Cor</td><td>${formData.get('raca') || ''}</td></tr>`;
+            html += `<tr><th colspan="2" style="background:#f2f2f2;font-weight:bold;">Necessidades Especiais</th></tr>`;
+            html += `<tr><td style="font-weight:bold;">Possui necessidades especiais?</td><td>${document.getElementById('necessidadeSelect').value === 'sim' ? 'Sim' : 'Não'}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Especificação</td><td>${formData.get('especificacaoNecessidade') || ''}</td></tr>`;
+            html += `<tr><th colspan="2" style="background:#f2f2f2;font-weight:bold;">Família do Aluno</th></tr>`;
+            html += `<tr><td style="font-weight:bold;">Nome do Pai</td><td>${formData.get('nomePai') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Nome da Mãe</td><td>${formData.get('nomeMae') || ''}</td></tr>`;
+            html += `<tr><th colspan="2" style="background:#f2f2f2;font-weight:bold;">Responsável</th></tr>`;
+            html += `<tr><td style="font-weight:bold;">Nome do Responsável</td><td>${formData.get('nomeResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">RG do Responsável</td><td>${formData.get('rgResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">CPF do Responsável</td><td>${formData.get('cpfResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">CEP</td><td>${formData.get('cepResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Logradouro</td><td>${formData.get('logradouroResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Número</td><td>${formData.get('numeroResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Complemento</td><td>${formData.get('complementoResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Bairro</td><td>${formData.get('bairroResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Cidade</td><td>${formData.get('cidadeResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Estado</td><td>${formData.get('ufResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Telefone</td><td>${formData.get('telefoneResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">Profissão</td><td>${formData.get('profissaoResponsavel') || ''}</td></tr>`;
+            html += `<tr><td style="font-weight:bold;">E-mail</td><td>${formData.get('emailResponsavel') || ''}</td></tr>`;
+            // Transporte Escolar (ajuste para fotos do Outro)
+            html += `<tr><th colspan="3" style="background:#f2f2f2;font-weight:bold;">Transporte Escolar</th></tr>`;
+            html += `<tr><td style="font-weight:bold;">Quem busca/leva</td><td colspan="2">${quemBuscarLevar === 'pai' ? 'Papai' : quemBuscarLevar === 'mae' ? 'Mamãe' : quemBuscarLevar === 'outros' ? 'Outra pessoa' : ''}</td></tr>`;
+            // ÚLTIMA PÁGINA - Campo Outro com foto, nome e RG organizados
+            if (quemBuscarLevar === 'outros') {
+                html += '<tr style="page-break-before: always;"><th colspan="3" style="background:#f2f2f2;font-weight:bold;padding-top:20px;">Transporte Escolar - Outro</th></tr>';
+                // Linha com foto 3x4 e nome lado a lado
+                html += '<tr>';
+                html += `<td style="text-align:center;width:110px;vertical-align:top;">${fotoOutrosRosto ? `<img src="${fotoOutrosRosto}" alt="Foto do rosto" style="width:90px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #0984e3;padding:2px;background:#fff;box-shadow:0 2px 8px #ccc;">` : ''}</td>`;
+                html += `<td colspan="2" style="vertical-align:middle;font-size:1.1em;"><b>${formData.get('nomeOutros') || ''}</b></td>`;
+                html += '</tr>';
+                // Linha com RG (imagem) abaixo da foto
+                html += '<tr>';
+                html += `<td colspan="3" style="text-align:center;padding-top:10px;">${fotoOutrosRG ? `<div><b>RG:</b><br><img src="${fotoOutrosRG}" alt="Foto do RG" style="max-width:220px;height:auto;border-radius:10px;border:3px solid #0984e3;padding:2px;background:#fff;box-shadow:0 2px 8px #ccc;margin-top:6px;"></div>` : ''}</td>`;
+                html += '</tr>';
+                // Demais dados
+                html += `<tr><td style="font-weight:bold;">CPF</td><td colspan="2">${formData.get('cpfOutros') || ''}</td></tr>`;
+                html += `<tr><td style="font-weight:bold;">Telefone</td><td colspan="2">${formData.get('telefoneOutros') || ''}</td></tr>`;
+                html += `<tr><td style="font-weight:bold;">E-mail</td><td colspan="2">${formData.get('emailOutros') || ''}</td></tr>`;
+            }
+            // Adiciona seção de Saúde completa
+            html += `<tr><th colspan='3' style='background:#f2f2f2;font-weight:bold;'>Informações de Saúde</th></tr>`;
+            html += `<tr><td style='font-weight:bold;'>Informações Médicas</td><td colspan='2'>${formData.get('infoMedicas') || ''}</td></tr>`;
+            html += `<tr><td style='font-weight:bold;'>Plano de Saúde</td><td colspan='2'>${formData.get('planoSaude') || ''}</td></tr>`;
+            html += `<tr><td style='font-weight:bold;'>Contato de Emergência</td><td colspan='2'>${formData.get('contatoEmergencia') || ''}</td></tr>`;
+            html += '</table>';
+            // Remove tabela anterior se existir
+            const anterior = document.getElementById('fichaTabelaImpressao');
+            if (anterior) anterior.remove();
+            // Insere tabela no DOM
+            const container = document.getElementById('form-content');
+            container.insertAdjacentHTML('beforeend', html);
+            // Exibe tabela para impressão
+            document.getElementById('fichaTabelaImpressao').style.display = 'table';
+        }
+
+        // Exportação PDF usando jsPDF + autoTable
+        function exportarPDF() {
+            montarTabelaFicha();
+            const tabela = document.getElementById('fichaTabelaImpressao');
+            const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            doc.setFont('helvetica');
+            doc.setFontSize(12);
+            // Cabeçalho
+            doc.text('Ficha de Pré-Matrícula do Aluno', 105, 15, { align: 'center' });
+
+            // Foto do aluno (busca na primeira linha de imagem)
+            const imgAluno = tabela.querySelector('img[alt="Foto do aluno"]');
+            if (imgAluno && imgAluno.src && imgAluno.src.startsWith('data:image')) {
+                doc.addImage(imgAluno.src, 'JPEG', 160, 20, 35, 40);
+            }
+
+            // Monta dados para autoTable (exceto imagens)
+            let body = [];
+            let encontrouOutro = false;
+            for (let row of tabela.rows) {
+                let tds = row.querySelectorAll('td, th');
+                // Detecta início da seção Outro
+                if (tds.length === 3 && tds[0].textContent.includes('Transporte Escolar - Outro')) {
+                    encontrouOutro = true;
+                    continue;
+                }
+                if (!encontrouOutro && tds.length === 2) {
+                    let campo = tds[0].innerText;
+                    let valor = tds[1].innerText;
+                    if (!campo.toLowerCase().includes('foto')) {
+                        body.push([campo, valor]);
+                    }
+                }
+            }
+            doc.autoTable({
+                startY: 65,
+                head: [],
+                body: body,
+                theme: 'grid',
+                styles: { font: 'helvetica', fontSize: 11, textColor: 20, lineColor: 50, lineWidth: 0.2 },
+                headStyles: { fillColor: [242,242,242], textColor: 20, fontStyle: 'bold' },
+                columnStyles: { 0: { cellWidth: 60 }, 1: { cellWidth: 100 } },
+                margin: { left: 15, right: 15 },
+                tableWidth: 'auto',
+            });
+
+            // Seção Outro na última página
+            const outroHeader = tabela.querySelector('tr[style*="page-break-before"]');
+            if (outroHeader) {
+                doc.addPage();
+                doc.text('Transporte Escolar - Outro', 105, 20, { align: 'center' });
+                // Foto 3x4 e nome lado a lado
+                const imgOutro = tabela.querySelector('img[alt="Foto do rosto"]');
+                const nomeOutro = tabela.querySelector('tr[style*="page-break-before"] + tr td[colspan="2"] b');
+                if (imgOutro && imgOutro.src && imgOutro.src.startsWith('data:image')) {
+                    doc.addImage(imgOutro.src, 'JPEG', 25, 35, 35, 45);
+                }
+                if (nomeOutro) {
+                    doc.text('Nome:', 65, 45);
+                    doc.text(nomeOutro.textContent, 65, 55);
+                }
+                // RG abaixo da foto
+                const imgRG = tabela.querySelector('img[alt="Foto do RG"]');
+                if (imgRG && imgRG.src && imgRG.src.startsWith('data:image')) {
+                    doc.text('RG:', 25, 90);
+                    doc.addImage(imgRG.src, 'JPEG', 25, 95, 60, 30);
+                }
+                // Demais dados do Outro
+                let y = 130;
+                let tr = outroHeader.nextElementSibling;
+                while (tr) {
+                    let tds = tr.querySelectorAll('td');
+                    if (tds.length === 3 || tds.length === 0) { tr = tr.nextElementSibling; continue; }
+                    let campo = tds[0].innerText;
+                    let valor = tds[1] ? tds[1].innerText : '';
+                    if (!campo.toLowerCase().includes('foto') && campo !== 'Nome' && campo !== 'RG') {
+                        doc.text(`${campo}: ${valor}`, 25, y);
+                        y += 10;
+                    }
+                    tr = tr.nextElementSibling;
+                }
+            }
+            doc.save('Ficha_Pre_Matricula.pdf');
+            tabela.style.display = 'none';
+        }
+
+        // Exportar como HTML para impressão
+        function exportarComoHTML() {
+            montarTabelaFicha();
+            const tabela = document.getElementById('fichaTabelaImpressao');
+            // Cria um novo documento HTML moderno e pronto para impressão
+            let html = `<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>`;
+            html += `<title>Ficha de Pré-Matrícula para Impressão</title>`;
+            html += `<link href='https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700&display=swap' rel='stylesheet'>`;
+            html += `<style>
+                body { font-family: 'Nunito', sans-serif; background: #fff; color: #222; margin: 0; padding: 0; }
+                .ficha-container { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px #0001; padding: 2em; }
+                table { width: 100%; border-collapse: separate; border-spacing: 0 8px; table-layout: fixed; }
+                th, td { padding: 10px 12px; text-align: left; font-size: 1em; word-break: break-word; max-width: 0; }
+                td { max-width: 350px; white-space: pre-line; }
+                @media print { body, html { background: #fff !important; color: #000 !important; } .ficha-container { box-shadow: none !important; border: none !important; } }
+            </style></head><body><div class='ficha-container'>`;
+            html += tabela.outerHTML;
+            html += `</div></body></html>`;
+            // Cria um blob e abre em nova aba
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            window.open(url, '_blank');
+            tabela.style.display = 'none';
+        }
+
+        // Função para abrir modal
         function abrirModal() {
-            document.getElementById('modalTermos').style.display = "block";
-            document.getElementById('modalTermos').setAttribute('aria-hidden', "false");
+            const modal = document.getElementById('modalTermos');
+            modal.style.display = "block";
+            modal.setAttribute('aria-hidden', "false");
+            document.body.style.overflow = 'hidden'; // Impede scroll do body
         }
 
+        // Função para fechar modal
         function fecharModal() {
-            document.getElementById('modalTermos').style.display = "none";
-            document.getElementById('modalTermos').setAttribute('aria-hidden', "true");
+            const modal = document.getElementById('modalTermos');
+            modal.style.display = "none";
+            modal.setAttribute('aria-hidden', "true");
+            document.body.style.overflow = 'auto'; // Restaura scroll do body
         }
 
+        // Função para toggle necessidades especiais
         function toggleNecessidadeInput() {
-            var select = document.getElementById('necessidadeSelect');
-            var input = document.getElementById('necessidadeInput');
+            const select = document.getElementById('necessidadeSelect');
+            const input = document.getElementById('necessidadeInput');
             if (select.value === 'sim') {
                 input.style.display = 'block';
+                input.querySelector('input').focus();
             } else {
                 input.style.display = 'none';
             }
         }
 
+        // Função para toggle outros dados
         function toggleOutrosDados() {
-            var select = document.getElementById('quemBuscarLevar');
-            var outrosDados = document.getElementById('outrosDados');
+            const select = document.getElementById('quemBuscarLevar');
+            const outrosDados = document.getElementById('outrosDados');
             if (select.value === 'outros') {
                 outrosDados.style.display = 'block';
+                outrosDados.querySelector('input').focus();
             } else {
                 outrosDados.style.display = 'none';
             }
         }
 
+        // Função para preview de imagem
         function previewImage(inputId, imgId) {
-            var input = document.getElementById(inputId);
-            var img = document.getElementById(imgId);
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                img.src = e.target.result;
-                img.style.display = 'block';
-            }
-
+            const input = document.getElementById(inputId);
+            const img = document.getElementById(imgId);
+            
             if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    
+                    // Adiciona efeito de entrada
+                    img.style.opacity = '0';
+                    img.style.transform = 'scale(0.8)';
+                    
+                    setTimeout(() => {
+                        img.style.transition = 'all 0.3s ease';
+                        img.style.opacity = '1';
+                        img.style.transform = 'scale(1)';
+                    }, 100);
+                    
+                    mostrarNotificacao('Foto adicionada com sucesso! 📸', 'success');
+                }
+                
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
+        // Função para validação em tempo real
+        function adicionarValidacaoTempoReal() {
+            const inputs = document.querySelectorAll('input, textarea, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.style.borderColor = '#ff7675';
+                        this.style.backgroundColor = '#fff5f5';
+                    } else if (this.value.trim()) {
+                        this.style.borderColor = '#00b894';
+                        this.style.backgroundColor = '#f0fff4';
+                    }
+                });
+
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#ff6b9d';
+                    this.style.backgroundColor = '#fff';
+                });
+            });
+        }
+
+        // Função para máscaras de input
+        function adicionarMascaras() {
+            // Máscara para CEP
+            const cepInputs = document.querySelectorAll('input[name="cep"], input[name="cepResponsavel"]');
+            cepInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+                    this.value = value;
+                });
+            });
+
+            // Máscara para telefone
+            const telefoneInputs = document.querySelectorAll('input[type="tel"]');
+            telefoneInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                    value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+                    this.value = value;
+                });
+            });
+
+            // Máscara para CPF
+            const cpfInputs = document.querySelectorAll('input[name="cpf"], input[name="cpfResponsavel"], input[name="cpfOutros"]');
+            cpfInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                    this.value = value;
+                });
+            });
+        }
+
+        // Event listeners para modal
         window.onclick = function(event) {
-            var modal = document.getElementById('modalTermos');
+            const modal = document.getElementById('modalTermos');
             if (event.target == modal) {
-                modal.style.display = "none";
-                modal.setAttribute('aria-hidden', "true");
+                fecharModal();
             }
         }
+
+        // Escape key para fechar modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('modalTermos');
+                if (modal.style.display === 'block') {
+                    fecharModal();
+                }
+            }
+        });
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            adicionarValidacaoTempoReal();
+            adicionarMascaras();
+            
+            // Adiciona efeito de carregamento
+            const formContainer = document.querySelector('.form-container');
+            formContainer.style.opacity = '0';
+            formContainer.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                formContainer.style.transition = 'all 0.8s ease';
+                formContainer.style.opacity = '1';
+                formContainer.style.transform = 'translateY(0)';
+            }, 200);
+
+            // Mensagem de boas-vindas
+            setTimeout(() => {
+                mostrarNotificacao('Bem-vindos à nossa escola! 🌟', 'success');
+            }, 1500);
+        });
+
+        // Função para salvar dados localmente (opcional)
+        function salvarRascunho() {
+            const form = document.getElementById('fichaForm');
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Salva no localStorage (apenas para demonstração)
+            // Em produção, seria melhor usar um banco de dados
+            try {
+                localStorage.setItem('rascunho_ficha', JSON.stringify(data));
+                mostrarNotificacao('Rascunho salvo! 💾', 'success');
+            } catch (error) {
+                console.log('Não foi possível salvar o rascunho');
+            }
+        }
+
+        // Auto-save a cada 30 segundos
+        setInterval(salvarRascunho, 30000);
     </script>
 </body>
 </html>
